@@ -1,0 +1,115 @@
+Ship
+  ├── Hull & Structure
+  │     ├── Hull
+  │     │     ├── Bulbous Bow
+  │     │     ├── Keel
+  │     │     ├── Bilge Keels
+  │     │     └── Stabilizer Fins
+  │     ├── Superstructure
+  │     │     ├── Bridge
+  │     │     ├── Accommodation Block
+  │     │     └── Mast
+  │     ├── Decks
+  │     │     ├── Main Deck
+  │     │     ├── Upper Deck
+  │     │     └── Lower Deck
+  │     ├── Bulkheads
+  │     │     ├── Watertight Bulkhead
+  │     │     └── Longitudinal Bulkhead
+  │     └── Compartments
+  │           ├── Forepeak
+  │           ├── Engine Room
+  │           └── Cargo Hold / Storage
+  │
+  ├── Powertrain & Propulsion
+  │     ├── Main Engines
+  │     │     ├── Fuel Pump
+  │     │     ├── Turbocharger
+  │     │     ├── Lube Oil System
+  │     │     └── Cooling Water System
+  │     ├── Transmission
+  │     │     ├── Shaft Line
+  │     │     ├── Stern Tube
+  │     │     └── Gearbox
+  │     ├── Propellers
+  │     │     ├── Fixed-Pitch Propeller
+  │     │     └── Controllable-Pitch Propeller
+  │     ├── Azipod Units
+  │     │     ├── Electric Motor
+  │     │     ├── Transformer
+  │     │     └── Frequency Converter
+  │     └── Thrusters
+  │           ├── Bow Thruster
+  │           └── Stern Thruster
+  │
+  ├── Engine Room & Machinery Systems
+  │     ├── Diesel Generators
+  │     │     ├── Governor
+  │     │     └── Alternator
+  │     ├── Boilers
+  │     │     ├── Exhaust Gas Boiler
+  │     │     └── Auxiliary Boiler
+  │     ├── Pumps
+  │     │     ├── Bilge Pump
+  │     │     ├── Ballast Pump
+  │     │     └── Fire Pump
+  │     ├── Piping Systems
+  │     │     ├── Fuel Oil System
+  │     │     ├── Lubrication System
+  │     │     └── Cooling Water System
+  │     └── Environmental Systems
+  │           ├── Ballast Water Treatment
+  │           ├── Sewage Treatment Plant
+  │           └── Oily Water Separator
+  │
+  ├── Electrical & Control Systems
+  │     ├── Power Generation
+  │     │     ├── Generators
+  │     │     ├── Transformers
+  │     │     └── Switchgear
+  │     ├── Distribution
+  │     │     ├── Main Switchboard
+  │     │     └── Distribution Panels
+  │     ├── Navigation Systems
+  │     │     ├── GPS Receiver
+  │     │     ├── Radar
+  │     │     ├── Gyrocompass
+  │     │     └── Autopilot
+  │     └── Communication Systems
+  │           ├── VHF Radio
+  │           ├── Satellite Link
+  │           └── Internal PA System
+  │
+  ├── Accommodation & Hotel Services
+  │     ├── Cabins
+  │     │     ├── Passenger Cabins
+  │     │     └── Crew Cabins
+  │     ├── Catering
+  │     │     ├── Galleys
+  │     │     └── Pantries
+  │     ├── HVAC Systems
+  │     │     ├── Air Handling Units
+  │     │     └── Chillers
+  │     ├── Freshwater Systems
+  │     │     ├── Desalination Plant
+  │     │     └── Freshwater Pumps
+  │     └── Waste Management
+  │           ├── Garbage Compactor
+  │           └── Incinerator
+  │
+  └── Safety & Emergency Equipment
+        ├── Lifesaving Appliances
+        │     ├── Lifeboats
+        │     ├── Life Rafts
+        │     └── Life Jackets
+        ├── Firefighting Systems
+        │     ├── Fire Pumps
+        │     ├── Fire Hydrants
+        │     └── Sprinkler System
+        ├── Anchoring & Mooring
+        │     ├── Anchor
+        │     ├── Windlass
+        │     └── Mooring Winch
+        └── Alarms & Detection
+              ├── Smoke Detectors
+              └── Emergency Lighting
