@@ -1,0 +1,36 @@
+Phase A – Setup
+
+@context → all units, enums, object properties.
+
+Ship → top-level entity (with hasSystem pointing to HullStructureSystem and PropulsionSystem).
+
+Phase B – Hull
+3. HullStructureSystem (Deck, Bulkhead, Sides, Bow, Stern, Ice belt zones).
+
+Phase C – Propulsion Core
+4. PropulsionSystem skeleton (just structure, no details yet).
+5. PrimeMover (Engine, with FuelSystem, CoolingSystem, StartingSystem, etc.).
+6. TransmissionSystem (Gearbox, Coupling).
+7. ShaftingSystem (Intermediate shafts, bearings, seals, stern tube, brakes, dampers).
+
+Phase D – Propulsors
+8. PropulsorSystem (Propeller, Nozzle, CP Hub).
+9. ThrusterSystem (Azimuthing thruster, ridge loads, vibration checks).
+10. RudderAndSteeringSystem.
+
+Phase E – Cross-cutting
+11. ControlAndMonitoringSystem.
+12. MaterialsRequirements.
+13. ConstraintIntents (natural-language anchors for SHACL).
+
+
+notes 
+
+
+Minor notes (not blockers)
+
+Your revPerSec alias currently points to "unit:HZ". That’s fine syntactically, but semantically Hz = 1/s (frequency), not always “rev/s”. If you want stricter QUDT alignment, you could point it to unit:REV-PER-SEC.
+
+For fatigue you may later want explicit rho / gamma factors (γ_ε1, γ_ε2, etc.) as separate terms, but those can be added in Phase D/E.
+
+TRAFICOM’s §6.7 “Alternative design” pathway: you already prepped AlternativeDesignStudy and usesAlternativeDesignProcedure, so you’re covered

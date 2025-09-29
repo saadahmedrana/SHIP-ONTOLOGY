@@ -1,0 +1,544 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@base": "https://example.org/ship/",
+    "id": "@id",
+    "type": "@type",
+
+    "ex":   "https://example.org/ship/",
+    "ship": "https://example.org/ship/Ship/",
+    "hull": "https://example.org/ship/Hull/",
+    "prop": "https://example.org/ship/Propulsion/",
+    "eng":  "https://example.org/ship/Engine/",
+    "sys":  "https://example.org/ship/System/",
+    "comp": "https://example.org/ship/Component/",
+    "mat":  "https://example.org/ship/Material/",
+    "rel":  "https://example.org/ship/Relation/",
+    "reg":  "https://example.org/ship/Regulation/",
+    
+
+    "schema": "http://schema.org/",
+    "xsd":    "http://www.w3.org/2001/XMLSchema#",
+    "rdf":    "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs":   "http://www.w3.org/2000/01/rdf-schema#",
+
+    "qudt":  "http://qudt.org/schema/qudt/",
+    "unit":  "http://qudt.org/vocab/unit/",
+
+    "QuantityValue": "qudt:QuantityValue",
+    "value":   { "@id": "qudt:numericValue", "@type": "xsd:double" },
+    "unitRef": { "@id": "qudt:unit",         "@type": "@vocab" },
+
+    "Ship":                       "ship:Ship",
+    "HullStructureSystem":        "hull:HullStructureSystem",
+    "SideStructure":              "hull:SideStructure",
+    "SternStructure":             "hull:SternStructure",
+    "BowStructure":               "hull:BowStructure",
+    "SidePlate":                  "hull:SidePlate",
+    "Frames":                     "hull:Frames",
+    "TransverseFrame":            "hull:TransverseFrame",
+    "LongitudinalFrame":          "hull:LongitudinalFrame",
+    "WebFrames":                  "hull:WebFrames",
+    "IceStringers":               "hull:IceStringers",
+    "UpperBowIceBeltRegion":      "hull:UpperBowIceBeltRegion",
+    "ForefootRegion":             "hull:ForefootRegion",
+    "Keel":                       "hull:Keel",
+    "BottomStructure":            "hull:BottomStructure",
+    "InnerBottom":                "hull:InnerBottom",
+    "BottomPlating":              "hull:BottomPlating",
+    "Floors":                     "hull:Fl oors",
+    "Longitudinals":              "hull:Longitudinals",
+    "Girders":                    "hull:Girders",
+    "Bulkheads":                  "hull:Bulkheads",
+    "TransverseBulkheads":        "hull:TransverseBulkheads",
+    "LongitudinalBulkheads":      "hull:LongitudinalBulkheads",
+    "WatertightDoors":            "hull:WatertightDoors",
+    "HullDesignParameters": "hull:HullDesignParameters",
+
+    "Sides":                      "hull:Sides",
+    "Stringers":                  "hull:Stringers",
+
+    "Stem":                       "hull:Stem",
+    "Forefoot":                   "hull:Forefoot",
+    "BulbousBow":                 "hull:BulbousBow",
+
+    "SternFrame":                  "hull:SternFrame",
+    "AftDeadwood":                 "hull:AftDeadwood",
+    "Skeg":                        "hull:Skeg",
+    "ShaftBossings":               "hull:ShaftBossings",
+
+    "Superstructure":           "hull:Superstructure",
+    "FoundationsAndChocks":     "hull:FoundationsAndChocks",
+    "CoatingsAndCathodicProtection": "hull:CoatingsAndCathodicProtection",
+    "MarkingsOnStructure":      "hull:MarkingsOnStructure",
+    "IceClassDraughtMark":      "hull:IceClassDraughtMark",
+
+
+    "PropulsionSystem":           "prop:PropulsionSystem",
+    "PrimeMover":                 "eng:PrimeMover",
+    "TransmissionSystem":         "prop:TransmissionSystem",
+    "ShaftingSystem":             "prop:ShaftingSystem",
+    "PropulsorSystem":            "prop:PropulsorSystem",
+    "ThrusterSystem":             "prop:ThrusterSystem",
+    "ControlAndMonitoringSystem": "prop:ControlAndMonitoringSystem",
+    "RudderAndSteeringSystem":    "prop:RudderAndSteeringSystem",
+
+    "Gearbox":                    "comp:Gearbox",
+    "Coupling":                   "comp:Coupling",
+    "IntermediateShaft":          "comp:IntermediateShaft",
+    "SternTubeAssembly":          "comp:SternTubeAssembly",
+    "ShaftSeals":                 "comp:ShaftSeals",
+    "Bearings":                   "comp:Bearings",
+    "ShaftBrakes":                "comp:ShaftBrakes",
+    "TorsionalVibrationDamper":   "comp:TorsionalVibrationDamper",
+
+    "Propeller":                  "comp:Propeller",
+    "Nozzle":                     "comp:Nozzle",
+    "HubAndCPMechanism":          "comp:HubAndCPMechanism",
+    "AzimuthingThruster":         "comp:AzimuthingThruster",
+
+    "FuelSystem":                 "eng:FuelSystem",
+    "StartingSystem":             "eng:StartingSystem",
+    "CoolingWaterSystem":         "eng:CoolingWaterSystem",
+    "LubricatingOilSystem":       "eng:LubricatingOilSystem",
+    "IntakeAndExhaustSystem":     "eng:IntakeAndExhaustSystem",
+
+    "MonitoringEvent":            "prop:MonitoringEvent",
+    "MaterialsRequirements":      "mat:MaterialsRequirements",
+    "RegulatoryRequirementSet":   "reg:RequirementSet",
+    "AlternativeDesignStudy":     "prop:AlternativeDesignStudy",
+
+    "hasSystem":               { "@id": "rel:hasSystem",               "@type": "@id" },
+    "hasEquipment":            { "@id": "rel:hasEquipment",            "@type": "@id" },
+    "hasComponent":            { "@id": "rel:hasComponent",            "@type": "@id" },
+    "hasOrientation":  { "@id": "rel:hasOrientation",  "@type": "@id" },
+    "hasSupportType":  { "@id": "rel:hasSupportType",  "@type": "@id" },
+    "hasDesignParameters": { "@id": "rel:hasDesignParameters", "@type": "@id" },
+
+
+    "hasPropulsor":            { "@id": "rel:hasPropulsor",            "@type": "@id" },
+    "hasShaftLine":            { "@id": "rel:hasShaftLine",            "@type": "@id" },
+    "hasGearbox":              { "@id": "rel:hasGearbox",              "@type": "@id" },
+    "hasCoupling":             { "@id": "rel:hasCoupling",             "@type": "@id" },
+    "hasControlAndMonitoring": { "@id": "rel:hasControlAndMonitoring", "@type": "@id" },
+
+    "isConnectedTo":           { "@id": "rel:isConnectedTo",           "@type": "@id" },
+    "servesEngine":            { "@id": "rel:servesEngine",            "@type": "@id" },
+
+    "hasSeaChest":             { "@id": "rel:hasSeaChest",             "@type": "@id" },
+    "hasStrainers":            { "@id": "rel:hasStrainers",            "@type": "@id" },
+    "hasAirReceivers":         { "@id": "rel:hasAirReceivers",         "@type": "@id" },
+    "hasCompressors":          { "@id": "rel:hasCompressors",          "@type": "@id" },
+    "hasLOPump":               { "@id": "rel:hasLOPump",               "@type": "@id" },
+    "hasCooler":               { "@id": "rel:hasCooler",               "@type": "@id" },
+
+    "isAttachedTo":            { "@id": "rel:isAttachedTo",            "@type": "@id" },
+    "locatedInHullRegion":     { "@id": "rel:locatedInHullRegion",     "@type": "@id" },
+    "hasMaterial":             { "@id": "rel:hasMaterial",             "@type": "@id" },
+    "hasClearanceFor":         { "@id": "rel:hasClearanceFor",         "@type": "@id" },
+    "definedByRequirementSet": { "@id": "rel:definedByRequirementSet", "@type": "@id" },
+    "alternativeDesignStudy":  { "@id": "rel:alternativeDesignStudy",  "@type": "@id" },
+
+    "iceClass":                { "@id": "reg:iceClass",                "@type": "@vocab" },
+    "propulsorArrangement":    { "@id": "prop:propulsorArrangement",   "@type": "@vocab" },
+
+    "primeMoverType":          { "@id": "eng:primeMoverType",          "@type": "@vocab" },
+    "startingMethod":          { "@id": "eng:startingMethod",          "@type": "@vocab" },
+    "fuelKind":                { "@id": "eng:fuelKind",                "@type": "@vocab" },
+    "coolingCircuit":          { "@id": "eng:coolingCircuit",          "@type": "@vocab" },
+
+    "propellerType":           { "@id": "prop:propellerType",          "@type": "@vocab" },
+    "pitchType":               { "@id": "prop:pitchType",              "@type": "@vocab" },
+    "thrusterType":            { "@id": "prop:thrusterType",           "@type": "@vocab" },
+    "thrusterMode":            { "@id": "prop:thrusterMode",           "@type": "@vocab" },
+    "bearingType":             { "@id": "prop:bearingType",            "@type": "@vocab" },
+    "sealType":                { "@id": "prop:sealType",               "@type": "@vocab" },
+    "couplingType":            { "@id": "prop:couplingType",           "@type": "@vocab" },
+    "material":                { "@id": "mat:material",                "@type": "@vocab" },
+    "SNcurveType":             { "@id": "prop:SNcurveType",            "@type": "@vocab" },
+    "analysisMethod":          { "@id": "prop:analysisMethod",         "@type": "@vocab" },
+    "operationType":           { "@id": "prop:operationType",          "@type": "@vocab" },
+
+    "Z":                       { "@id": "prop:Z",                      "@type": "xsd:integer" },
+    "Nice":                    { "@id": "prop:Nice",                   "@type": "xsd:integer" },
+    "Nclass":                  { "@id": "prop:Nclass",                 "@type": "xsd:integer" },
+    "reversible":              { "@id": "eng:reversible",              "@type": "xsd:boolean" },
+    "requiresBladeOrderResonanceAssessment": { "@id": "eng:requiresBladeOrderResonanceAssessment", "@type": "xsd:boolean" },
+    "hasFirstBladeOrderResonance":           { "@id": "prop:hasFirstBladeOrderResonance",          "@type": "xsd:boolean" },
+    "globalVibrationCheck":    { "@id": "prop:globalVibrationCheck",   "@type": "xsd:boolean" },
+    "boltDesignForFex":        { "@id": "prop:boltDesignForFex",       "@type": "xsd:boolean" },
+    "dischargeRecirculationProvided": { "@id": "eng:dischargeRecirculationProvided", "@type": "xsd:boolean" },
+    "locationNearCenterlineAft": { "@id": "eng:locationNearCenterlineAft", "@type": "xsd:boolean" },
+    "iceAccumulationHeadroom": { "@id": "eng:iceAccumulationHeadroom", "@type": "xsd:boolean" },
+    "usesAlternativeDesignProcedure": { "@id": "prop:usesAlternativeDesignProcedure", "@type": "xsd:boolean" },
+    "sectionModulusZ": { "@id": "hull:sectionModulusZ", "@type": "qudt:QuantityValue" },
+    "shearAreaA":      { "@id": "hull:shearAreaA",      "@type": "qudt:QuantityValue" },
+    "triangleSideLength":   { "@id": "hull:triangleSideLength",   "@type": "qudt:QuantityValue" },
+    "triangleHeight":       { "@id": "hull:triangleHeight",       "@type": "qudt:QuantityValue" },
+    "offsetAbaftLoadLine":  { "@id": "hull:offsetAbaftLoadLine",  "@type": "qudt:QuantityValue" },
+
+    "IASuper": "reg:IceClass/IASuper",
+    "IA":      "reg:IceClass/IA",
+    "IB":      "reg:IceClass/IB",
+    "IC":      "reg:IceClass/IC",
+    "II":      "reg:IceClass/II",
+    "III":     "reg:IceClass/III",
+
+    "singleScrew": "prop:Arrangement/singleScrew",
+    "twinScrew":   "prop:Arrangement/twinScrew",
+    "tripleScrew": "prop:Arrangement/tripleScrew",
+
+    "twoStrokeDiesel": "eng:PrimeMoverType/twoStrokeDiesel",
+    "fourStrokeDiesel":"eng:PrimeMoverType/fourStrokeDiesel",
+    "dualFuelEngine":  "eng:PrimeMoverType/dualFuelEngine",
+    "gasEngine":       "eng:PrimeMoverType/gasEngine",
+    "gasTurbine":      "eng:PrimeMoverType/gasTurbine",
+    "steamTurbine":    "eng:PrimeMoverType/steamTurbine",
+    "electricMotor":   "eng:PrimeMoverType/electricMotor",
+
+    "airStart":        "eng:StartingMethod/airStart",
+    "electricStart":   "eng:StartingMethod/electricStart",
+    "hydraulicStart":  "eng:StartingMethod/hydraulicStart",
+
+    "HFO":      "eng:FuelKind/HFO",
+    "MDO":      "eng:FuelKind/MDO",
+    "MGO":      "eng:FuelKind/MGO",
+    "LNG":      "eng:FuelKind/LNG",
+    "methanol": "eng:FuelKind/methanol",
+    "other":    "eng:FuelKind/other",
+
+    "seaWaterOpenLoop":     "eng:CoolingCircuit/seaWaterOpenLoop",
+    "freshWaterClosedLoop": "eng:CoolingCircuit/freshWaterClosedLoop",
+
+    "open":   "prop:PropellerType/open",
+    "ducted": "prop:PropellerType/ducted",
+
+    "FP": "prop:PitchType/FP",
+    "CP": "prop:PitchType/CP",
+
+    "azimuthingZDrive": "prop:ThrusterType/azimuthingZDrive",
+    "azimuthingLDrive": "prop:ThrusterType/azimuthingLDrive",
+    "podded":           "prop:ThrusterType/podded",
+    "rimDriven":        "prop:ThrusterType/rimDriven",
+
+    "pushing": "prop:ThrusterMode/pushing",
+    "pulling": "prop:ThrusterMode/pulling",
+
+    "thrust":       "prop:BearingType/thrust",
+    "sternTubeAft": "prop:BearingType/sternTubeAft",
+    "sternTubeFwd": "prop:BearingType/sternTubeFwd",
+    "lineBearing":  "prop:BearingType/lineBearing",
+
+    "simpleLip": "prop:SealType/simpleLip",
+    "doubleLip": "prop:SealType/doubleLip",
+    "faceSeal":  "prop:SealType/faceSeal",
+
+    "rigid":    "prop:CouplingType/rigid",
+    "flexible": "prop:CouplingType/flexible",
+    "clutch":   "prop:CouplingType/clutch",
+
+    "bronze":          "mat:MaterialKind/bronze",
+    "austeniticSteel": "mat:MaterialKind/austeniticSteel",
+    "nodularCastIron": "mat:MaterialKind/nodularCastIron",
+    "steel":           "mat:MaterialKind/steel",
+    "aluminium":       "mat:MaterialKind/aluminium",
+    "composite":       "mat:MaterialKind/composite",
+
+    "twoSlope": "prop:SNcurveType/twoSlope",
+    "oneSlope": "prop:SNcurveType/oneSlope",
+
+    "timeDomain":      "prop:AnalysisMethod/timeDomain",
+    "frequencyDomain": "prop:AnalysisMethod/frequencyDomain",
+
+    "channel": "prop:OperationType/channel",
+    "ramming": "prop:OperationType/ramming",
+
+    "Bow":     "hull:Region/Bow",
+    "Midbody": "hull:Region/Midbody",
+    "Stern":   "hull:Region/Stern",
+
+    "m":      "unit:M",
+    "mm":     "unit:MM",
+    "m2":     "unit:M2",
+    "deg":    "unit:DEG",
+    "rpm":    "unit:REV-PER-MIN",
+    "revPerSec": "unit:HZ",
+    "kn":     "unit:Knot",
+    "kN":     "unit:KiloN",
+    "kNm":    "unit:KiloN-M",
+    "bar":    "unit:BAR",
+    "m3":     "unit:M3",
+    "h":      "unit:HR",
+    "kJ":     "unit:KiloJ",
+    "MPa":    "unit:MPa",
+    "Hz":     "unit:HZ",
+    "mrad":   "unit:MilliRAD",
+    "kgPerH": "unit:KG-PER-HR",
+    "degC":   "unit:DEG_C",
+    "cm2":   "unit:CM2",
+    "cm3":   "unit:CM3"
+  },
+  "@graph": [
+    {
+      "@id": "ship:MyVessel",
+      "@type": "ship:Ship",
+      "iceClass": "IA",
+      "ship:serviceSpeed": { "value": 0, "unitRef": "unit:Knot" },
+      "hasSystem": ["hull:HullSystem1"]
+    },
+
+    {
+      "@id": "hull:HullSystem1",
+      "@type": "hull:HullStructureSystem",
+      "hasComponent": [
+        "hull:ShipHullStructure1",
+        "hull:Superstructure1",
+        "hull:FoundationsAndChocks1",
+        "hull:CoatingsAndCathodicProtection1",
+        "hull:Markings1"
+      ]
+    },
+
+    {
+      "@id": "hull:HullParams1",
+      "@type": "hull:HullDesignParameters",
+      "reg:L":     { "value": 0, "unitRef": "unit:M"  },
+      "reg:LBOW":  { "value": 0, "unitRef": "unit:M"  },
+      "reg:LPAR":  { "value": 0, "unitRef": "unit:M"  },
+      "reg:B":     { "value": 0, "unitRef": "unit:M"  },
+      "reg:T":     { "value": 0, "unitRef": "unit:M"  },
+      "reg:UIWL":  { "value": 0, "unitRef": "unit:M"  },
+      "reg:LIWL":  { "value": 0, "unitRef": "unit:M"  },
+      "reg:Awf":   { "value": 0, "unitRef": "unit:M2" },
+      "reg:alpha": { "value": 0, "unitRef": "unit:DEG" },
+      "reg:phi1":  { "value": 0, "unitRef": "unit:DEG" },
+      "reg:phi2":  { "value": 0, "unitRef": "unit:DEG" },
+      "reg:psi":   { "value": 0, "unitRef": "unit:DEG" },
+      "reg:DP":    { "value": 0, "unitRef": "unit:M"  },
+      "reg:HM":    { "value": 0, "unitRef": "unit:M"  },
+      "reg:HF":    { "value": 0, "unitRef": "unit:M"  },
+      "reg:delta": { "value": 0, "unitRef": "unit:Tonne" }
+    },
+
+    {
+      "@id": "hull:ShipHullStructure1",
+      "@type": "hull:ShipHullStructure",
+      "hasComponent": [
+        "hull:Keel1",
+        "hull:BottomStructure1",
+        "hull:SideStructure1",
+        "hull:DeckStructure1",
+        "hull:Bulkheads1",
+        "hull:Bow1",
+        "hull:Stern1"
+      ],
+      "hasDesignParameters": "hull:HullParams1"
+    },
+
+
+{ "@id": "hull:Keel1", "@type": "hull:Keel" },
+{"@id": "hull:BottomStructure1",
+      "@type": "hull:BottomStructure",
+      "hasComponent": [
+        "hull:InnerBottom1",
+        "hull:BottomPlating1",
+        "hull:Floors1",
+        "hull:Longitudinals1",
+        "hull:Girders1"
+      ]
+    },
+    { "@id": "hull:InnerBottom1",   "@type": "hull:InnerBottom"   },
+    { "@id": "hull:BottomPlating1", "@type": "hull:BottomPlating" },
+    { "@id": "hull:Floors1",        "@type": "hull:Floors"        },
+    { "@id": "hull:Longitudinals1", "@type": "hull:Longitudinals" },
+    { "@id": "hull:Girders1",       "@type": "hull:Girders"       },
+
+    {
+      "@id": "hull:DeckStructure1",
+      "@type": "hull:DeckStructure",
+      "hasComponent": [
+        "hull:Deck1",
+        "hull:UpperDecks1",
+        "hull:DeckGirders1",
+        "hull:Beams1"
+      ]
+    },
+    {
+      "@id": "hull:Deck1",
+      "@type": "hull:Deck",
+      "hull:deckThickness": { "value": 0, "unitRef": "unit:MM" },
+      "hasMaterial": "steel",
+      "locatedInHullRegion": "Midbody",
+      "isAttachedTo": ["hull:TransverseFrame101"]
+    },
+    { "@id": "hull:UpperDecks1",  "@type": "hull:UpperDecks"  },
+    { "@id": "hull:DeckGirders1", "@type": "hull:DeckGirders" },
+    { "@id": "hull:Beams1",       "@type": "hull:Beams"       },
+
+    {
+      "@id": "hull:Bulkheads1",
+      "@type": "hull:Bulkheads",
+      "hasComponent": [
+        "hull:BulkheadTrans1",
+        "hull:BulkheadLong1",
+        "hull:WatertightDoors1"
+      ]
+    },
+    {
+      "@id": "hull:BulkheadTrans1",
+      "@type": "hull:Bulkhead",
+      "rel:hasOrientation": "hull:Orientation/transverse",
+      "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
+      "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
+      "locatedInHullRegion": "Midbody"
+    },
+    {
+      "@id": "hull:BulkheadLong1",
+      "@type": "hull:Bulkhead",
+      "rel:hasOrientation": "hull:Orientation/longitudinal",
+      "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
+      "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
+      "locatedInHullRegion": "Midbody"
+    },
+    { "@id": "hull:WatertightDoors1", "@type": "hull:WatertightDoors" },
+
+    {
+        "@id": "hull:SideStructure1",
+        "@type": "hull:SideStructure",
+        "hasComponent": [
+            "hull:SidePlate1",
+            "hull:FramesGroup1",
+            "hull:WebFrame1",
+            "hull:Stringers1",
+            "hull:IceStringer1"
+        ],
+        "locatedInHullRegion": "hull:Region/Midbody"
+    },
+    {
+      "@id": "hull:SidePlate1",
+      "@type": "hull:SidePlate",
+      "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
+      "hull:iceBeltVerticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
+      "hull:iceBeltVerticalExtentBottom": { "value": 0, "unitRef": "unit:M" },
+      "hasMaterial": "steel",
+      "locatedInHullRegion": "Bow"
+    },
+    {
+      "@id": "hull:SideStiffening1",
+      "@type": "hull:SideStiffening",
+      "hasComponent": [
+        "hull:TransverseFrame101",
+        "hull:LongitudinalFrame201",
+        "hull:WebFrame1",
+        "hull:IceStringer1"
+      ]
+    },
+
+    {
+      "@id": "hull:FramesGroup1",
+      "@type": "hull:Frames",
+      "hasComponent": [ "hull:TransverseFrame101", "hull:LongitudinalFrame201" ]
+    },
+    {
+      "@id": "hull:TransverseFrame101",
+      "@type": "hull:Frames",
+      "rel:hasOrientation": "hull:Orientation/transverse",
+      "rel:hasSupportType": "hull:SupportType/webFrame",
+      "hull:span":            { "value": 0, "unitRef": "unit:M"  },
+      "hull:spacing":         { "value": 0, "unitRef": "unit:M"  },
+      "hull:sectionModulusZ": { "value": 0, "unitRef": "unit:CM3" },
+      "hull:shearAreaA":      { "value": 0, "unitRef": "unit:CM2" }
+    },
+    {
+      "@id": "hull:LongitudinalFrame201",
+      "@type": "hull:Frames",
+      "rel:hasOrientation": "hull:Orientation/longitudinal",
+      "rel:hasSupportType": "hull:SupportType/stringer",
+      "hull:span":            { "value": 0, "unitRef": "unit:M"  },
+      "hull:spacing":         { "value": 0, "unitRef": "unit:M"  },
+      "hull:sectionModulusZ": { "value": 0, "unitRef": "unit:CM3" },
+      "hull:shearAreaA":      { "value": 0, "unitRef": "unit:CM2" }
+    },
+    {
+      "@id": "hull:WebFrame1",
+      "@type": "hull:WebFrames",
+      "hull:span":            { "value": 0, "unitRef": "unit:M"  },
+      "hull:sectionModulusZ": { "value": 0, "unitRef": "unit:CM3" },
+      "hull:spacing": { "value": 0, "unitRef": "unit:M" },
+      "hull:shearAreaA":      { "value": 0, "unitRef": "unit:CM2" }
+    },
+    {
+      "@id": "hull:Stringers1",
+      "@type": "hull:Stringers"
+    },
+    {
+      "@id": "hull:IceStringer1",
+      "@type": "hull:IceStringers",
+      "hull:span":            { "value": 0, "unitRef": "unit:M"  },
+      "hull:sectionModulusZ": { "value": 0, "unitRef": "unit:CM3" },
+      "hull:spacing": { "value": 0, "unitRef": "unit:M" },
+      "hull:shearAreaA":      { "value": 0, "unitRef": "unit:CM2" }
+    },
+
+    {
+      "@id": "hull:Bow1",
+      "@type": "hull:BowStructure",
+      "hasComponent": [ "hull:Stem1", "hull:ForefootStruct1", "hull:BulbousBow1" ],
+      "locatedInHullRegion": "Bow",
+      "reg:LBOW": { "value": 0, "unitRef": "unit:M"  },
+      "reg:Awf":  { "value": 0, "unitRef": "unit:M2" },
+      "hull:alpha": { "value": 0, "unitRef": "unit:DEG" },
+      "hull:phi1":  { "value": 0, "unitRef": "unit:DEG" },
+      "hull:phi2":  { "value": 0, "unitRef": "unit:DEG" },
+      "hull:psi":   { "value": 0, "unitRef": "unit:DEG" },
+      "hull:stemConstructionType": "hull:StemConstructionType/rolled",
+      "hull:hasBulbousBow": false
+    },
+    { "@id": "hull:Stem1",           "@type": "hull:Stem" },
+    { "@id": "hull:ForefootStruct1", "@type": "hull:Forefoot" },
+    { "@id": "hull:BulbousBow1",     "@type": "hull:BulbousBow" },
+
+    {
+      "@id": "hull:Stern1",
+      "@type": "hull:SternStructure",
+      "hasComponent": [ "hull:SternFrame1", "hull:AftDeadwood1", "hull:Skeg1", "hull:ShaftBossings1" ],
+      "locatedInHullRegion": "Stern",
+      "hull:sternClearance": { "value": 0, "unitRef": "unit:M" },
+      "hasClearanceFor": ["prop:PropulsorSystem1"]
+    },
+    { "@id": "hull:SternFrame1",    "@type": "hull:SternFrame" },
+    { "@id": "hull:AftDeadwood1",   "@type": "hull:AftDeadwood" },
+    { "@id": "hull:Skeg1",          "@type": "hull:Skeg" },
+    { "@id": "hull:ShaftBossings1", "@type": "hull:ShaftBossings" },
+
+    { "@id": "hull:Superstructure1",           "@type": "hull:Superstructure" },
+    { "@id": "hull:FoundationsAndChocks1",     "@type": "hull:FoundationsAndChocks" },
+    { "@id": "hull:CoatingsAndCathodicProtection1", "@type": "hull:CoatingsAndCathodicProtection" },
+
+    {
+      "@id": "hull:Markings1",
+      "@type": "hull:MarkingsOnStructure",
+      "hasComponent": [ "hull:IceClassDraughtMark1" ]
+    },
+    {
+      "@id": "hull:IceClassDraughtMark1",
+      "@type": "hull:IceClassDraughtMark",
+      "triangleSideLength":  { "value": 300,  "unitRef": "unit:MM" },
+      "triangleHeight":      { "value": 1000, "unitRef": "unit:MM" },
+      "offsetAbaftLoadLine": { "value": 540,  "unitRef": "unit:MM" }
+    },
+
+    {
+      "@id": "hull:UpperBowIceBelt1",
+      "@type": "hull:UpperBowIceBeltRegion",
+      "locatedInHullRegion": "Bow",
+      "hull:verticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
+      "hull:verticalExtentBottom": { "value": 0, "unitRef": "unit:M" }
+    },
+    {
+      "@id": "hull:Forefoot1",
+      "@type": "hull:ForefootRegion",
+      "locatedInHullRegion": "Bow"
+    }
+  ]
+}

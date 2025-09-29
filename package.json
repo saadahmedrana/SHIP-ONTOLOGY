@@ -1,0 +1,25 @@
+{
+  "name": "ship-ontology",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "jsonld": "^8.3.3",
+    "root": "github:mattrglobal/jsonld-lint"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saadahmedrana/SHIP-ONTOLOGY.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/saadahmedrana/SHIP-ONTOLOGY/issues"
+  },
+  "homepage": "https://github.com/saadahmedrana/SHIP-ONTOLOGY#readme"
+}
