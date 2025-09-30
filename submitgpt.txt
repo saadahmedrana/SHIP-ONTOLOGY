@@ -46,7 +46,7 @@
     "BottomStructure":            "hull:BottomStructure",
     "InnerBottom":                "hull:InnerBottom",
     "BottomPlating":              "hull:BottomPlating",
-    "Floors":                     "hull:Fl oors",
+    "Floors":                     "hull:Floors",
     "Longitudinals":              "hull:Longitudinals",
     "Girders":                    "hull:Girders",
     "Bulkheads":                  "hull:Bulkheads",
@@ -390,7 +390,7 @@
       "rel:hasOrientation": "hull:Orientation/transverse",
       "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
       "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
-      "locatedInHullRegion": "Midbody"
+      "locatedInHullRegion": "hull:Region/Midbody"
     },
     {
       "@id": "hull:BulkheadLong1",
@@ -398,7 +398,7 @@
       "rel:hasOrientation": "hull:Orientation/longitudinal",
       "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
       "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
-      "locatedInHullRegion": "Midbody"
+      "locatedInHullRegion": "hull:Region/Midbody"
     },
     { "@id": "hull:WatertightDoors1", "@type": "hull:WatertightDoors" },
 
@@ -421,7 +421,7 @@
       "hull:iceBeltVerticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
       "hull:iceBeltVerticalExtentBottom": { "value": 0, "unitRef": "unit:M" },
       "hasMaterial": "steel",
-      "locatedInHullRegion": "Bow"
+      "locatedInHullRegion": "hull:Region/Bow"
     },
     {
       "@id": "hull:SideStiffening1",
@@ -494,6 +494,13 @@
       "hull:stemConstructionType": "hull:StemConstructionType/rolled",
       "hull:hasBulbousBow": false
     },
+    {
+        "@id": "hull:UpperBowIceBelt1",
+        "@type": "hull:UpperBowIceBeltRegion",
+        "locatedInHullRegion": "hull:Region/Bow",
+        "hull:verticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
+        "hull:verticalExtentBottom": { "value": 0, "unitRef": "unit:M" }
+    },
     { "@id": "hull:Stem1",           "@type": "hull:Stem" },
     { "@id": "hull:ForefootStruct1", "@type": "hull:Forefoot" },
     { "@id": "hull:BulbousBow1",     "@type": "hull:BulbousBow" },
@@ -502,7 +509,7 @@
       "@id": "hull:Stern1",
       "@type": "hull:SternStructure",
       "hasComponent": [ "hull:SternFrame1", "hull:AftDeadwood1", "hull:Skeg1", "hull:ShaftBossings1" ],
-      "locatedInHullRegion": "Stern",
+      "locatedInHullRegion": "hull:Region/Stern",
       "hull:sternClearance": { "value": 0, "unitRef": "unit:M" },
       "hasClearanceFor": ["prop:PropulsorSystem1"]
     },
@@ -538,7 +545,7 @@
     {
       "@id": "hull:Forefoot1",
       "@type": "hull:ForefootRegion",
-      "locatedInHullRegion": "Bow"
+      "locatedInHullRegion": "hull:Region/Bow"
     }
   ]
 }

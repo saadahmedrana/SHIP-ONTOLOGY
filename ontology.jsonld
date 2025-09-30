@@ -46,7 +46,7 @@
     "BottomStructure":            "hull:BottomStructure",
     "InnerBottom":                "hull:InnerBottom",
     "BottomPlating":              "hull:BottomPlating",
-    "Floors":                     "hull:Fl oors",
+    "Floors":                     "hull:Floors",
     "Longitudinals":              "hull:Longitudinals",
     "Girders":                    "hull:Girders",
     "Bulkheads":                  "hull:Bulkheads",
@@ -284,7 +284,7 @@
       "@type": "ship:Ship",
       "iceClass": "IA",
       "ship:serviceSpeed": { "value": 0, "unitRef": "unit:Knot" },
-      "hasSystem": ["hull:HullSystem1"]
+      "hasSystem": ["hull:HullSystem1","prop:PropulsionSystem1" ]
     },
 
     {
@@ -390,7 +390,7 @@
       "rel:hasOrientation": "hull:Orientation/transverse",
       "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
       "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
-      "locatedInHullRegion": "Midbody"
+      "locatedInHullRegion": "hull:Region/Midbody"
     },
     {
       "@id": "hull:BulkheadLong1",
@@ -398,7 +398,7 @@
       "rel:hasOrientation": "hull:Orientation/longitudinal",
       "hull:spacing":   { "value": 0, "unitRef": "unit:M"  },
       "hull:thickness": { "value": 0, "unitRef": "unit:MM" },
-      "locatedInHullRegion": "Midbody"
+      "locatedInHullRegion": "hull:Region/Midbody"
     },
     { "@id": "hull:WatertightDoors1", "@type": "hull:WatertightDoors" },
 
@@ -421,7 +421,7 @@
       "hull:iceBeltVerticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
       "hull:iceBeltVerticalExtentBottom": { "value": 0, "unitRef": "unit:M" },
       "hasMaterial": "steel",
-      "locatedInHullRegion": "Bow"
+      "locatedInHullRegion": "hull:Region/Bow"
     },
     {
       "@id": "hull:SideStiffening1",
@@ -494,6 +494,13 @@
       "hull:stemConstructionType": "hull:StemConstructionType/rolled",
       "hull:hasBulbousBow": false
     },
+    {
+        "@id": "hull:UpperBowIceBelt1",
+        "@type": "hull:UpperBowIceBeltRegion",
+        "locatedInHullRegion": "hull:Region/Bow",
+        "hull:verticalExtentTop":    { "value": 0, "unitRef": "unit:M" },
+        "hull:verticalExtentBottom": { "value": 0, "unitRef": "unit:M" }
+    },
     { "@id": "hull:Stem1",           "@type": "hull:Stem" },
     { "@id": "hull:ForefootStruct1", "@type": "hull:Forefoot" },
     { "@id": "hull:BulbousBow1",     "@type": "hull:BulbousBow" },
@@ -502,7 +509,7 @@
       "@id": "hull:Stern1",
       "@type": "hull:SternStructure",
       "hasComponent": [ "hull:SternFrame1", "hull:AftDeadwood1", "hull:Skeg1", "hull:ShaftBossings1" ],
-      "locatedInHullRegion": "Stern",
+      "locatedInHullRegion": "hull:Region/Stern",
       "hull:sternClearance": { "value": 0, "unitRef": "unit:M" },
       "hasClearanceFor": ["prop:PropulsorSystem1"]
     },
@@ -538,7 +545,94 @@
     {
       "@id": "hull:Forefoot1",
       "@type": "hull:ForefootRegion",
-      "locatedInHullRegion": "Bow"
-    }
-  ]
+      "locatedInHullRegion": "hull:Region/Bow"
+    },
+     {
+      "@id": "prop:PropulsionSystem1",
+      "@type": "prop:PropulsionSystem",
+      "iceClass": "IA",
+      "propulsorArrangement": "singleScrew",
+      "hasEquipment": [
+        "eng:PrimeMover1",
+        "prop:TransmissionSystem1",
+        "prop:ShaftingSystem1",
+        "prop:ControlAndMonitoringSystem1"
+      ],
+      "hasPropulsor": "prop:PropulsorSystem1",
+      "hasShaftLine": "prop:ShaftingSystem1",
+      "hasGearbox": "comp:Gearbox1",
+      "hasCoupling": "comp:Coupling1",
+      "hasControlAndMonitoring": "prop:ControlAndMonitoringSystem1"
+    },
+
+    {
+      "@id": "eng:PrimeMover1",
+      "@type": "eng:PrimeMover",
+      "hasEquipment": [
+        "eng:FuelSystem1",
+        "eng:StartingSystem1",
+        "eng:CoolingWaterSystem1",
+        "eng:LubricatingOilSystem1",
+        "eng:IntakeAndExhaustSystem1"
+      ],
+      "isConnectedTo": "prop:ShaftingSystem1"
+    },
+    { "@id": "eng:FuelSystem1",            "@type": "eng:FuelSystem" },
+    { "@id": "eng:StartingSystem1",        "@type": "eng:StartingSystem" },
+    { "@id": "eng:CoolingWaterSystem1",    "@type": "eng:CoolingWaterSystem" },
+    { "@id": "eng:LubricatingOilSystem1",  "@type": "eng:LubricatingOilSystem" },
+    { "@id": "eng:IntakeAndExhaustSystem1","@type": "eng:IntakeAndExhaustSystem" },
+
+    {
+      "@id": "prop:TransmissionSystem1",
+      "@type": "prop:TransmissionSystem",
+      "hasComponent": ["comp:Gearbox1", "comp:Coupling1"]
+    },
+    { "@id": "comp:Gearbox1",  "@type": "comp:Gearbox"  },
+    { "@id": "comp:Coupling1", "@type": "comp:Coupling" },
+
+    {
+      "@id": "prop:ShaftingSystem1",
+      "@type": "prop:ShaftingSystem",
+      "hasComponent": [
+        "comp:IntermediateShaft1",
+        "comp:SternTubeAssembly1",
+        "comp:ShaftSeals1",
+        "comp:BearingsGroup1",
+        "comp:ShaftBrakes1",
+        "comp:TorsionalVibrationDamper1"
+      ]
+    },
+    { "@id": "comp:IntermediateShaft1",        "@type": "comp:IntermediateShaft" },
+    { "@id": "comp:SternTubeAssembly1",        "@type": "comp:SternTubeAssembly" },
+    { "@id": "comp:ShaftSeals1",               "@type": "comp:ShaftSeals" },
+    { "@id": "comp:BearingsGroup1",            "@type": "comp:Bearings" },
+    { "@id": "comp:ShaftBrakes1",              "@type": "comp:ShaftBrakes" },
+    { "@id": "comp:TorsionalVibrationDamper1", "@type": "comp:TorsionalVibrationDamper" },
+
+    {
+      "@id": "prop:PropulsorSystem1",
+      "@type": "prop:PropulsorSystem",
+      "hasComponent": [
+        "comp:Propeller1",
+        "comp:Nozzle1",
+        "comp:HubAndCPMechanism1"
+      ]
+    },
+    { "@id": "comp:Propeller1",         "@type": "comp:Propeller" },
+    { "@id": "comp:Nozzle1",            "@type": "comp:Nozzle" },
+    { "@id": "comp:HubAndCPMechanism1", "@type": "comp:HubAndCPMechanism" },
+
+    {
+      "@id": "prop:ControlAndMonitoringSystem1",
+      "@type": "prop:ControlAndMonitoringSystem"
+    },
+
+    {
+      "@id": "prop:ThrusterSystem1",
+      "@type": "prop:ThrusterSystem",
+      "hasComponent": ["comp:AzimuthingThruster1"]
+    },
+    { "@id": "comp:AzimuthingThruster1", "@type": "comp:AzimuthingThruster" }
+]
 }
