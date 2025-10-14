@@ -370,7 +370,7 @@
     "Fti_kN": { "@id": "prop:Fti_kN", "@type": "xsd:decimal" },
     "Ftr_kN": { "@id": "prop:Ftr_kN", "@type": "xsd:decimal" },
     "Hr_m":   { "@id": "prop:Hr_m",   "@type": "xsd:decimal" },
-
+ 
     "designOperationSpeedInIce_kn": { "@id": "prop:designOperationSpeedInIce_kn", "@type": "xsd:decimal" },
     "addedMass_kg":                 { "@id": "prop:addedMass_kg",                 "@type": "xsd:decimal" },
     "dampingCoeff":                 { "@id": "prop:dampingCoeff",                 "@type": "xsd:decimal" },
@@ -387,6 +387,7 @@
     "vibrationMode":       { "@id": "prop:vibrationMode",       "@type": "xsd:string" },
     "PropellerLoadSet": { "@id": "prop:PropellerLoadSet", "@type": "@id" },
     "hasLoadSet":       { "@id": "rel:hasLoadSet",        "@type": "@id" }
+    
 
     },
   "@graph": [
@@ -1503,7 +1504,11 @@
   "@type": "rdf:Property",
   "rdfs:domain": "Propeller",
   "rdfs:range": "PropellerLoadSet"
-}
+},
+{ "@id": "prop:PropellerLoadSet1",
+  "@type": "prop:PropellerLoadSet",
+  "prop:hasMember": [ "prop:Fb_kN", "prop:Ff_kN", "prop:Qsmax_kNm", "prop:Tb_kN", "prop:Tf_kN", "prop:Qmax_kNm" ] }
+
 
 
 
