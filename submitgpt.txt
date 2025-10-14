@@ -15,6 +15,9 @@
     "mat":  "https://example.org/ship/Material/",
     "rel":  "https://example.org/ship/Relation/",
     "reg":  "https://example.org/ship/Regulation/",
+    "shacl":  "http://www.w3.org/ns/shacl#",
+    "shape":  "https://example.org/ship/Shape/",
+    "meta": "https://example.org/ship/Metadata/",
     
 
     "schema": "http://schema.org/",
@@ -111,6 +114,9 @@
     "ThrusterBody":      "comp:ThrusterBody",
     "ThrusterMounting":  "comp:ThrusterMounting",
     "ThrusterLoadCase":  "prop:ThrusterLoadCase",
+    "MaterialSample":        "mat:MaterialSample",
+    "MechanicalPropertySet": "mat:MechanicalPropertySet",
+
 
     "hasSystem":               { "@id": "rel:hasSystem",               "@type": "@id" },
     "hasEquipment":            { "@id": "rel:hasEquipment",            "@type": "@id" },
@@ -123,6 +129,8 @@
     "hasHubMechanism": { "@id": "rel:hasHubMechanism", "@type": "@id" },
     "hasThruster":     { "@id": "rel:hasThruster",     "@type": "@id" },
     "mountedOn":       { "@id": "rel:mountedOn",       "@type": "@id" },
+    "hasMember": { "@id": "rel:hasMember", "@type": "@id" },
+
 
 
     "hasPropulsor":            { "@id": "rel:hasPropulsor",            "@type": "@id" },
@@ -158,6 +166,10 @@
     "hasClearanceFor":         { "@id": "rel:hasClearanceFor",         "@type": "@id" },
     "definedByRequirementSet": { "@id": "rel:definedByRequirementSet", "@type": "@id" },
     "alternativeDesignStudy":  { "@id": "rel:alternativeDesignStudy",  "@type": "@id" },
+    "shacl:targetClass": { "@id": "shacl:targetClass", "@type": "@id" },
+    "shacl:path":        { "@id": "shacl:path",        "@type": "@id" },
+    "shacl:severity":    { "@id": "shacl:severity",    "@type": "@id" },
+    "shacl:datatype":    { "@id": "shacl:datatype",    "@type": "@id" },
 
     "iceClass":                { "@id": "reg:iceClass",                "@type": "@vocab" },
     "propulsorArrangement":    { "@id": "prop:propulsorArrangement",   "@type": "@vocab" },
@@ -206,35 +218,72 @@
     "inertiaRatio_Ie_It": { "@id": "eng:inertiaRatio_Ie_It", "@type": "xsd:decimal" },
 
     "Qr_kNm": { "@id": "prop:Qr_kNm", "@type": "xsd:decimal" },
-
     "Tr_kN": { "@id": "prop:Tr_kN", "@type": "xsd:decimal" },
-
     "resonanceWithin20pctOfMaxSpeed": { "@id": "prop:resonanceWithin20pctOfMaxSpeed", "@type": "xsd:boolean" },
-
     "safetyFactorExtremeYield": { "@id": "prop:safetyFactorExtremeYield", "@type": "xsd:decimal" },
-
     "safetyFactorFatigue": { "@id": "prop:safetyFactorFatigue", "@type": "xsd:decimal" },
-
-  "safetyFactorBladeFailureYield": { "@id": "prop:safetyFactorBladeFailureYield", "@type": "xsd:decimal" },
-
-  "gearRatio": { "@id": "prop:gearRatio", "@type": "xsd:decimal" },
-
+    "safetyFactorBladeFailureYield": { "@id": "prop:safetyFactorBladeFailureYield", "@type": "xsd:decimal" },
+    "gearRatio": { "@id": "prop:gearRatio", "@type": "xsd:decimal" },
     "torsionalStiffness_kNmPerRad": { "@id": "prop:torsionalStiffness_kNmPerRad", "@type": "xsd:decimal" },
-
     "ratedTorque_kNm": { "@id": "prop:ratedTorque_kNm", "@type": "xsd:decimal" },
-
     "efficiency": { "@id": "prop:efficiency", "@type": "xsd:decimal" },
-
     "maxMisalignment_mrad": { "@id": "prop:maxMisalignment_mrad", "@type": "xsd:decimal" },
-
-
     "airReceiverCapacity_Nm3": { "@id": "eng:airReceiverCapacity_Nm3", "@type": "xsd:decimal" },
-
     "compressorChargeTime_h": { "@id": "eng:compressorChargeTime_h", "@type": "xsd:decimal" },
-
     "seaChestVolume_m3": { "@id": "eng:seaChestVolume_m3", "@type": "xsd:decimal" },
-
     "strainerOpenAreaRatio": { "@id": "eng:strainerOpenAreaRatio", "@type": "xsd:decimal" },
+    "materialKind":          { "@id": "mat:materialKind",          "@type": "xsd:string" },
+    "yieldStrength_MPa":     { "@id": "mat:yieldStrength_MPa",     "@type": "xsd:decimal" },
+    "tensileStrength_MPa":   { "@id": "mat:tensileStrength_MPa",   "@type": "xsd:decimal" },
+    "elongation_percent":    { "@id": "mat:elongation_percent",    "@type": "xsd:decimal" },
+    "charpyV_J":             { "@id": "mat:charpyV_J",             "@type": "xsd:decimal" },
+    "testTemperature_degC":  { "@id": "mat:testTemperature_degC",  "@type": "xsd:decimal" },
+    "fatigueSNReference":    { "@id": "mat:fatigueSNReference",    "@type": "xsd:string" },
+    "testedAccordingTo":     { "@id": "mat:testedAccordingTo",     "@type": "xsd:string" },
+    "sampleSize_mm":         { "@id": "mat:sampleSize_mm",         "@type": "xsd:decimal" },
+    "materialCertificateID": { "@id": "mat:materialCertificateID", "@type": "xsd:string" },
+    "verifiedBy":            { "@id": "mat:verifiedBy",            "@type": "xsd:string" },
+    "verificationDate":      { "@id": "mat:verificationDate",      "@type": "xsd:date" },
+    "approvalAuthority":     { "@id": "mat:approvalAuthority",     "@type": "xsd:string" },
+
+    "fiberOrientation":      { "@id": "mat:fiberOrientation",      "@type": "xsd:string" },
+    "matrixType":            { "@id": "mat:matrixType",            "@type": "xsd:string" },
+    "layupCode":             { "@id": "mat:layupCode",             "@type": "xsd:string" },
+    "tensileModulus_GPa":    { "@id": "mat:tensileModulus_GPa",    "@type": "xsd:decimal" },
+
+    "appliesTo":                { "@id": "rel:appliesTo",                "@type": "@id" },
+    "testedBy":                 { "@id": "rel:testedBy",                 "@type": "@id" },
+    "materialsVerifiedAgainst": { "@id": "rel:materialsVerifiedAgainst", "@type": "@id" },
+    "torsionalVibrationMonitoring": { "@id": "prop:torsionalVibrationMonitoring", "@type": "xsd:boolean" },
+    "bladeLoadMonitoring":          { "@id": "prop:bladeLoadMonitoring",          "@type": "xsd:boolean" },
+    "alarmSetpoints":               { "@id": "prop:alarmSetpoints",               "@type": "xsd:string" },
+    "recordingInterval_s":          { "@id": "prop:recordingInterval_s",          "@type": "xsd:decimal" },
+    "eventSeverity":                { "@id": "prop:eventSeverity",                "@type": "xsd:string" },
+    "sensorType":                   { "@id": "prop:sensorType",                   "@type": "xsd:string" },
+    "locationOnComponent":          { "@id": "prop:locationOnComponent",          "@type": "xsd:string" },
+    "accuracy_percent":             { "@id": "prop:accuracy_percent",             "@type": "xsd:decimal" },
+    "samplingRate_Hz":              { "@id": "prop:samplingRate_Hz",              "@type": "xsd:decimal" },
+    "timestamp":                    { "@id": "prop:timestamp",                    "@type": "xsd:dateTime" },
+    "measuredValue":                { "@id": "prop:measuredValue",                "@type": "xsd:decimal" },
+    "acknowledged":                 { "@id": "prop:acknowledged",                 "@type": "xsd:boolean" },
+    "monitorsComponent": { "@id": "rel:monitorsComponent", "@type": "@id" },
+    "recordsEvent":      { "@id": "rel:recordsEvent",      "@type": "@id" },
+    "hasSensor":         { "@id": "rel:hasSensor",         "@type": "@id" },
+    "isPartOf":          { "@id": "rel:isPartOf",          "@type": "@id" },
+
+    "ConstraintIntent":         "reg:ConstraintIntent",
+    "hasRegulationClause":      { "@id": "reg:hasRegulationClause", "@type": "xsd:string" },
+    "targetProperty":           { "@id": "reg:targetProperty",      "@type": "@id" },
+    "requiredValue":            { "@id": "reg:requiredValue" },
+    "comparisonOperator":       { "@id": "reg:comparisonOperator",  "@type": "xsd:string" },
+    "conditionDescription":     { "@id": "reg:conditionDescription","@type": "xsd:string" },
+    "appliesWhen":              { "@id": "reg:appliesWhen",         "@type": "xsd:string" },
+    "severity":                 { "@id": "reg:severity",            "@type": "xsd:string" },
+    "message":                  { "@id": "reg:message",             "@type": "xsd:string" },
+    "implementsShape":          { "@id": "reg:implementsShape",     "@type": "@id" },
+
+
+
 
     "IASuper": "reg:IceClass/IASuper",
     "IA":      "reg:IceClass/IA",
@@ -302,6 +351,11 @@
     "steel":           "mat:MaterialKind/steel",
     "aluminium":       "mat:MaterialKind/aluminium",
     "composite":       "mat:MaterialKind/composite",
+    "VibrationMonitoringSystem": "prop:VibrationMonitoringSystem",
+    "TorqueMonitoringSystem":    "prop:TorqueMonitoringSystem",
+    "IceLoadDetectionSystem":    "prop:IceLoadDetectionSystem",
+    "AlarmAndLoggingSystem":     "prop:AlarmAndLoggingSystem",
+    "Sensor":                    "prop:Sensor",
 
     "twoSlope": "prop:SNcurveType/twoSlope",
     "oneSlope": "prop:SNcurveType/oneSlope",
@@ -1505,9 +1559,200 @@
   "rdfs:domain": "Propeller",
   "rdfs:range": "PropellerLoadSet"
 },
+{
+  "@id": "hasMember",
+  "@type": "rdf:Property",
+  "rdfs:domain": "prop:PropellerLoadSet",
+  "rdfs:range": "rdf:Property",
+  "rdfs:comment": "Groups multiple load parameters (Fb, Ff, Qsmax, Tb, Tf, Qmax)."
+},
+
 { "@id": "prop:PropellerLoadSet1",
   "@type": "prop:PropellerLoadSet",
-  "prop:hasMember": [ "prop:Fb_kN", "prop:Ff_kN", "prop:Qsmax_kNm", "prop:Tb_kN", "prop:Tf_kN", "prop:Qmax_kNm" ] }
+  "prop:hasMember": [ "prop:Fb_kN", "prop:Ff_kN", "prop:Qsmax_kNm", "prop:Tb_kN", "prop:Tf_kN", "prop:Qmax_kNm" ] },
+  {
+  "@id": "MaterialsRequirements",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Materials Requirements",
+  "rdfs:comment": "Minimum strength/toughness per TRAFICOM §6.4, §6.6.3."
+},
+{ "@id": "MaterialSample", "@type": "rdfs:Class", "rdfs:label": "Material Sample" },
+{ "@id": "MechanicalPropertySet", "@type": "rdfs:Class", "rdfs:label": "Mechanical Property Set" },
+
+{ "@id": "materialKind", "@type": "rdf:Property", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:string" },
+{ "@id": "yieldStrength_MPa", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal" , "@type":"rdf:Property"},
+{ "@id": "tensileStrength_MPa", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal", "@type":"rdf:Property" },
+{ "@id": "elongation_percent", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal", "@type":"rdf:Property" },
+{ "@id": "charpyV_J", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal", "@type":"rdf:Property", "rdfs:comment": "≥27 J @ −10°C for steels (§6.4)." },
+{ "@id": "testTemperature_degC", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal", "@type":"rdf:Property" },
+{ "@id": "fatigueSNReference", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "testedAccordingTo", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "sampleSize_mm", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:decimal", "@type":"rdf:Property" },
+{ "@id": "materialCertificateID", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "verifiedBy", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "verificationDate", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:date", "@type":"rdf:Property" },
+{ "@id": "approvalAuthority", "rdfs:domain": "MaterialSample", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+
+{ "@id": "fiberOrientation", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "matrixType", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "layupCode", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:string", "@type":"rdf:Property" },
+{ "@id": "tensileModulus_GPa", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "xsd:decimal", "@type":"rdf:Property" },
+
+{ "@id": "appliesTo", "@type": "rdf:Property", "rdfs:domain": "MaterialsRequirements", "rdfs:range": "rdfs:Resource" },
+{ "@id": "testedBy", "@type": "rdf:Property", "rdfs:domain": "MechanicalPropertySet", "rdfs:range": "MaterialSample" },
+{ "@id": "materialsVerifiedAgainst", "@type": "rdf:Property", "rdfs:domain": "comp:Component", "rdfs:range": "MaterialsRequirements" },
+
+{ "@id": "ControlAndMonitoringSystem", "@type": "rdfs:Class", "rdfs:label": "Control & Monitoring" },
+{ "@id": "VibrationMonitoringSystem", "@type": "rdfs:Class", "rdfs:label": "Vibration Monitoring" },
+{ "@id": "TorqueMonitoringSystem", "@type": "rdfs:Class", "rdfs:label": "Torque Monitoring" },
+{ "@id": "IceLoadDetectionSystem", "@type": "rdfs:Class", "rdfs:label": "Ice Load Detection" },
+{ "@id": "AlarmAndLoggingSystem", "@type": "rdfs:Class", "rdfs:label": "Alarm & Logging" },
+{ "@id": "Sensor", "@type": "rdfs:Class", "rdfs:label": "Sensor" },
+
+{ "@id": "torsionalVibrationMonitoring", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "xsd:boolean", "rdfs:comment": "TRAFICOM §8 requirement anchor." },
+{ "@id": "bladeLoadMonitoring", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "xsd:boolean" },
+{ "@id": "alarmSetpoints", "@type": "rdf:Property", "rdfs:domain": "AlarmAndLoggingSystem", "rdfs:range": "xsd:string" },
+{ "@id": "recordingInterval_s", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "xsd:decimal" },
+{ "@id": "eventSeverity", "@type": "rdf:Property", "rdfs:domain": "prop:MonitoringEvent", "rdfs:range": "xsd:string" },
+{ "@id": "sensorType", "@type": "rdf:Property", "rdfs:domain": "Sensor", "rdfs:range": "xsd:string" },
+{ "@id": "locationOnComponent", "@type": "rdf:Property", "rdfs:domain": "Sensor", "rdfs:range": "xsd:string" },
+{ "@id": "accuracy_percent", "@type": "rdf:Property", "rdfs:domain": "Sensor", "rdfs:range": "xsd:decimal" },
+{ "@id": "samplingRate_Hz", "@type": "rdf:Property", "rdfs:domain": "Sensor", "rdfs:range": "xsd:decimal" },
+{ "@id": "timestamp", "@type": "rdf:Property", "rdfs:domain": "prop:MonitoringEvent", "rdfs:range": "xsd:dateTime" },
+{ "@id": "measuredValue", "@type": "rdf:Property", "rdfs:domain": "prop:MonitoringEvent", "rdfs:range": "xsd:decimal" },
+{ "@id": "acknowledged", "@type": "rdf:Property", "rdfs:domain": "prop:MonitoringEvent", "rdfs:range": "xsd:boolean" },
+
+{ "@id": "monitorsComponent", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "comp:Component" },
+{ "@id": "recordsEvent", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "prop:MonitoringEvent" },
+{ "@id": "hasSensor", "@type": "rdf:Property", "rdfs:domain": "ControlAndMonitoringSystem", "rdfs:range": "Sensor" },
+{ "@id": "isPartOf", "@type": "rdf:Property", "rdfs:domain": "Sensor", "rdfs:range": "ControlAndMonitoringSystem" },
+
+{ "@id": "RegulatoryRequirementSet", "@type": "rdfs:Class", "rdfs:label": "Regulatory Requirement Set" },
+{ "@id": "ConstraintIntent", "@type": "rdfs:Class", "rdfs:label": "Constraint Intent", "rdfs:comment": "Natural-language rule anchor for SHACL." },
+
+{ "@id": "hasRegulationClause", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "targetProperty", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "rdf:Property" },
+{ "@id": "requiredValue", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent" },
+{ "@id": "comparisonOperator", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "conditionDescription", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "appliesWhen", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "severity", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "message", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "xsd:string" },
+{ "@id": "implementsShape", "@type": "rdf:Property", "rdfs:domain": "ConstraintIntent", "rdfs:range": "shacl:Shape" },
+{
+  "@id": "MonitoringEvent",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Monitoring Event",
+  "rdfs:comment": "Recorded event or measurement for control and monitoring systems (§8)."
+},
+
+{
+  "@id": "reg:CI_SafetyFactorExtremeYield",
+  "@type": "ConstraintIntent",
+  "hasRegulationClause": "reg:6.6.4",
+  "targetProperty": "prop:safetyFactorExtremeYield",
+  "comparisonOperator": ">=",
+  "requiredValue": 1.3,
+  "severity": "Violation",
+  "message": "Extreme load yield factor must be ≥ 1.3 (§6.6.4).",
+  "definedByRequirementSet": "reg:TRAFICOM_2021",
+  "rdfs:seeAlso": "reg:CI_SafetyFactorExtremeYield"
+  "rdfs:label": "Constraint: Safety Factor Extreme Yield"
+
+
+},
+{
+  "@id": "reg:TRAFICOM_2021",
+  "@type": "RegulatoryRequirementSet",
+  "rdfs:label": "TRAFICOM Ice Class Rules (2021)",
+  "rdfs:comment": "Defines regulatory source clauses §5–§8 used in SHACL validation.",
+  "definedByRequirementSet": "reg:TRAFICOM_2021"
+
+}
+,
+{
+  "@id": "reg:CI_BoltDesignForFex",
+  "@type": "ConstraintIntent",
+  "hasRegulationClause": "reg:6.6.4",
+  "targetProperty": "prop:boltDesignForFex",
+  "requiredValue": true,
+  "severity": "Violation",
+  "message": "CP hub bolts must be dimensioned for Fex (§6.6.4).",
+  "definedByRequirementSet": "reg:TRAFICOM_2021",
+  "rdfs:seeAlso": "reg:CI_SafetyFactorExtremeYield"
+
+
+},
+{
+  "@id": "reg:CI_RudderSpeedMinima",
+  "@type": "ConstraintIntent",
+  "hasRegulationClause": "reg:5",
+  "targetProperty": "prop:rudderDesignSpeed_kn",
+  "conditionDescription": "IASuper:20, IA:18, IB:16, IC:14 (§5).",
+  "severity": "Violation",
+  "message": "Rudder design speed below class minimum.",
+  "definedByRequirementSet": "reg:TRAFICOM_2021",
+  "rdfs:seeAlso": "reg:CI_SafetyFactorExtremeYield"
+},
+{
+  "@id": "reg:CI_MonitoringRequired",
+  "@type": "ConstraintIntent",
+  "hasRegulationClause": "reg:8",
+  "targetProperty": "prop:torsionalVibrationMonitoring",
+  "appliesWhen": "iceClass >= IA",
+  "requiredValue": true,
+  "severity": "Warning",
+  "message": "Install torsional vibration monitoring for ice class ≥ IA.",
+  "definedByRequirementSet": "reg:TRAFICOM_2021",
+  "rdfs:seeAlso": "reg:CI_SafetyFactorExtremeYield"
+
+
+},
+
+{
+  "@id": "shape:TRAFICOMPhaseE",
+  "@type": "shacl:NodeShape",
+  "shacl:targetClass": "prop:PropulsionSystem",
+  "rdfs:comment": "Master shape for propulsion-related TRAFICOM checks."
+},
+{
+  "@id": "shacl:NodeShape",
+  "@type": "rdfs:Class",
+  "rdfs:label": "SHACL Node Shape",
+  "rdfs:comment": "Generic class for SHACL node shapes used in validation."
+}
+,
+{
+  "@id": "shape:safetyFactorExtremeYield",
+  "@type": "shacl:PropertyShape",
+  "shacl:path": "prop:safetyFactorExtremeYield",
+  "shacl:minInclusive": 1.3,
+  "shacl:severity": "shacl:Violation",
+  "rdfs:comment": "§6.6.4 Extreme load yield ≥ 1.3."
+},
+{
+  "@id": "shape:boltDesignForFex",
+  "@type": "shacl:PropertyShape",
+  "shacl:path": "prop:boltDesignForFex",
+  "shacl:hasValue": true,
+  "shacl:severity": "shacl:Violation",
+  "rdfs:comment": "§6.6.4 Hub bolts sized for blade failure load."
+},
+{
+  "@id": "shape:rudderSpeedMinima",
+  "@type": "shacl:PropertyShape",
+  "shacl:path": "prop:rudderDesignSpeed_kn",
+  "rdfs:comment": "§5 Rudder minima by ice class; map via SHACL SPARQL or JS rule."
+},
+{
+  "@id": "meta:OntologyVersion1",
+  "@type": "rdfs:Resource",
+  "rdfs:comment": "Ontology updated through Phase E refinement.",
+  "meta:createdOn": "2025-10-14",
+  "meta:lastValidated": "2025-10-14"
+}
+
+
 
 
 

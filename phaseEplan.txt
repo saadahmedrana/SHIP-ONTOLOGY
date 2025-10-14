@@ -1,0 +1,226 @@
+
+
+# **Phase E – Cross-Cutting Integration (Materials + Constraint Anchors + SHACL Logic)**
+
+### **Purpose**
+
+Phase E connects all previously defined systems (Hull, Propulsion, Engine, Propulsors) with:
+
+* Material performance criteria (TRAFICOM § 6.4 & § 6.6.3)
+* Monitoring & control systems (TRAFICOM § 8)
+* Regulation-driven validation logic (TRAFICOM § 5 → § 8)
+* SHACL constraint scaffolding for automatic rule enforcement
+
+Outcome: a semantically complete ontology where every property can be validated against the relevant clause.
+
+---
+
+## **E0 – Preparation & Setup**
+
+1. Continue using **submitgpt.txt** as the canonical ontology file.
+2. Confirm `@context` includes or add prefixes:
+
+   * `mat:` → Material domain
+   * `reg:` → Regulation clause URIs
+   * `shacl:` → SHACL vocabulary
+3. Backup Phase D ontology (`cp submitgpt.txt ontology_phaseD.jsonld`).
+4. Plan to add three new subsystems:
+
+   * Materials Requirements
+   * Monitoring & Control
+   * Constraint Anchors / SHACL Shapes
+
+---
+
+## **E1 – Materials Requirements Module (§ 6.4 / § 6.6.3)**
+
+### **Classes**
+
+* `MaterialsRequirements` → defines minimum strength/toughness rules
+* `MaterialSample` → represents tested specimen
+* `MechanicalPropertySet` → groups mechanical data per material family
+
+### **Properties (common to all materials)**
+
+* `materialKind` (steel / austenitic steel / bronze / nodular cast iron / composite)
+* `yieldStrength_MPa`
+* `tensileStrength_MPa`
+* `elongation_percent` (A5)
+* `charpyV_J` (impact energy)
+* `testTemperature_degC`
+* `fatigueSNReference` (link to S-N curve type)
+* `testedAccordingTo` → standard (e.g., ISO 6892-1, EN 10002-1)
+* `sampleSize_mm` → dimension of test bar
+* `materialCertificateID` (string)
+* `verifiedBy` / `verificationDate` / `approvalAuthority`
+
+### **Per-material criteria**
+
+**Steel**
+
+* ReH ≥ 235 MPa, A5 ≥ 15 %, Charpy ≥ 27 J @ −10 °C
+  **Bronze / Ni-Al Bronze**
+* ReH ≥ 350 MPa, A5 ≥ 10 %
+  **Nodular cast iron**
+* ReH ≥ 270 MPa, A5 ≥ 12 %
+  **Composites**
+* `fiberOrientation` / `matrixType` / `layupCode` / `tensileModulus_GPa`
+
+### **Relations**
+
+* `appliesTo` → any Component or System
+* `testedBy` → MaterialSample
+* `definedByRequirementSet` → RegulatoryRequirementSet
+* `materialsVerifiedAgainst` → MaterialsRequirements
+
+---
+
+## **E2 – Monitoring & Control System (§ 8)**
+
+### **Classes**
+
+* `ControlAndMonitoringSystem` (umbrella)
+* `VibrationMonitoringSystem`
+* `TorqueMonitoringSystem`
+* `IceLoadDetectionSystem`
+* `AlarmAndLoggingSystem`
+* `Sensor` / `MonitoringEvent`
+
+### **Key properties**
+
+* `torsionalVibrationMonitoring:boolean`
+* `bladeLoadMonitoring:boolean`
+* `alarmSetpoints:list`
+* `recordingInterval_s`
+* `eventSeverity` (info / warning / alarm)
+* `sensorType` (strainGauge / accelerometer / temperature / pressure)
+* `locationOnComponent` (hub / shaft / bearing)
+* `accuracy_percent`
+* `samplingRate_Hz`
+* `timestamp` / `value` / `acknowledged:boolean`
+
+### **Relations**
+
+* `monitorsComponent` → Propeller / ShaftingSystem / Bearing
+* `recordsEvent` → MonitoringEvent
+* `hasSensor` → Sensor
+* `isPartOf` → ControlAndMonitoringSystem
+
+### **Expected constraint examples**
+
+* If iceClass ≥ IA → torsionalVibrationMonitoring = true
+* If ductedPropeller → bladeLoadMonitoring = true
+
+---
+
+## **E3 – Regulatory Constraint Anchors (§ 5–§ 6 – § 8)**
+
+### **Classes**
+
+* `RegulatoryRequirementSet`
+* `ConstraintIntent`
+
+### **Core properties**
+
+* `hasRegulationClause` (e.g., reg:6.6.4)
+* `targetProperty` (property URI being checked)
+* `requiredValue` (literal or object)
+* `comparisonOperator` (>=, <=, =)
+* `conditionDescription` (natural language rule)
+* `appliesWhen` (expression / context e.g., iceClass ≥ IA)
+* `severity` (violation | warning)
+* `message` (human-readable report)
+* `definedByRequirementSet` → RegulatoryRequirementSet
+
+### **ConstraintIntent examples**
+
+1. Yield safety factor check (§ 6.6.4)
+   targetProperty: prop:safetyFactorExtremeYield
+   comparisonOperator: ">="  requiredValue: 1.3
+   conditionDescription: "Extreme yield ≥ 1.3 for all ice classes"
+
+2. Blade-failure hub design (§ 6.6.4)
+   targetProperty: prop:boltDesignForFex  requiredValue: true
+
+3. Steering speed minimum (§ 5)
+   targetProperty: prop:rudderDesignSpeed_kn  requiredValue: {IASuper: 20, IA: 18, IB: 16, IC: 14}
+
+4. Monitoring requirement (§ 8)
+   targetProperty: prop:torsionalVibrationMonitoring  appliesWhen: iceClass ≥ IA  requiredValue: true
+
+5. Material impact energy (§ 6.4)
+   targetProperty: mat:charpyV_J  comparisonOperator: ">="  requiredValue: 27 @ −10 °C
+
+---
+
+## **E4 – SHACL Shape Scaffold and PropertyShapes**
+
+### **Goals**
+
+Transform each ConstraintIntent into a SHACL shape.
+Use JSON-LD embedding so the ontology itself is SHACL-aware.
+
+### **Steps**
+
+1. Create a top-level `shapes:TRAFICOMPhaseE` NodeShape targeting `prop:PropulsionSystem`.
+2. For each constraint, generate a `shacl:PropertyShape` object with:
+
+* `shacl:path` (targetProperty)
+* `shacl:datatype` (e.g., xsd:decimal)
+* `shacl:minInclusive` / `maxInclusive`
+* `shacl:hasValue` (if boolean rule)
+* `shacl:severity` (Warning / Violation)
+* `rdfs:comment` (plain-text explanation)
+
+3. Group shapes by chapter for clarity (§ 5, § 6, § 8).
+4. Optional: add link from each ConstraintIntent to its corresponding Shape via `implementsShape`.
+
+### **Example Shape**
+
+`shape:safetyFactorExtremeYield` → checks min 1.3
+`shape:boltDesignForFex` → must equal true
+
+---
+
+## **E5 – Integration Hooks and Metadata**
+
+1. Ensure every Component with a material definition links via `materialsVerifiedAgainst`.
+2. Propeller / Shafting / Thruster components inherit material rules from MaterialsRequirements.
+3. Link ConstraintIntents to RegulatoryRequirementSet and Shapes.
+4. Create a coverage table (property → clause → shape → severity).
+5. Add lifecycle fields (`verifiedBy`, `verificationDate`, `approvalAuthority`).
+
+---
+
+## **E6 – Validation & Testing**
+
+1. **Syntax:** `npx jsonlint submitgpt.txt`
+2. **Semantic expand:** `jsonld.expand()` → verify new IRIs resolve.
+3. **Coverage audit:** All properties referenced by ConstraintIntent exist in @graph.
+4. **SHACL round-trip:** Export ConstraintIntent → `.ttl` → run W3C SHACL validator.
+5. **Result log:** save report (violations / warnings) for each requirement set.
+
+---
+
+## **Deliverables**
+
+| Artifact                  | Purpose                                                 |
+| ------------------------- | ------------------------------------------------------- |
+| `submitgpt.txt` (updated) | Ontology with Materials, Monitoring, Constraint Anchors |
+| `phaeEPLAN.txt`           | Execution guide (this file)                             |
+| `trafi.shacl.jsonld`      | Master SHACL shapes generated from ConstraintIntent     |
+| `coverage_report.txt`     | Audit table of property → clause → shape                |
+
+---
+
+### ✅ **Expected Outcome**
+
+After Phase E:
+
+* All mechanical and control systems have material and regulatory traceability.
+* Each TRAFICOM requirement is linked to a specific ontology property and SHACL shape.
+* Ontology is validation-ready for automated checking and AI-driven constraint generation (thesis goal).
+
+---
+
+*(end of Phase E plan text)*
