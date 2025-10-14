@@ -1,0 +1,132 @@
+
+Below is a practical, do-able plan you can follow in VS Code. It’s ordered so each step unblocks the next, and every item is tied to the exact TRAFICOM clauses we need to satisfy later with SHACL.
+
+---
+
+# Phase C — Plan for Today (Propulsion Core)
+
+## C0. Sync & hygiene (5–10 min of setup work)
+
+* **Confirm working source file**: keep **submitgpt.txt** as the JSON-LD working file; keep **TEST.md** as the human-readable source of truth and copy over anything new that Phase C requires. 
+* **@context sanity**: ensure units and enums you already use in TEST.md (e.g., kN, kNm, rpm, deg; PropellerType, PitchType, BearingType, SealType, CouplingType, MaterialKind) are defined once in the `@context`. (You called this out in Phase A; we just verify it’s usable for Phase C.) 
+* **Validation loop ready**: prepare quick checks: `npx jsonlint ontology.jsonld` (syntax), `npx jsonld-lint` / `jsonld.js expand` (semantics).
+
+## C1. PropulsionSystem “skeleton” (lightweight, needed as a hub)
+
+**Goal:** A minimal node that links driver → transmission → shafting (no propeller loads yet; that’s Phase D).
+
+* In **submitgpt.txt**, add/confirm a **PropulsionSystem** class with:
+
+  * `hasPropulsor` (placeholder link to PropulsorSystem for Phase D),
+  * `hasTransmissionSystem`,
+  * `hasShaftingSystem`,
+  * `propulsorArrangement` (singleScrew | twinScrew | tripleScrew),
+  * `iceClass` (mirror from Ship to localize checks).
+* This mirrors your TEST.md hierarchy and DNV GMOD function layout. 
+
+**Acceptance:** JSON parses, JSON-LD expands, context resolves terms.
+
+## C2. PrimeMover (engine) — interface variables only
+
+**Goal:** Put just the **interface data** Phase C needs (we already drafted the engine module text earlier; wire in the bare minimum now).
+
+* Properties to add (data props on `PrimeMover`):
+
+  * `mcrPower{kW}`, `mcrRpm|rev/s`, `reversible:boolean`,
+  * `qEmax{kNm}` (prime mover max torque; defaulting allowed later per Table 6-10),
+  * `inertiaRatio_Ie_It` (if you’ll use non-resonant method). 
+* Object links:
+
+  * `isConnectedTo: ShaftingSystem`,
+  * `hasStartingSystem` (pointer to Compressed Air in §7.1 for later),
+  * `hasCoolingSystem` (pointer to Sea/Fresh water in §7.2 for later). 
+
+**Why now?** Shaft-line design needs `Qemax` and sometimes `Ie/It` even before propeller loads (Phase D). 
+
+**Acceptance:** JSON-LD expands; PrimeMover term is resolvable and linked to Transmission/Shafting.
+
+## C3. TransmissionSystem (Gearbox + Coupling)
+
+**Goal:** Capture stiffness/ratio so the shaft response variables make sense later.
+
+* Add/confirm in **submitgpt.txt**:
+
+  * **Gearbox**: `gearRatio`, `torsionalStiffness{kNm/rad}`, `ratedTorque{kNm}`, `efficiency`.
+  * **Coupling**: `couplingType`, `torsionalStiffness{kNm/rad}`, `ratedTorque{kNm}`, `maxMisalignment{mrad}`.
+* Reason: These parameters feed into the torsional response (`Qr`) and method choice later (§6.5.3). 
+
+**Acceptance:** Terms present; TransmissionSystem connects PrimeMover ↔ ShaftingSystem.
+
+## C4. ShaftingSystem (the heart of Phase C)
+
+**Goal:** Land the variables and flags that TRAFICOM requires for **shaft-line design** and **method selection**.
+Populate the following **data props** at **ShaftingSystem** level (you already sketched most of these in TEST.md — now encode them in submitgpt.txt):
+
+* `Qr{kNm}` — design response torque (store a value or placeholder).
+* `Tr{kN}` — design response thrust.
+* `resonanceWithin20pctOfMaxSpeed:boolean`.
+* `analysisMethod:"timeDomain"|"frequencyDomain"` (when resonant).
+* **Safety factors** per §6.6.4:
+
+  * `safetyFactorExtremeYield ≥ 1.3`
+  * `safetyFactorFatigue ≥ 1.5`
+  * `safetyFactorBladeFailureYield ≥ 1.0` (combined loads under blade failure). 
+* Per-component children (keep them simple for now):
+
+  * `IntermediateShaft`, `SternTubeAssembly(length{m}, diameter{m}, linerMaterial)`,
+  * `ShaftSeals(sealType, designPressure{bar}, redundancy)`,
+  * `Bearings(bearingType, ratedLoad{kN}, allowableContactPressure{MPa})`,
+  * `ShaftBrakes`, `TorsionalVibrationDamper`. 
+
+**Method anchor:** Store a boolean or enum on ShaftingSystem to mark **non-resonant** vs **resonant** path (per §6.5.3.3/.4). Time-domain vs frequency-domain guidance comes straight from §6.5.3.4; we’ll implement the rule itself in Phase D/E. 
+
+**Acceptance:** All variables exist so that later SHACL shapes can assert:
+
+* “If resonanceWithin20pctOfMaxSpeed = true ⇒ analysisMethod provided and Qr peaks documented for MCR / MCR-bollard / resonant speeds.” 
+
+## C5. Cross-links to Misc. Machinery (placeholders only)
+
+**Goal:** Prepare for Phase E constraints without implementing them today.
+
+* **Compressed air (640)**: add minimal **StartingSystem** node with `airReceiverCapacity{Nm³}`, `compressorChargeTime{h}`; just link it to PrimeMover (values TBD in Phase E). 
+* **Sea/Fresh water (630)**: add **CoolingWaterInletChest** node with `seaChestVolume{m³}`, `strainerOpenAreaRatio`, `recircDischarge:boolean`, `nearCenterlineAft:boolean`, `iceHeadroom:boolean`; link it to PrimeMover/Cooling. 
+
+**Acceptance:** Links exist so engine/propulsion context is complete; we won’t validate values yet.
+
+## C6. Minimal SHACL intent notes (inline comments only)
+
+**Goal:** Leave breadcrumbs directly in submitgpt.txt so future SHACL files are trivial to write.
+
+* Add short comments (or a `notes` field) next to:
+
+  * Shafting safety factors → “per TRAFICOM §6.6.4”. 
+  * Resonance method switch → “§6.5.3.3 non-resonant / §6.5.3.4 resonant; Qemax defaults Table 6-10”. 
+
+**Acceptance:** Human can find the clause without hunting the PDF.
+
+## C7. Validate & park
+
+* Run **JSON** syntax check and **JSON-LD expand** on submitgpt.txt (rename to `ontology.jsonld` if you like consistent naming).
+* Confirm that **no TRAFICOM clause needed for Phase C is missing a placeholder**:
+
+  * §6.5.3 design torque pathways flagged. 
+  * §6.6.4 safety factors present. 
+  * §7.1/§7.2 link nodes exist (values later). 
+
+---
+
+## What we will **not** do in Phase C (by design)
+
+* No propeller/ice load formulas (`Fb/Ff/Qsmax/Tb/Tf/Qmax`), no blade failure `Fex/Qsex`, no immersion factors (`k1/k2/k3`, `Nice`) — **that’s Phase D (Propulsors)**. TRAFICOM Chapter 6 “Design loads” is captured as variables in TEST.md already, but we purposely keep the **loads** out of Phase C to avoid mixing concerns.
+
+---
+
+## Quick edit map (where to touch submitgpt.txt)
+
+* Add/confirm classes: `PropulsionSystem`, `PrimeMover`, `TransmissionSystem{Gearbox,Coupling}`, `ShaftingSystem{IntermediateShaft,SternTubeAssembly,ShaftSeals,Bearings,ShaftBrakes,TorsionalVibrationDamper}`.
+* Add data props on **PrimeMover**: `mcrPower`, `mcrRpm|revPerSec`, `reversible`, `qEmax`, `inertiaRatio_Ie_It`. 
+* Add data props on **ShaftingSystem**: `Qr`, `Tr`, `resonanceWithin20pctOfMaxSpeed`, `analysisMethod`, `safetyFactorExtremeYield`, `safetyFactorFatigue`, `safetyFactorBladeFailureYield`. 
+* Add placeholder nodes/links: `StartingSystem` (to §7.1) and `CoolingWaterInletChest` (to §7.2). 
+
+---
+

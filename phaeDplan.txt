@@ -1,0 +1,196 @@
+
+# Phase D – Propulsors (Detailed Plan)
+
+### 🎯 **Goal**
+
+Extend the ontology to cover all propulsion-end hardware and the ice-load variables required to express TRAFICOM §6 (Design loads, Blade failure, Fatigue, and Thruster requirements).
+Everything added here will later let SHACL shapes check compliance automatically.
+
+---
+
+## D0. Preparation (Setup)
+
+1. **Confirm Phase C graph links**
+
+   * `PropulsionSystem.hasPropulsor` exists and points to `PropulsorSystem`.
+   * `PropulsorSystem` will become the umbrella for Propeller + Nozzle + CP Hub + Thruster.
+2. **Create new sub-namespaces (if not yet in @context)**
+
+   * `prop:Propeller`, `prop:Nozzle`, `prop:HubAndCPMechanism`, `prop:ThrusterSystem`.
+   * Optional: `prop:PropellerLoadSet` to group Fb/Ff/etc.
+3. **Ensure units ready**
+
+   * `kN`, `kNm`, `m`, `m2`, `deg`, `rpm`, `revPerSec` (already in Phase C context).
+
+---
+
+## D1. Propeller – Geometry & Operational Descriptors
+
+**Classes**
+
+* `Propeller` (rdf:Class)
+* `Nozzle` (rdf:Class)
+* `HubAndCPMechanism` (rdf:Class)
+
+**Key data properties**
+
+| Variable                        | Meaning / Unit       | TRAFICOM ref      |
+| ------------------------------- | -------------------- | ----------------- |
+| `D {m}`                         | Diameter             | § 6.5             |
+| `Z`                             | Number of blades     | § 6.5             |
+| `P0_7 {m}`                      | Pitch at 0.7 R       | § 6.5             |
+| `c0_7 {m}`                      | Chord at 0.7 R       | § 6.5             |
+| `EAR`                           | Expanded area ratio  | § 6.5             |
+| `hubDiameter {m}`               | Hub diameter         | § 6.5             |
+| `nn {rpm}`                      | Open-water speed     | § 6.5             |
+| `n_bollard {rpm}`               | Bollard speed        | § 6.5             |
+| `propellerType` (open | ducted) | Config type          | § 6.5             |
+| `pitchType` (FP | CP)           | Fixed / controllable | § 6.5             |
+| `material`                      | Bronze / Steel / …   | § 6.4 (materials) |
+
+**Object links**
+
+* `hasNozzle` → Nozzle
+* `hasHubMechanism` → HubAndCPMechanism
+* `isPartOf` → PropulsorSystem
+
+**Purpose**
+→ Forms the geometric and operational basis for load equations in § 6.5.
+
+---
+
+## D2. Propeller – Ice Load Variables (§ 6.5 Design Loads)
+
+**Add to @context (data props):**
+
+| Property    | Description            | Unit |
+| ----------- | ---------------------- | ---- |
+| `Fb_kN`     | Backward blade force   | kN   |
+| `Ff_kN`     | Forward blade force    | kN   |
+| `Qsmax_kNm` | Max spindle torque     | kNm  |
+| `Tb_kN`     | Axial force (backward) | kN   |
+| `Tf_kN`     | Axial force (forward)  | kN   |
+| `Qmax_kNm`  | Ice torque             | kNm  |
+| `Fex_kN`    | Blade failure force    | kN   |
+| `Qsex_kNm`  | Blade failure torque   | kNm  |
+
+**Derived / flag variables**
+
+* `loadedArea_m2`
+* `loadDistributionType` (enum: uniform, triangular, tip)
+* `methodForQmax` (enum: openProp, ductedProp)
+* `hasAllBladesSimultaneousImpact` (boolean)
+
+**Attach to:** `Propeller`
+**Comments:** Used directly by SHACL for rules in § 6.5.3 and § 6.5.4.
+
+---
+
+## D3. Propeller – Failure & Fatigue (§ 6.5.4 / § 6.6.2)
+
+**Data props**
+
+* `SNCurveType` (oneSlope | twoSlope)
+* `stressRange_MPa`
+* `cycles_N`
+* `Nice` (number of ice load cycles)
+* `Nclass` (fatigue class index)
+
+**Object links**
+
+* `definedByRequirementSet` → RegulatoryRequirementSet
+* `boltDesignForFex {boolean}` → ensures CP hub meets blade-failure load.
+
+**Purpose:**  Tie in the fatigue and failure criteria from § 6.6.2 and § 6.5.4.
+
+---
+
+## D4. Propeller – Location & Immersion Factors (§ 6.5 Tables)
+
+**Data props**
+
+* `k1` (location factor – centre/wing/pulling)
+* `k2` (submersion factor = f(h0, Cice, D))
+* `k3` (mechanical type factor – azimuthing)
+* `Hice {m}` and `Hiced {m}` (ice thickness design / extreme)
+* `fImmersion_h0CiceD` (optional expression string)
+
+**Notes**
+All these will be numeric placeholders until we build SHACL expressions.
+
+---
+
+## D5. Thruster System (§ 6.6.5 Thrusters & Vibration)
+
+**Classes**
+
+* `ThrusterSystem`
+* `ThrusterBody`
+* `ThrusterMounting`
+* `ThrusterLoadCase` (optional grouping)
+
+**Key variables**
+
+| Property                                                   | Description / §         | Unit |
+| ---------------------------------------------------------- | ----------------------- | ---- |
+| `Fti_kN`                                                   | Ice impact load (T1/T2) | kN   |
+| `Ftr_kN`                                                   | Ridge load (T4/T5)      | kN   |
+| `Hr_m`                                                     | Ridge height            | m    |
+| `designOperationSpeedInIce_kn`                             | Operating speed in ice  | kn   |
+| `globalVibrationCheck` (boolean)                           | Per § 6.6.5             |      |
+| `addedMass_kg`, `dampingCoeff`, `attachmentStiffness_kN/m` | For vibration analysis  |      |
+
+**Links**
+
+* `hasPropeller` → Propeller
+* `mountedOn` → HullStructureSystem (Stern region)
+
+---
+
+## D6. Rudder and Steering System (§ 5 Design Speeds)
+
+**Class:** `RudderAndSteeringSystem`
+**Properties**
+
+* `rudderDesignSpeed_kn` ≥ class-minimums (IAS 20, IA 18, IB 16, IC 14)
+* `steeringType` (mechanical | hydraulic | electro-hydraulic)
+* `controlRedundancy` (boolean)
+
+---
+
+## D7. Linkages / Integration
+
+* Connect `PropulsionSystem.hasPropulsor` → `PropulsorSystem`, and
+  `PropulsorSystem.hasComponent` → `Propeller`, `Nozzle`, `ThrusterSystem`, `RudderAndSteeringSystem`.
+* Ensure every propulsor element carries its `iceClass` and `operationType` (channel | ramming) for SHACL filtering.
+
+---
+
+## D8. Validation and Testing
+
+1. **JSON syntax check:** `npx jsonlint ontology.jsonld`
+2. **Semantic expand:** `jsonld.expand` → confirm new nodes resolve.
+3. **Coverage check:** ensure every TRAFICOM § 6 clause has a property placeholder.
+4. **Test instances:** add one sample Propeller + Thruster with plausible values.
+
+---
+
+## D9. Deliverables
+
+* Updated `ontology.jsonld` including all Phase D classes & properties.
+* `phaeDPLAN.txt` (this file).
+* A validation log showing zero parse errors and successful expansion.
+
+---
+
+### ✅ Outcome
+
+After executing this plan you’ll have:
+
+* Complete modeling coverage for **propeller, thruster, and rudder systems**.
+* All **ice-load and fatigue variables** needed for SHACL constraint generation (Phase E).
+* A clean, lint-verified ontology.jsonld ready for constraint binding.
+
+---
+
+Would you like me to convert this plan into a properly formatted `phaeDPLAN.txt` file you can drop into your repo next to your Phase C plan?

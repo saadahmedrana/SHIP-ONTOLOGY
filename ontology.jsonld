@@ -21,6 +21,7 @@
     "xsd":    "http://www.w3.org/2001/XMLSchema#",
     "rdf":    "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs":   "http://www.w3.org/2000/01/rdf-schema#",
+    "@vocab": "https://example.com/ship#",
 
     "qudt":  "http://qudt.org/schema/qudt/",
     "unit":  "http://qudt.org/vocab/unit/",
@@ -107,6 +108,9 @@
     "MaterialsRequirements":      "mat:MaterialsRequirements",
     "RegulatoryRequirementSet":   "reg:RequirementSet",
     "AlternativeDesignStudy":     "prop:AlternativeDesignStudy",
+    "ThrusterBody":      "comp:ThrusterBody",
+    "ThrusterMounting":  "comp:ThrusterMounting",
+    "ThrusterLoadCase":  "prop:ThrusterLoadCase",
 
     "hasSystem":               { "@id": "rel:hasSystem",               "@type": "@id" },
     "hasEquipment":            { "@id": "rel:hasEquipment",            "@type": "@id" },
@@ -114,13 +118,21 @@
     "hasOrientation":  { "@id": "rel:hasOrientation",  "@type": "@id" },
     "hasSupportType":  { "@id": "rel:hasSupportType",  "@type": "@id" },
     "hasDesignParameters": { "@id": "rel:hasDesignParameters", "@type": "@id" },
+    "hasPropeller":    { "@id": "rel:hasPropeller",    "@type": "@id" },
+    "hasNozzle":       { "@id": "rel:hasNozzle",       "@type": "@id" },
+    "hasHubMechanism": { "@id": "rel:hasHubMechanism", "@type": "@id" },
+    "hasThruster":     { "@id": "rel:hasThruster",     "@type": "@id" },
+    "mountedOn":       { "@id": "rel:mountedOn",       "@type": "@id" },
 
 
     "hasPropulsor":            { "@id": "rel:hasPropulsor",            "@type": "@id" },
     "hasShaftLine":            { "@id": "rel:hasShaftLine",            "@type": "@id" },
+  "hasShaftingSystem":       { "@id": "rel:hasShaftLine",            "@type": "@id" },
     "hasGearbox":              { "@id": "rel:hasGearbox",              "@type": "@id" },
     "hasCoupling":             { "@id": "rel:hasCoupling",             "@type": "@id" },
     "hasControlAndMonitoring": { "@id": "rel:hasControlAndMonitoring", "@type": "@id" },
+
+
 
     "isConnectedTo":           { "@id": "rel:isConnectedTo",           "@type": "@id" },
     "servesEngine":            { "@id": "rel:servesEngine",            "@type": "@id" },
@@ -131,6 +143,14 @@
     "hasCompressors":          { "@id": "rel:hasCompressors",          "@type": "@id" },
     "hasLOPump":               { "@id": "rel:hasLOPump",               "@type": "@id" },
     "hasCooler":               { "@id": "rel:hasCooler",               "@type": "@id" },
+
+
+    "CoolingWaterInletChest": "eng:CoolingWaterInletChest",
+    "hasTransmissionSystem": { "@id": "rel:hasTransmissionSystem", "@type": "@id" },
+
+    "hasStartingSystem": { "@id": "rel:hasStartingSystem", "@type": "@id" },
+
+    "hasCoolingSystem": { "@id": "rel:hasCoolingSystem", "@type": "@id" },
 
     "isAttachedTo":            { "@id": "rel:isAttachedTo",            "@type": "@id" },
     "locatedInHullRegion":     { "@id": "rel:locatedInHullRegion",     "@type": "@id" },
@@ -168,14 +188,53 @@
     "globalVibrationCheck":    { "@id": "prop:globalVibrationCheck",   "@type": "xsd:boolean" },
     "boltDesignForFex":        { "@id": "prop:boltDesignForFex",       "@type": "xsd:boolean" },
     "dischargeRecirculationProvided": { "@id": "eng:dischargeRecirculationProvided", "@type": "xsd:boolean" },
+    "recircDischarge": { "@id": "eng:dischargeRecirculationProvided", "@type": "xsd:boolean" },
     "locationNearCenterlineAft": { "@id": "eng:locationNearCenterlineAft", "@type": "xsd:boolean" },
+    "nearCenterlineAft": { "@id": "eng:locationNearCenterlineAft", "@type": "xsd:boolean" },
     "iceAccumulationHeadroom": { "@id": "eng:iceAccumulationHeadroom", "@type": "xsd:boolean" },
+   "iceHeadroom": { "@id": "eng:iceAccumulationHeadroom", "@type": "xsd:boolean" },
     "usesAlternativeDesignProcedure": { "@id": "prop:usesAlternativeDesignProcedure", "@type": "xsd:boolean" },
     "sectionModulusZ": { "@id": "hull:sectionModulusZ", "@type": "qudt:QuantityValue" },
     "shearAreaA":      { "@id": "hull:shearAreaA",      "@type": "qudt:QuantityValue" },
     "triangleSideLength":   { "@id": "hull:triangleSideLength",   "@type": "qudt:QuantityValue" },
     "triangleHeight":       { "@id": "hull:triangleHeight",       "@type": "qudt:QuantityValue" },
     "offsetAbaftLoadLine":  { "@id": "hull:offsetAbaftLoadLine",  "@type": "qudt:QuantityValue" },
+    "mcrPower_kW": { "@id": "eng:mcrPower_kW", "@type": "xsd:decimal" },
+
+    "mcrRpm_revPerSec": { "@id": "eng:mcrRpm_revPerSec", "@type": "xsd:decimal" },
+    "qEmax_kNm": { "@id": "eng:qEmax_kNm", "@type": "xsd:decimal" },
+    "inertiaRatio_Ie_It": { "@id": "eng:inertiaRatio_Ie_It", "@type": "xsd:decimal" },
+
+    "Qr_kNm": { "@id": "prop:Qr_kNm", "@type": "xsd:decimal" },
+
+    "Tr_kN": { "@id": "prop:Tr_kN", "@type": "xsd:decimal" },
+
+    "resonanceWithin20pctOfMaxSpeed": { "@id": "prop:resonanceWithin20pctOfMaxSpeed", "@type": "xsd:boolean" },
+
+    "safetyFactorExtremeYield": { "@id": "prop:safetyFactorExtremeYield", "@type": "xsd:decimal" },
+
+    "safetyFactorFatigue": { "@id": "prop:safetyFactorFatigue", "@type": "xsd:decimal" },
+
+  "safetyFactorBladeFailureYield": { "@id": "prop:safetyFactorBladeFailureYield", "@type": "xsd:decimal" },
+
+  "gearRatio": { "@id": "prop:gearRatio", "@type": "xsd:decimal" },
+
+    "torsionalStiffness_kNmPerRad": { "@id": "prop:torsionalStiffness_kNmPerRad", "@type": "xsd:decimal" },
+
+    "ratedTorque_kNm": { "@id": "prop:ratedTorque_kNm", "@type": "xsd:decimal" },
+
+    "efficiency": { "@id": "prop:efficiency", "@type": "xsd:decimal" },
+
+    "maxMisalignment_mrad": { "@id": "prop:maxMisalignment_mrad", "@type": "xsd:decimal" },
+
+
+    "airReceiverCapacity_Nm3": { "@id": "eng:airReceiverCapacity_Nm3", "@type": "xsd:decimal" },
+
+    "compressorChargeTime_h": { "@id": "eng:compressorChargeTime_h", "@type": "xsd:decimal" },
+
+    "seaChestVolume_m3": { "@id": "eng:seaChestVolume_m3", "@type": "xsd:decimal" },
+
+    "strainerOpenAreaRatio": { "@id": "eng:strainerOpenAreaRatio", "@type": "xsd:decimal" },
 
     "IASuper": "reg:IceClass/IASuper",
     "IA":      "reg:IceClass/IA",
@@ -262,7 +321,7 @@
     "m2":     "unit:M2",
     "deg":    "unit:DEG",
     "rpm":    "unit:REV-PER-MIN",
-    "revPerSec": "unit:HZ",
+  "revPerSec": "unit:REV-PER-SEC",
     "kn":     "unit:Knot",
     "kN":     "unit:KiloN",
     "kNm":    "unit:KiloN-M",
@@ -276,8 +335,60 @@
     "kgPerH": "unit:KG-PER-HR",
     "degC":   "unit:DEG_C",
     "cm2":   "unit:CM2",
-    "cm3":   "unit:CM3"
-  },
+    "cm3":   "unit:CM3",
+    "D_m":            { "@id": "prop:D_m",            "@type": "xsd:decimal" },
+    "P0_7_m":         { "@id": "prop:P0_7_m",         "@type": "xsd:decimal" },
+    "c0_7_m":         { "@id": "prop:c0_7_m",         "@type": "xsd:decimal" },
+    "EAR":            { "@id": "prop:EAR",            "@type": "xsd:decimal" },
+    "hubDiameter_m":  { "@id": "prop:hubDiameter_m",  "@type": "xsd:decimal" },
+    "nn_rpm":         { "@id": "prop:nn_rpm",         "@type": "xsd:decimal" },
+    "n_bollard_rpm":  { "@id": "prop:n_bollard_rpm",  "@type": "xsd:decimal" },
+
+    "Fb_kN":       { "@id": "prop:Fb_kN",       "@type": "xsd:decimal" },
+    "Ff_kN":       { "@id": "prop:Ff_kN",       "@type": "xsd:decimal" },
+    "Qsmax_kNm":   { "@id": "prop:Qsmax_kNm",   "@type": "xsd:decimal" },
+    "Tb_kN":       { "@id": "prop:Tb_kN",       "@type": "xsd:decimal" },
+    "Tf_kN":       { "@id": "prop:Tf_kN",       "@type": "xsd:decimal" },
+    "Qmax_kNm":    { "@id": "prop:Qmax_kNm",    "@type": "xsd:decimal" },
+
+    "Fex_kN":          { "@id": "prop:Fex_kN",          "@type": "xsd:decimal" },
+    "Qsex_kNm":        { "@id": "prop:Qsex_kNm",        "@type": "xsd:decimal" },
+    "stressRange_MPa": { "@id": "prop:stressRange_MPa", "@type": "xsd:decimal" },
+    "cycles_N":        { "@id": "prop:cycles_N",        "@type": "xsd:integer" },
+
+    "k1": { "@id": "prop:k1", "@type": "xsd:decimal" },
+    "k2": { "@id": "prop:k2", "@type": "xsd:decimal" },
+    "k3": { "@id": "prop:k3", "@type": "xsd:decimal" },
+
+    "Hice_m":       { "@id": "prop:Hice_m",       "@type": "xsd:decimal" },
+    "Hiced_m":      { "@id": "prop:Hiced_m",      "@type": "xsd:decimal" },
+    "loadedArea_m2":        { "@id": "prop:loadedArea_m2",        "@type": "xsd:decimal" },
+    "loadDistributionType": { "@id": "prop:loadDistributionType", "@type": "xsd:string" },
+    "methodForQmax":        { "@id": "prop:methodForQmax",        "@type": "xsd:string" },
+    "hasAllBladesSimultaneousImpact": { "@id": "prop:hasAllBladesSimultaneousImpact", "@type": "xsd:boolean" },
+
+    "Fti_kN": { "@id": "prop:Fti_kN", "@type": "xsd:decimal" },
+    "Ftr_kN": { "@id": "prop:Ftr_kN", "@type": "xsd:decimal" },
+    "Hr_m":   { "@id": "prop:Hr_m",   "@type": "xsd:decimal" },
+
+    "designOperationSpeedInIce_kn": { "@id": "prop:designOperationSpeedInIce_kn", "@type": "xsd:decimal" },
+    "addedMass_kg":                 { "@id": "prop:addedMass_kg",                 "@type": "xsd:decimal" },
+    "dampingCoeff":                 { "@id": "prop:dampingCoeff",                 "@type": "xsd:decimal" },
+    "attachmentStiffness_kNPerM":   { "@id": "prop:attachmentStiffness_kNPerM",   "@type": "xsd:decimal" },
+
+    "rudderDesignSpeed_kn": { "@id": "prop:rudderDesignSpeed_kn", "@type": "xsd:decimal" },
+    "steeringType":         { "@id": "prop:steeringType",         "@type": "xsd:string" },
+    "controlRedundancy":    { "@id": "prop:controlRedundancy",    "@type": "xsd:boolean" },
+    "throatDiameter_m": { "@id": "prop:throatDiameter_m", "@type": "xsd:decimal" },
+    "lipThickness_mm":  { "@id": "prop:lipThickness_mm",  "@type": "xsd:decimal" },
+    "nozzleLength_m":   { "@id": "prop:nozzleLength_m",   "@type": "xsd:decimal" },
+    "nozzleType":       { "@id": "prop:nozzleType",       "@type": "xsd:string" },
+    "naturalFrequency_Hz": { "@id": "prop:naturalFrequency_Hz", "@type": "xsd:decimal" },
+    "vibrationMode":       { "@id": "prop:vibrationMode",       "@type": "xsd:string" },
+    "PropellerLoadSet": { "@id": "prop:PropellerLoadSet", "@type": "@id" },
+    "hasLoadSet":       { "@id": "rel:hasLoadSet",        "@type": "@id" }
+
+    },
   "@graph": [
     {
       "@id": "ship:MyVessel",
@@ -633,6 +744,769 @@
       "@type": "prop:ThrusterSystem",
       "hasComponent": ["comp:AzimuthingThruster1"]
     },
-    { "@id": "comp:AzimuthingThruster1", "@type": "comp:AzimuthingThruster" }
+    { "@id": "comp:AzimuthingThruster1", "@type": "comp:AzimuthingThruster" },
+    {
+  "@id": "PropulsionSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Propulsion System",
+  "rdfs:comment": "Hub linking driver → transmission → shafting; holds arrangement and local ice class for constraints."
+},
+{
+  "@id": "hasTransmissionSystem",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsionSystem",
+  "rdfs:range": "TransmissionSystem"
+},
+{
+  "@id": "hasShaftingSystem",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsionSystem",
+  "rdfs:range": "ShaftingSystem"
+},
+{
+  "@id": "hasPropulsor",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsionSystem",
+  "rdfs:range": "PropulsorSystem"
+},
+{
+  "@id": "propulsorArrangement",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsionSystem",
+  "rdfs:range": "xsd:string"
+},
+{
+  "@id": "iceClass",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsionSystem",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "Mirror ship iceClass here to simplify local SHACL checks from TRAFICOM Ch.6."
+},
+{
+  "@id": "PrimeMover",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Prime Mover (Propulsion Engine or Motor)",
+  "rdfs:comment": "Engine/driver interface variables needed for shaft-line design."
+},
+{
+  "@id": "mcrPower_kW",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "MCR power [kW]."
+},
+{
+  "@id": "mcrRpm_revPerSec",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "MCR rotational speed [rev/s]."
+},
+{
+  "@id": "reversible",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "True if reversing required for astern."
+},
+{
+  "@id": "qEmax_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Prime mover maximum torque [kNm]. If unknown, default by propulsor type per §6.5.3 Table 6-10."
+},
+{
+  "@id": "inertiaRatio_Ie_It",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Non-resonant design torque uses Ie/It when applicable (§6.5.3.3)."
+},
+{
+  "@id": "isConnectedTo",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "ShaftingSystem"
+},
+{
+  "@id": "hasStartingSystem",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "StartingSystem",
+  "rdfs:comment": "TRAFICOM §7.1 starting requirements."
+},
+{
+  "@id": "hasCoolingSystem",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PrimeMover",
+  "rdfs:range": "CoolingWaterInletChest",
+  "rdfs:comment": "TRAFICOM §7.2 sea inlet and cooling water."
+},
+{
+  "@id": "TransmissionSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Transmission System"
+},
+{
+  "@id": "Gearbox",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Reduction Gearbox"
+},
+{
+  "@id": "hasGearbox",
+  "@type": "rdf:Property",
+  "rdfs:domain": "TransmissionSystem",
+  "rdfs:range": "Gearbox"
+},
+{
+  "@id": "gearRatio",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Gearbox",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "torsionalStiffness_kNmPerRad",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Gearbox",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "ratedTorque_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Gearbox",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "efficiency",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Gearbox",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "Coupling",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Shaft Coupling"
+},
+{
+  "@id": "hasCoupling",
+  "@type": "rdf:Property",
+  "rdfs:domain": "TransmissionSystem",
+  "rdfs:range": "Coupling"
+},
+{
+  "@id": "couplingType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Coupling",
+  "rdfs:range": "xsd:string"
+},
+{
+  "@id": "maxMisalignment_mrad",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Coupling",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "torsionalStiffness_kNmPerRad",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Coupling",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "ratedTorque_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Coupling",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "ShaftingSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Shafting System",
+  "rdfs:comment": "Holds response torques, thrust, resonance flag, analysis method, and safety factors per §6.6.4."
+},
+{
+  "@id": "Qr_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Design response torque [kNm]; used in §6.5.3/.4 checks."
+},
+{
+  "@id": "Tr_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Design response thrust [kN]."
+},
+{
+  "@id": "resonanceWithin20pctOfMaxSpeed",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "True if first blade order resonance is within ±20% of max operating speed (bollard) per §6.5.3."
+},
+{
+  "@id": "analysisMethod",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "timeDomain|frequencyDomain when resonant per §6.5.3.4."
+},
+{
+  "@id": "safetyFactorExtremeYield",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "≥ 1.3 for extreme operational loads per §6.6.4."
+},
+{
+  "@id": "safetyFactorFatigue",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "≥ 1.5 for fatigue loads per §6.6.4."
+},
+{
+  "@id": "safetyFactorBladeFailureYield",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ShaftingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "≥ 1.0 against yielding under blade failure load per §6.6.4."
+},
+{
+  "@id": "StartingSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Starting Air System",
+  "rdfs:comment": "TRAFICOM §7.1: starts and compressor charging."
+},
+{
+  "@id": "airReceiverCapacity_Nm3",
+  "@type": "rdf:Property",
+  "rdfs:domain": "StartingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Capacity for ≥12 consecutive starts (reversible) or ≥6 (non-reversible)."
+},
+{
+  "@id": "compressorChargeTime_h",
+  "@type": "rdf:Property",
+  "rdfs:domain": "StartingSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "≤0.5 h for IASuper reversible; ≤1 h otherwise. See §7.1."
+},
+{
+  "@id": "CoolingWaterInletChest",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Cooling Water Inlet Chest",
+  "rdfs:comment": "TRAFICOM §7.2: chest location/volume/strainer/recirc/headroom."
+},
+{
+  "@id": "seaChestVolume_m3",
+  "@type": "rdf:Property",
+  "rdfs:domain": "CoolingWaterInletChest",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "≈1 m³ per 750 kW of total engine output."
+},
+{
+  "@id": "strainerOpenAreaRatio",
+  "@type": "rdf:Property",
+  "rdfs:domain": "CoolingWaterInletChest",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Open area ≥ 4× inlet pipe area."
+},
+{
+  "@id": "recircDischarge",
+  "@type": "rdf:Property",
+  "rdfs:domain": "CoolingWaterInletChest",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Full-capacity discharge recirculation to sea chest present."
+},
+{
+  "@id": "nearCenterlineAft",
+  "@type": "rdf:Property",
+  "rdfs:domain": "CoolingWaterInletChest",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Sea inlet near centerline and well aft."
+},
+{
+  "@id": "iceHeadroom",
+  "@type": "rdf:Property",
+  "rdfs:domain": "CoolingWaterInletChest",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Chest height allows ice to accumulate above inlet pipe."
+},
+{
+  "@id": "PropulsorSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Propulsor System",
+  "rdfs:comment": "Umbrella for propeller, nozzle, CP hub, thrusters (§6)."
+},
+{
+  "@id": "Propeller",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Propeller",
+  "rdfs:comment": "Geometry and loads for §6.5 design and fatigue."
+},
+{
+  "@id": "Nozzle",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Nozzle",
+  "rdfs:comment": "Nozzle around propeller (ducted propulsors)."
+},
+{
+  "@id": "HubAndCPMechanism",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Hub and CP Mechanism",
+  "rdfs:comment": "Controllable pitch hub/bolts per blade-failure checks (§6.5.4, §6.6.4)."
+},
+
+{
+  "@id": "ThrusterSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Thruster System",
+  "rdfs:comment": "Azimuthing/fixed thrusters, body loads & vibration (§6.6.5)."
+},
+{
+  "@id": "ThrusterBody",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Thruster Body",
+  "rdfs:comment": "Body subject to impact/ridge loads (§6.6.5)."
+},
+{
+  "@id": "ThrusterMounting",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Thruster Mounting",
+  "rdfs:comment": "Ship attachment stiffness/damping for global vibration (§6.6.5)."
+},
+{
+  "@id": "ThrusterLoadCase",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Thruster Load Case",
+  "rdfs:comment": "T1–T5 load abstractions for impact/ridge (§6.6.5 Tables 6-16/17)."
+},
+
+{
+  "@id": "RudderAndSteeringSystem",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Rudder and Steering System",
+  "rdfs:comment": "Chapter 5 speed & control requirements."
+},
+
+
+{
+  "@id": "hasPropeller",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsorSystem",
+  "rdfs:range": "Propeller"
+},
+{
+  "@id": "hasNozzle",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsorSystem",
+  "rdfs:range": "Nozzle"
+},
+{
+  "@id": "hasHubMechanism",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsorSystem",
+  "rdfs:range": "HubAndCPMechanism"
+},
+{
+  "@id": "hasThruster",
+  "@type": "rdf:Property",
+  "rdfs:domain": "PropulsorSystem",
+  "rdfs:range": "ThrusterSystem"
+},
+{
+  "@id": "mountedOn",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "HullStructureSystem",
+  "rdfs:comment": "Mounting to stern/hull region."
+},
+
+
+{
+  "@id": "D_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Propeller diameter D [m] (§6.2/6.5)."
+},
+{
+  "@id": "P0_7_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Pitch at 0.7R [m] (§6.2)."
+},
+{
+  "@id": "c0_7_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Chord at 0.7R [m] (§6.2)."
+},
+{
+  "@id": "EAR",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Expanded area ratio (§6.2)."
+},
+{
+  "@id": "hubDiameter_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "External hub diameter d [m] (§6.2)."
+},
+{
+  "@id": "nn_rpm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Nominal speed at MCR, free running [rpm] (§6.2)."
+},
+{
+  "@id": "n_bollard_rpm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Speed at MCR bollard [rpm] (§6.5.3.4.1)."
+},
+{
+  "@id": "propellerType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "open|ducted (§6.5)."
+},
+{
+  "@id": "pitchType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "FP|CP (§6.2)."
+},
+{
+  "@id": "material",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "Bronze/Austenitic steel/Nodular cast iron… (§6.4.1)."
+},
+{
+  "@id": "Z",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:integer",
+  "rdfs:comment": "Number of blades (§6.2)."
+},
+
+
+{
+  "@id": "Fb_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Max backward blade force (§6.2, Fig. 6-1)."
+},
+{
+  "@id": "Ff_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Max forward blade force (§6.2)."
+},
+{
+  "@id": "Qsmax_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Max spindle torque (§6.5)."
+},
+{
+  "@id": "Tb_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Axial force, backward (§6.5)."
+},
+{
+  "@id": "Tf_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Axial force, forward (§6.5)."
+},
+{
+  "@id": "Qmax_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ice torque on propeller (§6.5.3)."
+},
+
+{
+  "@id": "Fex_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ultimate blade load from plastic bending (§6.2, §6.5.4)."
+},
+{
+  "@id": "Qsex_kNm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Torque from blade failure (§6.5.4)."
+},
+{
+  "@id": "SNcurveType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "oneSlope|twoSlope (§6.6.2)."
+},
+{
+  "@id": "stressRange_MPa",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Fatigue stress range (§6.6.2)."
+},
+{
+  "@id": "cycles_N",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:integer",
+  "rdfs:comment": "Number of cycles used for fatigue check (§6.6.2, NR)."
+},
+{
+  "@id": "Nice",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:integer",
+  "rdfs:comment": "Total number of ice loads on blades (§6.2)."
+},
+{
+  "@id": "Nclass",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:integer",
+  "rdfs:comment": "Reference number per ice class (§6.2)."
+},
+{
+  "@id": "boltDesignForFex",
+  "@type": "rdf:Property",
+  "rdfs:domain": "HubAndCPMechanism",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "CP hub bolts designed for blade-failure load (§6.6.4)."
+},
+
+
+{
+  "@id": "k1",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Location factor (centre/wing/pulling)."
+},
+{
+  "@id": "k2",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Submersion factor = f(h0, Cice, D)."
+},
+{
+  "@id": "k3",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Mechanical type factor (e.g., azimuthing)."
+},
+{
+  "@id": "Hice_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Thickness of design max ice block entering propeller (§6.3, Table 6-3)."
+},
+{
+  "@id": "Hiced_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Design ice thickness for thruster impact (≈2/3 Hice) (§6.2)."
+},
+{
+  "@id": "loadedArea_m2",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Assumed loaded area used in local checks."
+},
+{
+  "@id": "loadDistributionType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "uniform|triangular|tip (for local pressure distribution)."
+},
+{
+  "@id": "methodForQmax",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "openProp|ductedProp (selects formula set)."
+},
+{
+  "@id": "hasAllBladesSimultaneousImpact",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Flag for simultaneous blade impact scenario."
+},
+
+{
+  "@id": "Fti_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ice impact load (T1/T2/T3) (§6.6.5, Eq. 6.46; Tables 6-16/17)."
+},
+{
+  "@id": "Ftr_kN",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ridge load (T4/T5) (§6.6.5)."
+},
+{
+  "@id": "Hr_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ridge height (§6.6.5)."
+},
+{
+  "@id": "designOperationSpeedInIce_kn",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Design operation speed in ice for load selection (§6.6.5)."
+},
+{
+  "@id": "globalVibrationCheck",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Blade-order global vibration assessed (§6.6.5)."
+},
+{
+  "@id": "addedMass_kg",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Hydrodynamic added mass for global modes (§6.6.5)."
+},
+{
+  "@id": "dampingCoeff",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Modal damping ratio/coeff. Include water damping (§6.6.5)."
+},
+{
+  "@id": "attachmentStiffness_kNPerM",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterMounting",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Ship attachment stiffness for vibration model (§6.6.5)."
+},
+
+{
+  "@id": "rudderDesignSpeed_kn",
+  "@type": "rdf:Property",
+  "rdfs:domain": "RudderAndSteeringSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "Design speed in ice per class (IAS 20, IA 18, IB 16, IC 14)."
+},
+{
+  "@id": "steeringType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "RudderAndSteeringSystem",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "mechanical|hydraulic|electro-hydraulic."
+},
+{
+  "@id": "controlRedundancy",
+  "@type": "rdf:Property",
+  "rdfs:domain": "RudderAndSteeringSystem",
+  "rdfs:range": "xsd:boolean",
+  "rdfs:comment": "Redundant steering/control available."
+},
+{
+  "@id": "Nozzle",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Nozzle (ducted propeller)",
+  "rdfs:comment": "Geometry and material data for ducted propellers (§6.5.5)."
+},
+{
+  "@id": "throatDiameter_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Nozzle",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "lipThickness_mm",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Nozzle",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "nozzleLength_m",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Nozzle",
+  "rdfs:range": "xsd:decimal"
+},
+{
+  "@id": "nozzleType",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Nozzle",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "19A, 37, Kort, etc."
+},
+{
+  "@id": "naturalFrequency_Hz",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:decimal",
+  "rdfs:comment": "First global vibration natural frequency (§6.6.5)."
+},
+{
+  "@id": "vibrationMode",
+  "@type": "rdf:Property",
+  "rdfs:domain": "ThrusterSystem",
+  "rdfs:range": "xsd:string",
+  "rdfs:comment": "longitudinal|transverse|torsional mode identification."
+},
+{
+  "@id": "PropellerLoadSet",
+  "@type": "rdfs:Class",
+  "rdfs:label": "Propeller Load Set",
+  "rdfs:comment": "Grouping node for Fb, Ff, Qsmax, Tb, Tf, Qmax to ease SHACL referencing."
+},
+{
+  "@id": "hasLoadSet",
+  "@type": "rdf:Property",
+  "rdfs:domain": "Propeller",
+  "rdfs:range": "PropellerLoadSet"
+}
+
+
+
+
 ]
 }
