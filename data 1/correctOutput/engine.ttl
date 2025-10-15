@@ -1,0 +1,50 @@
+@prefix : <http://example.com/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix req:  <http://example.com/powertrain-requirements#> .
+@prefix mtl:  <http://example.com/mtl#> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix ssp:  <http://example.com/ssp#> .
+@prefix vsso: <https://github.com/w3c/vsso#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt> .
+
+
+fmu:Engine a fmu:FMU, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Engine" ;
+  fmu:FMUComponentID "ENGINE_001" ;
+  fmu:fmuType "DieselEngine" ;
+  fmu:hasVariable
+    fmu:Torque,
+    fmu:AngularVelocity,
+    fmu:Power,
+    fmu:MaxPower .
+
+fmu:Torque a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:Engine ;
+  fmu:hasFMUVariableName "T_ME" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:Nm .
+
+fmu:AngularVelocity a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:Engine ;
+  fmu:hasFMUVariableName "omega_ME" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:RAD-PER-SEC .
+
+fmu:Power a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:Engine ;
+  fmu:hasFMUVariableName "P_ME" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:KiloW .
+
+fmu:MaxPower a ssn:Property ;
+  ssn:isPropertyOf fmu:Engine ;
+  fmu:hasFMUVariableName "engine_max_power" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:KiloW .

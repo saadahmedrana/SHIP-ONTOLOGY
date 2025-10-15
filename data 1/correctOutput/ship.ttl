@@ -1,0 +1,105 @@
+@prefix : <http://example.com/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix req:  <http://example.com/powertrain-requirements#> .
+@prefix mtl:  <http://example.com/mtl#> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix ssp:  <http://example.com/ssp#> .
+@prefix vsso: <https://github.com/w3c/vsso#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt> .
+
+
+ssp:ShipPowertrainSystem a ssp:System, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Ship Powertrain System" ;
+  rdfs:comment "Represents the complete ship powertrain system" ;
+  ssp:hasComponent ssp:Controller,
+                   ssp:Hull,
+                   ssp:Gearbox,
+                   ssp:Engine,
+                   ssp:Propeller,
+                   ssp:ConsumptionBlock .
+
+ssp:Controller a ssp:Component, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Controller" ;
+  ssp:componentType "Controller" ;
+  ssp:SSPComponentID "CONTROLLER_001" .
+
+# Hull
+ssp:Hull a ssp:Component, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Hull" ;
+  ssp:componentType "Hull" ;
+  ssp:SSPComponentID "HULL_001" ;
+  ssp:hasVariable ssp:HullSpeed, ssp:HullAcceleration .
+
+ssp:HullSpeed a sosa:ObservableProperty ;
+  rdfs:label "Hull Speed" ;
+  ssp:hasVariableName "HullSpeed" ;
+  ssp:hasDataType xsd:double ;
+  qudt:unit unit:Knot ;
+  ssn:isPropertyOf ssp:Hull .
+
+ssp:HullAcceleration a sosa:ObservableProperty ;
+  rdfs:label "Hull Acceleration" ;
+  ssp:hasVariableName "HullAcceleration" ;
+  ssp:hasDataType xsd:double ;
+  ssn:isPropertyOf ssp:Hull .
+
+# Gearbox 
+ssp:Gearbox a ssp:Component, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Gearbox" ;
+  ssp:componentType "Gearbox" ;
+  ssp:SSPComponentID "GEARBOX_001" .
+
+# Diesel Engine
+ssp:Engine a ssp:Component, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Engine" ;
+  ssp:componentType "DieselEngine" ;
+  ssp:SSPComponentID "ENGINE_001" ;
+  ssp:hasVariable ssp:EngineTorque,
+                  ssp:EnginePower,
+                  ssp:EngineAngularVelocity .
+
+ssp:EngineTorque a sosa:ObservableProperty ;
+  rdfs:label "Engine Torque" ;
+  ssp:hasVariableName "EngineTorque" ;
+  ssp:hasDataType xsd:double ;
+  qudt:unit unit:Nm ;
+  ssn:isPropertyOf ssp:Engine .
+
+ssp:EnginePower a sosa:ObservableProperty ;
+  rdfs:label "Engine Power" ;
+  ssp:hasVariableName "EnginePower" ;
+  ssp:hasDataType xsd:double ;
+  qudt:unit unit:KiloW ;
+  ssn:isPropertyOf ssp:Engine .
+
+ssp:EngineAngularVelocity a sosa:ObservableProperty ;
+  rdfs:label "Engine Angular Velocity" ;
+  ssp:hasVariableName "EngineAngularVelocity" ;
+  ssp:hasDataType xsd:double ;
+  ssn:isPropertyOf ssp:Engine .
+
+ssp:Propeller a ssp:Component, sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Propeller" ;
+  ssp:componentType "Propeller" ;
+  ssp:SSPComponentID "PROPELLER_001" ;
+  ssp:hasVariable ssp:PropellerThrust, ssp:PropellerRPM .
+
+ssp:PropellerThrust a sosa:ObservableProperty ;
+  rdfs:label "Propeller Thrust" ;
+  ssp:hasVariableName "PropellerThrust" ;
+  ssp:hasDataType xsd:double ;
+  qudt:unit unit:N ;
+  ssn:isPropertyOf ssp:Propeller .
+
+ssp:PropellerRPM a sosa:ObservableProperty ;
+  rdfs:label "Propeller RPM" ;
+  ssp:hasVariableName "PropellerRPM" ;
+  ssp:hasDataType xsd:double ;
+  ssn:isPropertyOf ssp:Propeller .
