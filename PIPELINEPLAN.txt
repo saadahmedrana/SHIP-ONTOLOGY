@@ -1,0 +1,153 @@
+
+PROJECT ROADMAP — MULTI-AGENT TRAFICOM HARMONIZATION PIPELINE
+(version 1.0)
+
+GOAL
+Create a full pipeline that can automatically rename and harmonize OEM-provided data to TRAFICOM ontology names using an LLM+RAG reasoning layer and a Python renamer, then validate the mapped data with SHACL.
+
+---
+
+## PHASE 1 — SYNTHETIC OEM DATA GENERATION
+
+1. Prepare one synthetic OEM dataset that imitates what an OEM might send (engine or thruster data).
+
+   * Source fields intentionally misnamed or inconsistently formatted.
+   * Each file contains a few variables such as “Powerrrr”, “omega_ME”, “T_bollard”, “pitch_mode”.
+   * Values must be realistic (e.g. 3000 kW, 157 rad/s, 120 kN).
+   * Save each dataset as RDF-TTL or JSON.
+
+2. For clarity, start with **one wrong variable per file** (e.g. only Power misnamed).
+
+   * Keep the rest correct so debugging is simpler.
+   * We can later create multi-variable noisy versions.
+
+3. Create at least 3 OEM sample files:
+
+   * Engine case (wrong power or rpm name)
+   * Propeller/Thruster case (wrong thrust or rpm name)
+   * Material case (wrong yield strength name)
+
+4. Confirm these samples load correctly in rdflib or similar parser.
+
+---
+
+## PHASE 2 — CORRECT DATA EXAMPLES
+
+1. For every synthetic OEM file, create its corresponding “correct” JSON-LD file aligned to TRAFICOM ontology (morecomments.txt).
+
+   * Use canonical names such as eng:mcrPower_kW, prop:Tb_kN, mat:yieldStrength_MPa.
+   * Keep structure identical so differences are only in naming.
+   * These correct files will serve as ground truth for testing the mapping accuracy.
+
+2. Maintain a separate file (Mapping_GroundTruth.csv) listing
+   OEM_label, Canonical_IRI, Comment.
+   This becomes your reference during evaluation.
+
+---
+
+## PHASE 3 — LLM + RAG RETRIEVAL TEST
+
+1. Flatten the ontologywithlabels_enriched.jsonld into retrievable “semantic cards”.
+
+   * Each card = id, label, comment, unit, domain, source clause.
+   * Store these in a vector database (Chroma or FAISS).
+
+2. Build a simple retriever script:
+
+   * Input: OEM variable (e.g. “Powerrrr, unit kW, context Engine”)
+   * Output: Top-k most similar ontology terms with similarity scores.
+
+3. Build the LLM reasoning prompt:
+
+   * Provide OEM variable description + top candidates from retriever.
+   * Ask the model to return one canonical match and confidence score.
+
+4. Evaluate:
+
+   * Run for each OEM variable in your test files.
+   * Compare predicted canonical ID against ground truth.
+   * Record accuracy and average confidence.
+
+5. Once top-1 accuracy > 80%, lock the retriever-reasoner configuration for agent integration.
+
+---
+
+## PHASE 4 — PYTHON RENAMER AGENT
+
+1. Create the Renamer Agent that:
+
+   * Reads an OEM TTL/JSON.
+   * Loads the LLM+RAG result table (old_name → canonical IRI).
+   * Rewrites the file, replacing all property names accordingly.
+   * Adds provenance triples:
+     oem:OldName owl:sameAs CanonicalIRI
+     prov:confidence “0.93”.
+
+2. Save renamed output as JSON-LD.
+
+3. Validate JSON-LD syntax and ensure canonical structure is preserved.
+
+4. Compare renamed output to correct ground truth using diff or SPARQL queries.
+
+---
+
+## PHASE 5 — SHACL VALIDATION PIPELINE
+
+1. Run pySHACL validation on the renamed file using TRAFICOM shapes.
+2. Confirm it reports:
+
+   * Missing fields if renamer failed.
+   * Pass status if mapping is correct.
+3. Log SHACL report along with renamer confidence.
+
+---
+
+## PHASE 6 — MULTI-AGENT PIPELINE INTEGRATION
+
+1. Combine all agents into one orchestration:
+
+   * Parser Agent → extracts OEM variables.
+   * Retriever Agent → queries vector store.
+   * Reasoner Agent → LLM selects best match.
+   * Renamer Agent → rewrites file.
+   * Validator Agent → runs SHACL + outputs report.
+
+2. Chain them using simple Python orchestrator or LangChain.
+
+3. Produce final harmonized + validated dataset and summary report (mapping accuracy, SHACL compliance, clause coverage).
+
+---
+
+## PHASE 7 — SCALING AND LEARNING LOOP
+
+1. Once single-variable tests succeed, move to multi-variable OEM files (5–10 wrong names per file).
+2. Evaluate batch mapping accuracy and SHACL completeness.
+3. Store all approved mappings into a permanent synonym memory file (Mappings_Learned.csv).
+4. Periodically retrain embeddings or fine-tune prompts with these confirmed pairs to improve accuracy.
+5. Enable human-in-the-loop correction: when user overrides mapping, log correction back into Mappings_Learned.csv.
+6. Gradually extend ontology coverage (e.g. hull, materials, sensors).
+
+---
+
+## DELIVERABLES AT EACH PHASE
+
+PHASE 1 → Synthetic OEM files (.ttl / .json)
+PHASE 2 → Correct reference files + GroundTruth mapping table
+PHASE 3 → Vector index + LLM retrieval accuracy report
+PHASE 4 → Renamer Agent script + renamed outputs
+PHASE 5 → SHACL validation reports
+PHASE 6 → Full agent pipeline prototype
+PHASE 7 → Scaled pipeline + continuous learning system
+
+---
+
+## NOTES
+
+• Always use morecomments.txt ontology as the single source of canonical truth.
+• Keep every mapping experiment versioned in git for traceability.
+• After Phase 4, we can integrate evaluation metrics (precision, recall) to quantify mapping reliability.
+• At the end of Phase 7, the system will automatically harmonize any OEM input file to TRAFICOM standard and verify compliance via SHACL.
+
+---
+
+end of roadmap
