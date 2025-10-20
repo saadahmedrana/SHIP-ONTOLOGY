@@ -13,14 +13,14 @@ fmu:FMUEngine_Test1 a fmu:FMU, sosa:FeatureOfInterest, ssn:System ;
   rdfs:label "Engine_FMU_Test1" ;
   fmu:fmuType "DieselEngine" ;
   fmu:FMUComponentID "ENGINE_TEST_001" ;
-  fmu:hasVariable fmu:P_W .
+  fmu:hasVariable fmu:Engine_Power .
 
-fmu:P_W a sosa:ObservableProperty ;
+fmu:Engine_Power a sosa:ObservableProperty ;
   ssn:isPropertyOf fmu:FMUEngine_Test1 ;
-  fmu:hasFMUVariableName "P_W" ;
+  fmu:hasFMUVariableName "Engine_Power" ;
   fmu:hasDataType xsd:double ;
   qudt:unit unit:KiloW .
 
-fmu:P_W_Value a sosa:Observation ;
-  sosa:observedProperty fmu:P_W ;
+fmu:Engine_Power_Value a sosa:Observation ;
+  sosa:observedProperty fmu:Engine_Power ;
   sosa:hasSimpleResult "3000.0"^^xsd:double .

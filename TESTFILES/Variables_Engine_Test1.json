@@ -1,7 +1,7 @@
 [
   {
-    "id": "http://example.com/fmu#P_W",
-    "name": "P_W",
+    "id": "http://example.com/fmu#Engine_Power",
+    "name": "Engine_Power",
     "context": "http://example.com/fmu#FMUEngine_Test1",
     "datatype": "http://www.w3.org/2001/XMLSchema#double",
     "unit": "http://qudt.org/2.1/vocab/unit#KiloW",
