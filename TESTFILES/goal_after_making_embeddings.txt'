@@ -1,0 +1,133 @@
+
+
+## 🚢 GOAL — Ontology-Guided Variable Harmonization
+
+**Objective:**
+Automatically rename variables in OEM `.ttl` files (like “Powerrrr”, “torq_me”, etc.) to **canonical TRAFICOM ontology names** (like `eng:mcrPower_kW`, `prop:Tb_kN`) — using semantic embeddings and reasoning.
+
+---
+
+## ⚙️ Full Pipeline Logic (Step-by-Step)
+
+### **Step 1: Ontology Embedding (already done)**
+
+* You created **one-time embeddings** for all ontology entities using the Aalto OpenAI API (`text-embedding-3-large`).
+* Files:
+
+  * `ontology_vectors.npy` → matrix of all embeddings.
+  * `ontology_ids.json` → IRIs for each vector.
+  * `ontology_texts.json` → text descriptions per IRI.
+
+✅ Done. This gives you the **semantic space** of canonical variables.
+
+---
+
+### **Step 2: OEM Variable Extraction (Agent_0)**
+
+* `AGENT0.py` reads an OEM `.ttl` file (e.g. `Engine_Test1.ttl`).
+* It extracts every variable’s:
+
+  * name
+  * datatype
+  * unit
+  * context (what system or subsystem it belongs to)
+  * value (optional)
+
+It outputs a clean list:
+→ `Variables_Engine_Test1.json`
+
+✅ Done.
+Now we have **query variables** to match against the ontology.
+
+---
+
+### **Step 3: Query Embedding & Retrieval (Agent_1 — Retriever)**
+
+For each extracted OEM variable:
+
+1. **Create a text prompt** like:
+
+   ```
+   Variable: Powerrrr
+   Unit: kW
+   Context: Engine
+   ```
+2. Use the **same embedder** (`text-embedding-3-large`) to get the variable’s embedding.
+3. Compute **cosine similarity** between this embedding and your ontology vectors (`ontology_vectors.npy`).
+4. Get top-K matches (e.g., top 5).
+5. Return those candidates with their similarity scores, IRIs, and ontology text descriptions.
+
+🧠 This gives semantic proximity — e.g. “Powerrrr” will rank closest to `eng:mcrPower_kW`.
+
+---
+
+### **Step 4: LLM Reasoning (Agent_2 — Reasoner)**
+
+Feed to the LLM a structured prompt:
+
+> *OEM variable*: Powerrrr (unit=kW, context=Engine)
+> *Top matches*:
+>
+> 1. eng:mcrPower_kW — “Maximum continuous rated power” (sim=0.91)
+> 2. prop:Qr_kNm — “Rated torque of propeller shaft” (sim=0.78)
+> 3. eng:mcrRpm_revPerSec — “Engine MCR speed” (sim=0.72)
+
+**Ask the LLM to:**
+
+* Select the best canonical match.
+* Return JSON like:
+
+  ```json
+  {"original": "Powerrrr", "match": "eng:mcrPower_kW", "confidence": 0.91}
+  ```
+
+---
+
+### **Step 5: Rename & Rewrite (Agent_3 — Renamer)**
+
+* Reads the OEM `.ttl` file.
+* Replaces any variable predicates/labels that match “Powerrrr” with `eng:mcrPower_kW`.
+* Adds provenance:
+
+  ```ttl
+  oem:Powerrrr owl:sameAs eng:mcrPower_kW ;
+                prov:confidence "0.91" .
+  ```
+* Saves a **new file**:
+  → `Engine_Test1_corrected.jsonld` (or `.ttl`).
+
+---
+
+### **Step 6: Validation (Agent_4 — Validator)**
+
+* Runs **pySHACL** validation on the corrected file.
+* Uses TRAFICOM SHACL shapes (already modelled in ontology).
+* Produces a validation report showing:
+
+  * Pass/fail per shape.
+  * Any missing or incorrect variables.
+
+---
+
+### **Step 7: (Optional) Learning / Feedback Loop**
+
+* Save confirmed mappings into `Mappings_Learned.csv`
+  (so next time the model sees “Powerrrr” again, it maps directly).
+* Optionally re-embed these for retraining the local vector store.
+
+---
+
+## 🧩 Summary of Components (You Have vs Need)
+
+| Component                    | Purpose                               | Status             |
+| ---------------------------- | ------------------------------------- | ------------------ |
+| Ontology embeddings          | Semantic base for retrieval           | ✅ Done             |
+| Agent_0 — Variable extractor | Parses OEM `.ttl`                     | ✅ Done             |
+| Agent_1 — Retriever          | Compute cosine similarity vs ontology | 🔜 Next            |
+| Agent_2 — Reasoner           | LLM chooses canonical match           | 🔜 After Retriever |
+| Agent_3 — Renamer            | Rewrites `.ttl` file                  | ⏳ Pending          |
+| Agent_4 — Validator          | Runs SHACL compliance                 | 🔜 Later           |
+| Mappings memory              | Reuse learned pairs                   | Future             |
+
+---
+

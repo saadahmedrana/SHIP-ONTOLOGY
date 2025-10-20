@@ -1,0 +1,10 @@
+[
+  {
+    "id": "http://example.com/fmu#P_W",
+    "name": "P_W",
+    "context": "http://example.com/fmu#FMUEngine_Test1",
+    "datatype": "http://www.w3.org/2001/XMLSchema#double",
+    "unit": "http://qudt.org/2.1/vocab/unit#KiloW",
+    "value": 3000.0
+  }
+]

@@ -13,7 +13,7 @@ if not AALTO_KEY:
     raise EnvironmentError("⚠️  Please set AALTO_KEY in your .env file.")
 
 # ---------- FILE PATHS ----------
-SRC = "../withcomments.jsonld"  # ontology source file
+SRC = "../morecomments.jsonld"  # ontology source file
 CHUNKS_OUT = "chunks_full.jsonl"
 VEC_OUT = "ontology_vectors.npy"
 IDS_OUT = "ontology_ids.json"

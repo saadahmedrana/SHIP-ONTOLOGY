@@ -1,0 +1,33 @@
+[
+  {
+    "original_variable": "P_W",
+    "query_text": "Variable: P_W. Unit: http://qudt.org/2.1/vocab/unit#KiloW. Context: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Value: 3000.0.",
+    "top_matches": [
+      {
+        "id": "mcrPower_kW",
+        "similarity": 0.4464718997478485,
+        "text": "Entity ID: mcrPower_kW. @type: rdf:Property. rdfs:domain: PrimeMover. rdfs:range: xsd:decimal. rdfs:comment: MCR power [kW].."
+      },
+      {
+        "id": "seaChestVolume_m3",
+        "similarity": 0.42646142840385437,
+        "text": "Entity ID: seaChestVolume_m3. @type: rdf:Property. rdfs:domain: CoolingWaterInletChest. rdfs:range: xsd:decimal. rdfs:comment: \u22481 m\u00b3 per 750 kW of total engine output.."
+      },
+      {
+        "id": "k3",
+        "similarity": 0.4236327111721039,
+        "text": "Entity ID: k3. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Mechanical type factor (e.g., azimuthing).."
+      },
+      {
+        "id": "P0_7_m",
+        "similarity": 0.4104078710079193,
+        "text": "Entity ID: P0_7_m. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Pitch at 0.7R [m] (\u00a76.2).."
+      },
+      {
+        "id": "Ff_kN",
+        "similarity": 0.4078919291496277,
+        "text": "Entity ID: Ff_kN. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Max forward blade force (\u00a76.2).."
+      }
+    ]
+  }
+]
