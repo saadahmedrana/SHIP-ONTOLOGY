@@ -2,37 +2,37 @@
   {
     "original": "P_W",
     "best_match": "mcrPower_kW",
-    "confidence": 0.59,
-    "reason": "Matches engine power in kW; closest in meaning and unit."
+    "confidence": 0.46,
+    "reason": "The variable 'P_W' likely stands for 'Power' in kilowatts, matching the unit and meaning. 'mcrPower_kW' is defined as MCR power [kW] for a PrimeMover, which fits the context of an engine test. Other candidates do not match the meaning or unit as closely."
   },
   {
     "original": "omega_ME",
-    "best_match": "mcrRpm_revPerSec",
-    "confidence": 0.63,
-    "reason": "Matches rotational speed for engine (PrimeMover), only unit mismatch (rev/s vs rpm)."
+    "best_match": "nn_rpm",
+    "confidence": 0.51,
+    "reason": "Variable omega_ME represents rotational speed in revolutions per minute (rpm), matching the unit and meaning of nn_rpm, which is nominal speed at MCR for a propeller. Although the domain is Propeller and the context is FMUEngine, nn_rpm is the closest match in terms of unit and concept."
   },
   {
     "original": "T_ME",
     "best_match": "qEmax_kNm",
-    "confidence": 0.64,
-    "reason": "Matches engine (prime mover) torque in kNm; closest in meaning and unit."
+    "confidence": 0.85,
+    "reason": "T_ME likely stands for 'Torque Mechanical Engine'; qEmax_kNm represents 'Prime mover maximum torque' in kNm, matching both the meaning (engine torque), unit (kNm), and domain (PrimeMover/engine context)."
   },
   {
     "original": "T_bollard",
-    "best_match": "",
-    "confidence": 0.0,
-    "reason": "No candidate matches both torque or thrust at bollard with unit kN."
+    "best_match": "Tr_kN",
+    "confidence": 0.75,
+    "reason": "T_bollard likely refers to thrust at bollard pull, measured in kiloNewtons. 'Tr_kN' represents design response thrust in kN, which matches the unit and likely the context of thrust measurement. Other candidates do not match as closely in meaning or unit."
   },
   {
     "original": "SeaChestVol_m3",
     "best_match": "seaChestVolume_m3",
-    "confidence": 0.78,
-    "reason": "Matches sea chest volume, correct unit and domain."
+    "confidence": 0.66,
+    "reason": "The variable name, unit (m3), and context indicate it refers to the volume of the sea chest, which matches the ontology property 'seaChestVolume_m3' describing the volume of the CoolingWaterInletChest."
   },
   {
     "original": "Y_strength",
     "best_match": "yieldStrength_MPa",
-    "confidence": 1.0,
-    "reason": "Matches yield strength meaning, unit (MPa), and materials domain."
+    "confidence": 0.59,
+    "reason": "The variable 'Y_strength' likely stands for 'Yield Strength', which matches the candidate 'yieldStrength_MPa' in both meaning and unit (MPa)."
   }
 ]

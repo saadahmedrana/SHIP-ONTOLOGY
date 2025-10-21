@@ -1,8 +1,0 @@
-[
-  {
-    "original": "Engine_Power",
-    "best_match": "mcrPower_kW",
-    "confidence": 0.54,
-    "reason": "The variable 'Engine_Power' with unit kW and context of an engine test most closely matches 'mcrPower_kW', which represents the maximum continuous rating (MCR) power of a prime mover in kilowatts. The other candidates refer to torque or mechanical factors, which are not direct representations of engine power."
-  }
-]

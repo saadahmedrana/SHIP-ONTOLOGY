@@ -1,101 +1,52 @@
-# -----------------------------------------------------------
-# PIPELINE ORCHESTRATOR — Extract → Retrieve → Reason (Aalto)
-# One command for many variables in one OEM .ttl file
-# -----------------------------------------------------------
-# Requires: rdflib, numpy, requests, python-dotenv
-# Files needed in working dir:
-#   - ontology_vectors.npy
-#   - ontology_ids.json
-#   - ontology_texts.json
-#
-# Usage:
-#   python pipeline_orchestrator.py --ttl EngineTEST.ttl --k 5
-#
-# Outputs (for the given TTL basename, e.g., EngineTEST):
-#   - EngineTEST_Variables.json            (extracted variables)
-#   - EngineTEST_TopMatches.json           (retrieval results)
-#   - EngineTEST_Mappings.json             (reasoner decisions)
-#   - EngineTEST_Mappings.csv              (compact table)
-# -----------------------------------------------------------
+# ===========================================================
+# MASTER AGENT — Full Automated Pipeline
+# Extract → Retrieve → Reason → Rename → Validate (SHACL)
+# ===========================================================
 
-import os, re, json, time, argparse, csv
-import numpy as np
-import requests
+import os, re, json, time, csv, numpy as np, requests
 from dotenv import load_dotenv
+from rdflib import Graph, Namespace, RDF, OWL, URIRef, Literal
+from rdflib.namespace import PROV, XSD
+from pyshacl import validate   # <- make sure pyshacl is installed
 
-from rdflib import Graph, Namespace, RDF
-
-# ---------- ENV / CONFIG ----------
+# ---------------- CONFIG ----------------
 load_dotenv()
 AALTO_KEY = os.getenv("AALTO_KEY")
 if not AALTO_KEY:
     raise EnvironmentError("⚠️  Please set AALTO_KEY in your .env file.")
 
-EMBED_MODEL = "text-embedding-3-large"
-EMBED_URL   = "https://aalto-openai-apigw.azure-api.net/v1/openai/text-embedding-3-large/embeddings"
-LLM_URL     = "https://aalto-openai-apigw.azure-api.net/v1/openai/deployments/gpt-4.1-2025-04-14/chat/completions"
-LLM_MODEL   = "gpt-4.1-2025-04-14"
+# --- user-definable section ---
+TTL_FILES = ["Engine_Test1.ttl"]     # list of OEM ttl files to process
+TOP_K = 5                            # retrieval depth
+CONF_THRESHOLD = 0.4                 # auto-accept confidence for renaming
+SHACL_RULES = "TRAFICOM_SHACL.ttl"   # your SHACL file (placeholder)
 
-HEADERS = {"Content-Type": "application/json", "Ocp-Apim-Subscription-Key": AALTO_KEY}
+# --- Aalto API endpoints ---
+EMBED_URL = "https://aalto-openai-apigw.azure-api.net/v1/openai/text-embedding-3-large/embeddings"
+LLM_URL   = "https://aalto-openai-apigw.azure-api.net/v1/openai/deployments/gpt-4.1-2025-04-14/chat/completions"
+HEADERS   = {"Content-Type": "application/json", "Ocp-Apim-Subscription-Key": AALTO_KEY}
 
-# ontology store (precomputed)
+# --- ontology store (pre-embedded) ---
 ONTO_VECS = "ontology_vectors.npy"
 ONTO_IDS  = "ontology_ids.json"
 ONTO_TXTS = "ontology_texts.json"
 
-# Namespaces (same as AGENT0)
+# --- namespaces ---
 sosa = Namespace("http://www.w3.org/ns/sosa/")
 ssn  = Namespace("http://www.w3.org/ns/ssn/")
 fmu  = Namespace("http://example.com/fmu#")
 ssp  = Namespace("http://example.com/ssp#")
 qudt = Namespace("http://qudt.org/2.1/schema/qudt#")
+prov = Namespace("http://www.w3.org/ns/prov#")
+owl  = OWL
 
-# ---------- UTILITIES ----------
-def qudt_uri_to_label(u: str) -> str:
-    if not u:
-        return ""
-    # Accept both plain CURIEs and full URIs
-    txt = str(u)
-    # Common readable fallbacks
-    mapping = {
-        "unit:KiloW": "kilowatts (kW)",
-        "unit:REV-PER-SEC": "revolutions per second (1/s)",
-        "unit:REV-PER-MIN": "revolutions per minute (rpm)",
-        "unit:KiloN-M": "kiloNewton-meters (kNm)",
-        "unit:KiloN": "kiloNewtons (kN)",
-        "unit:M3": "cubic meters (m³)",
-        "unit:MPa": "megapascals (MPa)",
-        "unit:DEG": "degrees (deg)",
-        "unit:M": "meters (m)",
-        "unit:MM": "millimeters (mm)",
-        "unit:Knot": "knots (kn)",
-        "unit:HZ": "hertz (Hz)",
-    }
-    # Try CURIE match first
-    for k, v in mapping.items():
-        if k in txt:
-            return v
-    # Otherwise try to take last path fragment as a readable token
-    frag = re.split(r"[#/]", txt.strip())
-    last = frag[-1] if frag else txt
-    return last
-
-def embed_text_online(text: str, retries: int = 3, sleep=5):
-    payload = {"input": text, "model": EMBED_MODEL}
-    for attempt in range(1, retries + 1):
-        try:
-            r = requests.post(EMBED_URL, headers=HEADERS, json=payload, timeout=30)
-            if r.status_code == 200:
-                emb = r.json()["data"][0]["embedding"]
-                return np.array(emb, dtype=np.float32)
-            else:
-                print(f"⚠️  Embedding API error ({r.status_code}): {r.text[:200]}")
-        except requests.exceptions.RequestException:
-            print(f"❌ Embedding conn attempt {attempt} failed — VPN/network?")
-        if attempt < retries:
-            print(f"⏳ Retrying in {sleep}s...")
-            time.sleep(sleep)
-    print("🚨 Embedding API unreachable. Using zero-vector fallback (results unreliable).")
+# ---------------- UTILITIES ----------------
+def embed_text_online(text):
+    payload = {"input": text, "model": "text-embedding-3-large"}
+    r = requests.post(EMBED_URL, headers=HEADERS, json=payload, timeout=45)
+    if r.status_code == 200:
+        return np.array(r.json()["data"][0]["embedding"], dtype=np.float32)
+    print(f"⚠️  Embedding API error ({r.status_code}) — using zero vector.")
     return np.zeros(3072, dtype=np.float32)
 
 def cosine_similarity(vec, mat):
@@ -105,203 +56,138 @@ def cosine_similarity(vec, mat):
     M = mat / np.linalg.norm(mat, axis=1, keepdims=True)
     return M @ v
 
-def build_query_text(v):
-    """Richer text to give the embedder semantic signal."""
-    name  = v.get("name") or ""
-    ctx   = v.get("context") or ""
-    unit  = qudt_uri_to_label(v.get("unit") or "")
-    dtype = v.get("datatype") or ""
-    val   = v.get("value")
-    approx = f"{val}" if val is not None else "unknown"
+def qudt_uri_to_label(u: str):
+    if not u: return ""
+    txt = str(u)
+    for k,v in {"unit:KiloW":"kW","unit:KiloN-M":"kNm","unit:REV-PER-MIN":"rpm","unit:M3":"m³","unit:MPa":"MPa"}.items():
+        if k in txt: return v
+    return txt.split("#")[-1]
 
-    # lightweight heuristics based on common engineering abbreviations
-    hints = []
-    low = name.lower()
-    if re.search(r"\bp[_\-]?(w|me)?\b", low) or low in ("p", "p_w", "p_me", "engine_power"):
-        hints.append("This likely denotes engine POWER.")
-    if "omega" in low or "n_rpm" in low or "rpm" in low or "rev" in low:
-        hints.append("This likely denotes ROTATIONAL SPEED.")
-    if low.startswith("t") or "torq" in low:
-        hints.append("This likely denotes TORQUE.")
-    if "bollard" in low:
-        hints.append("This may denote BOLLARD THRUST.")
-    if "ychest" in low or "seachest" in low:
-        hints.append("This may denote SEA CHEST VOLUME for cooling water.")
-    if "y_strength" in low or "yield" in low:
-        hints.append("This likely denotes MATERIAL YIELD STRENGTH (MPa).")
-
-    hint_txt = " ".join(hints)
-
-    return (
-        "This is an OEM variable from a marine powertrain dataset. "
-        f"Variable name: '{name}'. "
-        f"Unit: {unit if unit else 'unspecified'}. "
-        f"Context system IRI: {ctx}. "
-        f"Datatype: {dtype}. "
-        f"Observed value (approx): {approx}. "
-        f"{hint_txt} "
-        "Find the single best canonical ontology property (ID) with the same physical meaning and unit."
-    )
-
-def reason_best_match(var_name, query_text, top_matches):
-    """Call Aalto GPT-4.1 to choose best ontology ID."""
-    # few-shot helps a lot
-    examples = """
-Guidelines for reasoning:
-- Expand common abbreviations (P → Power, T → Torque, n/omega → Rotational speed).
-- Match variables to ontology properties that describe the same physical quantity and share consistent units.
-- Consider engineering domains: engine, propulsion, hull, or materials.
-- If none of the candidates represent the same concept, set best_match="" and confidence=0.0.
-"""
-
+def reason_best_match(var, query_text, top_matches):
     prompt = f"""
-You are a neutral ontology reasoning agent for maritime engineering.
-
-OEM variable (with metadata):
+You are a reasoning agent mapping OEM variables to ontology concepts.
+Variable metadata:
 {query_text}
 
-Top ontology candidates (id, similarity, text):
+Candidates:
 {json.dumps(top_matches, indent=2)}
 
-{examples}
+Guidelines:
+- Expand abbreviations (P→Power, T→Torque, omega/n→Speed).
+- Choose exactly one ID that best matches meaning+unit+domain.
+- If uncertain, leave best_match empty.
 
-Rules:
-- Always pick exactly one ontology ID from the candidates if any match meaning+unit+domain best.
-- If none is appropriate, set best_match="" and confidence=0.0.
-- Respond ONLY in this JSON (no prose):
+Return strict JSON:
 {{
-  "original": "{var_name}",
-  "best_match": "<ontology_id or empty>",
-  "confidence": <0.0-1.0>,
-  "reason": "<very short>"
+  "original":"{var}",
+  "best_match":"<ontology_id or empty>",
+  "confidence":<0.0-1.0>,
+  "reason":"<short>"
 }}
 """
-
     payload = {
-        "model": LLM_MODEL,
-        "messages": [
-            {"role": "system", "content": "You are a precise ontology reasoning assistant. Output strict JSON only."},
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.1
+        "model":"gpt-4.1-2025-04-14",
+        "messages":[{"role":"system","content":"Output only valid JSON."},
+                    {"role":"user","content":prompt}],
+        "temperature":0.1
     }
     r = requests.post(LLM_URL, headers=HEADERS, json=payload, timeout=120)
     if r.status_code != 200:
-        return {"original": var_name, "best_match": "", "confidence": 0.0,
-                "reason": f"LLM API error {r.status_code}: {r.text[:200]}"}
+        return {"original":var,"best_match":"","confidence":0.0,"reason":"API error"}
     try:
-        content = r.json()["choices"][0]["message"]["content"].strip()
-        # try to extract strict JSON
-        start = content.find("{")
-        end   = content.rfind("}") + 1
-        parsed = json.loads(content[start:end])
-        # sanity
-        parsed.setdefault("original", var_name)
-        parsed.setdefault("best_match", "")
-        parsed.setdefault("confidence", 0.0)
-        parsed.setdefault("reason", "")
-        return parsed
-    except Exception as e:
-        return {"original": var_name, "best_match": "", "confidence": 0.0,
-                "reason": f"Parse error: {e}. Raw: {content[:200]}"}
+        content = r.json()["choices"][0]["message"]["content"]
+        start, end = content.find("{"), content.rfind("}")+1
+        return json.loads(content[start:end])
+    except Exception:
+        return {"original":var,"best_match":"","confidence":0.0,"reason":"parse error"}
 
-def extract_variables_from_ttl(ttl_path):
-    g = Graph()
-    g.parse(ttl_path, format="turtle")
-    vars_out = []
+# ---------------- PIPELINE STEPS ----------------
+def extract_vars(ttl):
+    g = Graph(); g.parse(ttl, format="turtle")
+    vars=[]
+    for s,_p,_o in g.triples((None,RDF.type,None)):
+        if (s,RDF.type,sosa.ObservableProperty) in g or (s,RDF.type,ssn.Property) in g:
+            rec={"id":str(s),"name":None,"context":None,"datatype":None,"unit":None,"value":None}
+            for _,_,o in g.triples((s,fmu.hasFMUVariableName,None)): rec["name"]=str(o)
+            for _,_,o in g.triples((s,ssn.isPropertyOf,None)): rec["context"]=str(o)
+            for _,_,o in g.triples((s,fmu.hasDataType,None)): rec["datatype"]=str(o)
+            for _,_,o in g.triples((s,qudt.unit,None)): rec["unit"]=str(o)
+            for obs,_,_ in g.triples((None,sosa.observedProperty,s)):
+                for _,_,val in g.triples((obs,sosa.hasSimpleResult,None)): rec["value"]=float(val)
+            vars.append(rec)
+    return vars
 
-    for subj, _, _ in g.triples((None, RDF.type, None)):
-        if (subj, RDF.type, sosa.ObservableProperty) in g or (subj, RDF.type, ssn.Property) in g:
-            rid = str(subj)
-            name = None; ctx=None; dtype=None; unit_uri=None; val=None
-            for _, _, o in g.triples((subj, fmu.hasFMUVariableName, None)):
-                name = str(o)
-            for _, _, o in g.triples((subj, ssp.hasVariableName, None)):
-                name = str(o)
-            for _, _, o in g.triples((subj, ssn.isPropertyOf, None)):
-                ctx = str(o)
-            for _, _, o in g.triples((subj, fmu.hasDataType, None)):
-                dtype = str(o)
-            for _, _, o in g.triples((subj, ssp.hasDataType, None)):
-                dtype = str(o)
-            for _, _, o in g.triples((subj, qudt.unit, None)):
-                unit_uri = str(o)
-            # observation value (optional)
-            for obs, _, _ in g.triples((None, sosa.observedProperty, subj)):
-                for _, _, val_lit in g.triples((obs, sosa.hasSimpleResult, None)):
-                    try:
-                        val = float(str(val_lit))
-                    except:
-                        val = str(val_lit)
+def build_query(v):
+    return f"Var '{v['name']}', Unit: {qudt_uri_to_label(v['unit'])}, Context: {v['context']}, Value: {v['value']}"
 
-            vars_out.append({
-                "id": rid, "name": name, "context": ctx, "datatype": dtype,
-                "unit": unit_uri, "value": val
-            })
-    return vars_out
+def rename_with_conf(base, ttl_file, mappings):
+    out_file = f"{base}_corrected.ttl"
+    g = Graph(); g.parse(ttl_file, format="turtle")
+    changes=0; low_conf=[]
+    for m in mappings:
+        orig,best,conf = m.get("original"), m.get("best_match"), m.get("confidence",0.0)
+        if not best: continue
+        if conf < CONF_THRESHOLD:
+            low_conf.append(m); continue
+        for subj,_,val in g.triples((None,fmu.hasFMUVariableName,None)):
+            if str(val)==orig:
+                old=subj; new=URIRef(best)
+                g.add((old,owl.sameAs,new))
+                g.add((old, prov.confidence, Literal(conf, datatype=XSD.decimal)))
 
-def run_pipeline(ttl_path, top_k):
-    # load ontology store
-    onto_vecs = np.load(ONTO_VECS)
-    onto_ids  = json.load(open(ONTO_IDS, "r", encoding="utf-8"))
-    onto_txts = json.load(open(ONTO_TXTS, "r", encoding="utf-8"))
+                changes+=1
+    g.serialize(out_file,format="turtle")
+    print(f"🧩 Applied {changes} confident renames → {out_file}")
+    if low_conf:
+        json.dump(low_conf,open(f"{base}_LowConfidence.json","w"),indent=2)
+        print(f"⚠️  {len(low_conf)} low-confidence mappings saved for review.")
+    return out_file
 
-    base = os.path.splitext(os.path.basename(ttl_path))[0]
-    out_vars   = f"{base}_Variables.json"
-    out_top    = f"{base}_TopMatches.json"
-    out_map    = f"{base}_Mappings.json"
-    out_csv    = f"{base}_Mappings.csv"
+def validate_with_shacl(data_file, shacl_file):
+    if not os.path.exists(shacl_file):
+        print(f"⚠️  SHACL file '{shacl_file}' not found — skipping validation.")
+        return
+    conforms, results_graph, text = validate(
+        data_graph=data_file, shacl_graph=shacl_file,
+        inference='rdfs', serialize_report_graph=True)
+    print("🔍 SHACL validation results:")
+    print(text)
+    with open(f"{os.path.splitext(data_file)[0]}_SHACL_Report.ttl","wb") as f:
+        f.write(results_graph)
+    return conforms
 
-    # 1) Extract
-    print(f"📥 Extracting variables from {ttl_path} ...")
-    variables = extract_variables_from_ttl(ttl_path)
-    with open(out_vars, "w", encoding="utf-8") as f:
-        json.dump(variables, f, indent=2)
-    print(f"✅ Extracted {len(variables)} vars → {out_vars}")
+# ---------------- MAIN ----------------
+def run_all():
+    onto_vecs=np.load(ONTO_VECS)
+    onto_ids=json.load(open(ONTO_IDS))
+    onto_txts=json.load(open(ONTO_TXTS))
 
-    # 2) Retrieve
-    print("🔎 Running retrieval via online embeddings ...")
-    all_tops = []
-    for v in variables:
-        qtext = build_query_text(v)
-        qvec  = embed_text_online(qtext)
-        sims  = cosine_similarity(qvec, onto_vecs)
-        idx   = np.argsort(sims)[::-1][:top_k]
-        top_matches = [{"id": onto_ids[i], "similarity": float(sims[i]), "text": onto_txts[i]} for i in idx]
-        all_tops.append({"original_variable": v.get("name"), "query_text": qtext, "top_matches": top_matches})
-        print(f"  • {v.get('name')}: best ~ {top_matches[0]['id']} (sim {top_matches[0]['similarity']:.3f})")
+    for ttl in TTL_FILES:
+        base=os.path.splitext(os.path.basename(ttl))[0]
+        print(f"\n================= ⚙️  Processing {ttl} =================")
+        vars=extract_vars(ttl)
+        print(f"✅ Extracted {len(vars)} vars")
 
-    with open(out_top, "w", encoding="utf-8") as f:
-        json.dump(all_tops, f, indent=2)
-    print(f"✅ Saved top matches → {out_top}")
+        # retrieval + reasoning
+        mappings=[]
+        for v in vars:
+            q=build_query(v)
+            vec=embed_text_online(q)
+            sims=cosine_similarity(vec,onto_vecs)
+            top_idx=np.argsort(sims)[::-1][:TOP_K]
+            tops=[{"id":onto_ids[i],"similarity":float(sims[i]),"text":onto_txts[i]} for i in top_idx]
+            res=reason_best_match(v["name"],q,tops)
+            mappings.append(res)
+            print(f"  → {v['name']} → {res['best_match']} (conf={res['confidence']:.2f})")
 
-    # 3) Reason
-    print("🧠 Calling LLM reasoner for each variable ...")
-    mappings = []
-    for item in all_tops:
-        var = item["original_variable"]
-        res = reason_best_match(var, item["query_text"], item["top_matches"])
-        mappings.append(res)
-        print(f"  • {var} → {res['best_match']} (conf {res['confidence']:.2f})")
+        json.dump(mappings,open(f"{base}_Mappings.json","w"),indent=2)
+        print(f"✅ Saved mappings → {base}_Mappings.json")
 
-    with open(out_map, "w", encoding="utf-8") as f:
-        json.dump(mappings, f, indent=2)
-    print(f"✅ Saved mappings → {out_map}")
+        # rename + provenance
+        corrected=rename_with_conf(base,ttl,mappings)
 
-    # 4) CSV summary
-    with open(out_csv, "w", newline="", encoding="utf-8") as f:
-        w = csv.writer(f)
-        w.writerow(["original", "best_match", "confidence", "reason"])
-        for m in mappings:
-            w.writerow([m.get("original",""), m.get("best_match",""), m.get("confidence",0.0), m.get("reason","")])
-    print(f"📄 Summary table → {out_csv}")
+        # SHACL validation
+        validate_with_shacl(corrected,SHACL_RULES)
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--ttl", required=True, help="Path to OEM .ttl file")
-    ap.add_argument("--k", type=int, default=5, help="Top-K candidates for retrieval")
-    args = ap.parse_args()
-    run_pipeline(args.ttl, args.k)
-
-if __name__ == "__main__":
-    main()
+if __name__=="__main__":
+    run_all()

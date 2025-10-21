@@ -1,7 +1,0 @@
-original,best_match,confidence,reason
-P_W,mcrPower_kW,0.59,Matches engine power in kW; closest in meaning and unit.
-omega_ME,mcrRpm_revPerSec,0.63,"Matches rotational speed for engine (PrimeMover), only unit mismatch (rev/s vs rpm)."
-T_ME,qEmax_kNm,0.64,Matches engine (prime mover) torque in kNm; closest in meaning and unit.
-T_bollard,,0.0,No candidate matches both torque or thrust at bollard with unit kN.
-SeaChestVol_m3,seaChestVolume_m3,0.78,"Matches sea chest volume, correct unit and domain."
-Y_strength,yieldStrength_MPa,1.0,"Matches yield strength meaning, unit (MPa), and materials domain."

@@ -1,0 +1,95 @@
+@prefix fmu: <http://example.com/fmu#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+fmu:P_W_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 3e+03 ;
+    sosa:observedProperty fmu:P_W .
+
+fmu:SeaChestVol_m3_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 4e+00 ;
+    sosa:observedProperty fmu:SeaChestVol_m3 .
+
+fmu:T_ME_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 1.2e+02 ;
+    sosa:observedProperty fmu:T_ME .
+
+fmu:T_bollard_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 1.5e+02 ;
+    sosa:observedProperty fmu:T_bollard .
+
+fmu:Y_strength_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 3.55e+02 ;
+    sosa:observedProperty fmu:Y_strength .
+
+fmu:omega_ME_Obs a sosa:Observation ;
+    sosa:hasSimpleResult 7.5e+02 ;
+    sosa:observedProperty fmu:omega_ME .
+
+fmu:P_W a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "P_W" ;
+    qudt:unit unit:KiloW ;
+    owl:sameAs <mcrPower_kW> ;
+    prov:confidence 0.46 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:SeaChestVol_m3 a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "SeaChestVol_m3" ;
+    qudt:unit unit:M3 ;
+    owl:sameAs <seaChestVolume_m3> ;
+    prov:confidence 0.66 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:T_ME a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "T_ME" ;
+    qudt:unit unit:KiloN-M ;
+    owl:sameAs <qEmax_kNm> ;
+    prov:confidence 0.85 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:T_bollard a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "T_bollard" ;
+    qudt:unit unit:KiloN ;
+    owl:sameAs <Tr_kN> ;
+    prov:confidence 0.75 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:Y_strength a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "Y_strength" ;
+    qudt:unit unit:MPa ;
+    owl:sameAs <yieldStrength_MPa> ;
+    prov:confidence 0.59 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:omega_ME a sosa:ObservableProperty ;
+    fmu:hasDataType xsd:double ;
+    fmu:hasFMUVariableName "omega_ME" ;
+    qudt:unit unit:REV-PER-MIN ;
+    owl:sameAs <nn_rpm> ;
+    prov:confidence 0.51 ;
+    ssn:isPropertyOf fmu:FMUEngine_Test1 .
+
+fmu:FMUEngine_Test1 a fmu:FMU,
+        sosa:FeatureOfInterest,
+        ssn:System ;
+    rdfs:label "Engine_FMU_Test1" ;
+    fmu:FMUComponentID "ENGINE_TEST_001" ;
+    fmu:fmuType "DieselEngine" ;
+    fmu:hasVariable fmu:P_W,
+        fmu:SeaChestVol_m3,
+        fmu:T_ME,
+        fmu:T_bollard,
+        fmu:Y_strength,
+        fmu:omega_ME .
+
