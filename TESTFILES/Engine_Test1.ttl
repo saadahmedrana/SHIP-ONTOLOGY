@@ -1,8 +1,7 @@
-
-@prefix : <http://example.com/ontology#> .
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix :     <http://example.com/ontology#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 @prefix sosa: <http://www.w3.org/ns/sosa/> .
 @prefix ssn:  <http://www.w3.org/ns/ssn/> .
 @prefix fmu:  <http://example.com/fmu#> .
@@ -13,14 +12,70 @@ fmu:FMUEngine_Test1 a fmu:FMU, sosa:FeatureOfInterest, ssn:System ;
   rdfs:label "Engine_FMU_Test1" ;
   fmu:fmuType "DieselEngine" ;
   fmu:FMUComponentID "ENGINE_TEST_001" ;
-  fmu:hasVariable fmu:Engine_Power .
+  fmu:hasVariable
+      fmu:P_W,
+      fmu:omega_ME,
+      fmu:T_ME,
+      fmu:T_bollard,
+      fmu:SeaChestVol_m3,
+      fmu:Y_strength.
 
-fmu:Engine_Power a sosa:ObservableProperty ;
+# Power (shorthand)
+fmu:P_W a sosa:ObservableProperty ;
   ssn:isPropertyOf fmu:FMUEngine_Test1 ;
-  fmu:hasFMUVariableName "Engine_Power" ;
+  fmu:hasFMUVariableName "P_W" ;
   fmu:hasDataType xsd:double ;
   qudt:unit unit:KiloW .
-
-fmu:Engine_Power_Value a sosa:Observation ;
-  sosa:observedProperty fmu:Engine_Power ;
+fmu:P_W_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:P_W ;
   sosa:hasSimpleResult "3000.0"^^xsd:double .
+
+# Speed (angular velocity / rpm style)
+fmu:omega_ME a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:FMUEngine_Test1 ;
+  fmu:hasFMUVariableName "omega_ME" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:REV-PER-MIN .
+fmu:omega_ME_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:omega_ME ;
+  sosa:hasSimpleResult "750.0"^^xsd:double .
+
+# Torque
+fmu:T_ME a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:FMUEngine_Test1 ;
+  fmu:hasFMUVariableName "T_ME" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:KiloN-M .
+fmu:T_ME_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:T_ME ;
+  sosa:hasSimpleResult "120.0"^^xsd:double .
+
+# Cross-domain (bollard thrust)
+fmu:T_bollard a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:FMUEngine_Test1 ;
+  fmu:hasFMUVariableName "T_bollard" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:KiloN .
+fmu:T_bollard_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:T_bollard ;
+  sosa:hasSimpleResult "150.0"^^xsd:double .
+
+# Cooling system (sea chest volume)
+fmu:SeaChestVol_m3 a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:FMUEngine_Test1 ;
+  fmu:hasFMUVariableName "SeaChestVol_m3" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:M3 .
+fmu:SeaChestVol_m3_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:SeaChestVol_m3 ;
+  sosa:hasSimpleResult "4.0"^^xsd:double .
+
+# Materials (yield strength)
+fmu:Y_strength a sosa:ObservableProperty ;
+  ssn:isPropertyOf fmu:FMUEngine_Test1 ;
+  fmu:hasFMUVariableName "Y_strength" ;
+  fmu:hasDataType xsd:double ;
+  qudt:unit unit:MPa .
+fmu:Y_strength_Obs a sosa:Observation ;
+  sosa:observedProperty fmu:Y_strength ;
+  sosa:hasSimpleResult "355.0"^^xsd:double .

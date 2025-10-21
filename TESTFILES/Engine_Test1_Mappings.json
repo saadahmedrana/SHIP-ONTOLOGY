@@ -1,0 +1,38 @@
+[
+  {
+    "original": "P_W",
+    "best_match": "mcrPower_kW",
+    "confidence": 0.59,
+    "reason": "Matches engine power in kW; closest in meaning and unit."
+  },
+  {
+    "original": "omega_ME",
+    "best_match": "mcrRpm_revPerSec",
+    "confidence": 0.63,
+    "reason": "Matches rotational speed for engine (PrimeMover), only unit mismatch (rev/s vs rpm)."
+  },
+  {
+    "original": "T_ME",
+    "best_match": "qEmax_kNm",
+    "confidence": 0.64,
+    "reason": "Matches engine (prime mover) torque in kNm; closest in meaning and unit."
+  },
+  {
+    "original": "T_bollard",
+    "best_match": "",
+    "confidence": 0.0,
+    "reason": "No candidate matches both torque or thrust at bollard with unit kN."
+  },
+  {
+    "original": "SeaChestVol_m3",
+    "best_match": "seaChestVolume_m3",
+    "confidence": 0.78,
+    "reason": "Matches sea chest volume, correct unit and domain."
+  },
+  {
+    "original": "Y_strength",
+    "best_match": "yieldStrength_MPa",
+    "confidence": 1.0,
+    "reason": "Matches yield strength meaning, unit (MPa), and materials domain."
+  }
+]

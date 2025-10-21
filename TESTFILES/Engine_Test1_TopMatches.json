@@ -1,0 +1,188 @@
+[
+  {
+    "original_variable": "P_W",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'P_W'. Unit: KiloW. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 3000.0. This likely denotes engine POWER. Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "mcrPower_kW",
+        "similarity": 0.5904392004013062,
+        "text": "Entity ID: mcrPower_kW. @type: rdf:Property. rdfs:domain: PrimeMover. rdfs:range: xsd:decimal. rdfs:comment: MCR power [kW].."
+      },
+      {
+        "id": "k3",
+        "similarity": 0.512198805809021,
+        "text": "Entity ID: k3. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Mechanical type factor (e.g., azimuthing).."
+      },
+      {
+        "id": "Ff_kN",
+        "similarity": 0.5032157897949219,
+        "text": "Entity ID: Ff_kN. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Max forward blade force (\u00a76.2).."
+      },
+      {
+        "id": "designOperationSpeedInIce_kn",
+        "similarity": 0.5003752708435059,
+        "text": "Entity ID: designOperationSpeedInIce_kn. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: Design operation speed in ice for load selection (\u00a76.6.5).."
+      },
+      {
+        "id": "n_bollard_rpm",
+        "similarity": 0.49850499629974365,
+        "text": "Entity ID: n_bollard_rpm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Speed at MCR bollard [rpm] (\u00a76.5.3.4.1).."
+      }
+    ]
+  },
+  {
+    "original_variable": "omega_ME",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'omega_ME'. Unit: REV-PER-MIN. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 750.0. This likely denotes ROTATIONAL SPEED. Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "mcrRpm_revPerSec",
+        "similarity": 0.6261630058288574,
+        "text": "Entity ID: mcrRpm_revPerSec. @type: rdf:Property. rdfs:domain: PrimeMover. rdfs:range: xsd:decimal. rdfs:comment: MCR rotational speed [rev/s].."
+      },
+      {
+        "id": "nn_rpm",
+        "similarity": 0.5973033308982849,
+        "text": "Entity ID: nn_rpm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Nominal speed at MCR, free running [rpm] (\u00a76.2).."
+      },
+      {
+        "id": "n_bollard_rpm",
+        "similarity": 0.589018702507019,
+        "text": "Entity ID: n_bollard_rpm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Speed at MCR bollard [rpm] (\u00a76.5.3.4.1).."
+      },
+      {
+        "id": "naturalFrequency_Hz",
+        "similarity": 0.5352574586868286,
+        "text": "Entity ID: naturalFrequency_Hz. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: First global vibration natural frequency (\u00a76.6.5).."
+      },
+      {
+        "id": "designOperationSpeedInIce_kn",
+        "similarity": 0.5195981860160828,
+        "text": "Entity ID: designOperationSpeedInIce_kn. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: Design operation speed in ice for load selection (\u00a76.6.5).."
+      }
+    ]
+  },
+  {
+    "original_variable": "T_ME",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'T_ME'. Unit: KiloN-M. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 120.0. This likely denotes TORQUE. Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "qEmax_kNm",
+        "similarity": 0.6447129845619202,
+        "text": "Entity ID: qEmax_kNm. @type: rdf:Property. rdfs:domain: PrimeMover. rdfs:range: xsd:decimal. rdfs:comment: Prime mover maximum torque [kNm]. If unknown, default by propulsor type per \u00a76.5.3 Table 6-10.."
+      },
+      {
+        "id": "Qmax_kNm",
+        "similarity": 0.5904985070228577,
+        "text": "Entity ID: Qmax_kNm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Ice torque on propeller (\u00a76.5.3).."
+      },
+      {
+        "id": "Qr_kNm",
+        "similarity": 0.5773456692695618,
+        "text": "Entity ID: Qr_kNm. @type: rdf:Property. rdfs:domain: ShaftingSystem. rdfs:range: xsd:decimal. rdfs:comment: Design response torque [kNm]; used in \u00a76.5.3/.4 checks.."
+      },
+      {
+        "id": "ratedTorque_kNm",
+        "similarity": 0.5688217878341675,
+        "text": "Entity ID: ratedTorque_kNm. @type: rdf:Property. rdfs:domain: Gearbox. rdfs:range: xsd:decimal."
+      },
+      {
+        "id": "Fti_kN",
+        "similarity": 0.5679763555526733,
+        "text": "Entity ID: Fti_kN. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: Ice impact load (T1/T2/T3) (\u00a76.6.5, Eq. 6.46; Tables 6-16/17).."
+      }
+    ]
+  },
+  {
+    "original_variable": "T_bollard",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'T_bollard'. Unit: KiloN. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 150.0. This likely denotes TORQUE. This may denote BOLLARD THRUST. Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "n_bollard_rpm",
+        "similarity": 0.6048350930213928,
+        "text": "Entity ID: n_bollard_rpm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Speed at MCR bollard [rpm] (\u00a76.5.3.4.1).."
+      },
+      {
+        "id": "Fti_kN",
+        "similarity": 0.5954252481460571,
+        "text": "Entity ID: Fti_kN. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: Ice impact load (T1/T2/T3) (\u00a76.6.5, Eq. 6.46; Tables 6-16/17).."
+      },
+      {
+        "id": "Ftr_kN",
+        "similarity": 0.5744588971138,
+        "text": "Entity ID: Ftr_kN. @type: rdf:Property. rdfs:domain: ThrusterSystem. rdfs:range: xsd:decimal. rdfs:comment: Ridge load (T4/T5) (\u00a76.6.5).."
+      },
+      {
+        "id": "Qmax_kNm",
+        "similarity": 0.5512297749519348,
+        "text": "Entity ID: Qmax_kNm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Ice torque on propeller (\u00a76.5.3).."
+      },
+      {
+        "id": "Qsex_kNm",
+        "similarity": 0.5505088567733765,
+        "text": "Entity ID: Qsex_kNm. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Torque from blade failure (\u00a76.5.4).."
+      }
+    ]
+  },
+  {
+    "original_variable": "SeaChestVol_m3",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'SeaChestVol_m3'. Unit: M3. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 4.0. This may denote SEA CHEST VOLUME for cooling water. Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "seaChestVolume_m3",
+        "similarity": 0.7797458171844482,
+        "text": "Entity ID: seaChestVolume_m3. @type: rdf:Property. rdfs:domain: CoolingWaterInletChest. rdfs:range: xsd:decimal. rdfs:comment: \u22481 m\u00b3 per 750 kW of total engine output.."
+      },
+      {
+        "id": "CoolingWaterInletChest",
+        "similarity": 0.5745236277580261,
+        "text": "Entity ID: CoolingWaterInletChest. @type: rdfs:Class. rdfs:label: Cooling Water Inlet Chest. rdfs:comment: TRAFICOM \u00a77.2: chest location/volume/strainer/recirc/headroom.."
+      },
+      {
+        "id": "iceHeadroom",
+        "similarity": 0.5453749299049377,
+        "text": "Entity ID: iceHeadroom. @type: rdf:Property. rdfs:domain: CoolingWaterInletChest. rdfs:range: xsd:boolean. rdfs:comment: Chest height allows ice to accumulate above inlet pipe.."
+      },
+      {
+        "id": "hasCoolingSystem",
+        "similarity": 0.5251792669296265,
+        "text": "Entity ID: hasCoolingSystem. @type: rdf:Property. rdfs:domain: PrimeMover. rdfs:range: CoolingWaterInletChest. rdfs:comment: TRAFICOM \u00a77.2 sea inlet and cooling water.."
+      },
+      {
+        "id": "recircDischarge",
+        "similarity": 0.5097918510437012,
+        "text": "Entity ID: recircDischarge. @type: rdf:Property. rdfs:domain: CoolingWaterInletChest. rdfs:range: xsd:boolean. rdfs:comment: Full-capacity discharge recirculation to sea chest present.."
+      }
+    ]
+  },
+  {
+    "original_variable": "Y_strength",
+    "query_text": "This is an OEM variable from a marine powertrain dataset. Variable name: 'Y_strength'. Unit: MPa. Context system IRI: http://example.com/fmu#FMUEngine_Test1. Datatype: http://www.w3.org/2001/XMLSchema#double. Observed value (approx): 355.0. This likely denotes MATERIAL YIELD STRENGTH (MPa). Find the single best canonical ontology property (ID) with the same physical meaning and unit.",
+    "top_matches": [
+      {
+        "id": "yieldStrength_MPa",
+        "similarity": 0.6344344615936279,
+        "text": "Entity ID: yieldStrength_MPa. rdfs:domain: MechanicalPropertySet. rdfs:range: xsd:decimal. @type: rdf:Property."
+      },
+      {
+        "id": "tensileStrength_MPa",
+        "similarity": 0.5600646734237671,
+        "text": "Entity ID: tensileStrength_MPa. rdfs:domain: MechanicalPropertySet. rdfs:range: xsd:decimal. @type: rdf:Property."
+      },
+      {
+        "id": "safetyFactorExtremeYield",
+        "similarity": 0.5580721497535706,
+        "text": "Entity ID: safetyFactorExtremeYield. @type: rdf:Property. rdfs:domain: ShaftingSystem. rdfs:range: xsd:decimal. rdfs:comment: \u2265 1.3 for extreme operational loads per \u00a76.6.4.."
+      },
+      {
+        "id": "safetyFactorBladeFailureYield",
+        "similarity": 0.5563755035400391,
+        "text": "Entity ID: safetyFactorBladeFailureYield. @type: rdf:Property. rdfs:domain: ShaftingSystem. rdfs:range: xsd:decimal. rdfs:comment: \u2265 1.0 against yielding under blade failure load per \u00a76.6.4.."
+      },
+      {
+        "id": "stressRange_MPa",
+        "similarity": 0.5374382138252258,
+        "text": "Entity ID: stressRange_MPa. @type: rdf:Property. rdfs:domain: Propeller. rdfs:range: xsd:decimal. rdfs:comment: Fatigue stress range (\u00a76.6.2).."
+      }
+    ]
+  }
+]
