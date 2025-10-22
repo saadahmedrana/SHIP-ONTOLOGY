@@ -3,36 +3,36 @@
     "original": "P_W",
     "best_match": "mcrPower_kW",
     "confidence": 0.46,
-    "reason": "The variable 'P_W' likely stands for 'Power' in kilowatts, matching the unit and meaning. 'mcrPower_kW' is defined as MCR power [kW] for a PrimeMover, which fits the context of an engine test. Other candidates do not match the meaning or unit as closely."
+    "reason": "Variable 'P_W' likely stands for 'Power' in kilowatts, matching both the meaning and unit of 'mcrPower_kW' (MCR power [kW]) in the PrimeMover domain. Other candidates do not match as closely in meaning or unit."
   },
   {
     "original": "omega_ME",
     "best_match": "nn_rpm",
-    "confidence": 0.51,
-    "reason": "Variable omega_ME represents rotational speed in revolutions per minute (rpm), matching the unit and meaning of nn_rpm, which is nominal speed at MCR for a propeller. Although the domain is Propeller and the context is FMUEngine, nn_rpm is the closest match in terms of unit and concept."
+    "confidence": 0.5,
+    "reason": "The variable 'omega_ME' represents engine speed in revolutions per minute (RPM), matching the unit and meaning of 'nn_rpm', which is nominal speed at MCR in RPM. Although the domain is Propeller, none of the candidates have PrimeMover with RPM; thus, 'nn_rpm' is the closest match for speed in RPM."
   },
   {
     "original": "T_ME",
     "best_match": "qEmax_kNm",
     "confidence": 0.85,
-    "reason": "T_ME likely stands for 'Torque Mechanical Engine'; qEmax_kNm represents 'Prime mover maximum torque' in kNm, matching both the meaning (engine torque), unit (kNm), and domain (PrimeMover/engine context)."
+    "reason": "T_ME likely stands for 'Torque Mechanical Engine'; qEmax_kNm represents 'Prime mover maximum torque' in kNm, matching both the unit and the engine context."
   },
   {
     "original": "T_bollard",
     "best_match": "Tr_kN",
-    "confidence": 0.75,
-    "reason": "T_bollard likely refers to thrust at bollard pull, measured in kiloNewtons. 'Tr_kN' represents design response thrust in kN, which matches the unit and likely the context of thrust measurement. Other candidates do not match as closely in meaning or unit."
+    "confidence": 0.45,
+    "reason": "T_bollard likely refers to thrust at bollard pull, measured in kiloNewtons. 'Tr_kN' represents design response thrust in kN, which matches the unit and likely meaning. Other candidates are less relevant in unit or concept."
   },
   {
     "original": "SeaChestVol_m3",
     "best_match": "seaChestVolume_m3",
     "confidence": 0.66,
-    "reason": "The variable name, unit (m3), and context indicate it refers to the volume of the sea chest, which matches the ontology property 'seaChestVolume_m3' describing the volume of the CoolingWaterInletChest."
+    "reason": "The variable name, unit (m3), and context all indicate it refers to the volume of the sea chest, which matches the ontology property 'seaChestVolume_m3' describing the volume of a CoolingWaterInletChest."
   },
   {
     "original": "Y_strength",
     "best_match": "yieldStrength_MPa",
     "confidence": 0.59,
-    "reason": "The variable 'Y_strength' likely stands for 'Yield Strength', which matches the candidate 'yieldStrength_MPa' in both meaning and unit (MPa)."
+    "reason": "The abbreviation 'Y' in 'Y_strength' most likely refers to 'Yield', and the unit MPa matches the candidate 'yieldStrength_MPa'. The domain MechanicalPropertySet is appropriate for a material property like yield strength."
   }
 ]

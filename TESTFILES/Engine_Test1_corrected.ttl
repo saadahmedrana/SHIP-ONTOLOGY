@@ -61,7 +61,7 @@ fmu:T_bollard a sosa:ObservableProperty ;
     fmu:hasFMUVariableName "T_bollard" ;
     qudt:unit unit:KiloN ;
     owl:sameAs <Tr_kN> ;
-    prov:confidence 0.75 ;
+    prov:confidence 0.45 ;
     ssn:isPropertyOf fmu:FMUEngine_Test1 .
 
 fmu:Y_strength a sosa:ObservableProperty ;
@@ -77,7 +77,7 @@ fmu:omega_ME a sosa:ObservableProperty ;
     fmu:hasFMUVariableName "omega_ME" ;
     qudt:unit unit:REV-PER-MIN ;
     owl:sameAs <nn_rpm> ;
-    prov:confidence 0.51 ;
+    prov:confidence 0.5 ;
     ssn:isPropertyOf fmu:FMUEngine_Test1 .
 
 fmu:FMUEngine_Test1 a fmu:FMU,

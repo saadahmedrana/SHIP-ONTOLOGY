@@ -13,7 +13,7 @@ from pyshacl import validate   # <- make sure pyshacl is installed
 load_dotenv()
 AALTO_KEY = os.getenv("AALTO_KEY")
 if not AALTO_KEY:
-    raise EnvironmentError("⚠️  Please set AALTO_KEY in your .env file.")
+    raise EnvironmentError(" Please set AALTO_KEY in your .env file!!!!")
 
 # --- user-definable section ---
 TTL_FILES = ["Engine_Test1.ttl"]     # list of OEM ttl files to process
@@ -46,7 +46,7 @@ def embed_text_online(text):
     r = requests.post(EMBED_URL, headers=HEADERS, json=payload, timeout=45)
     if r.status_code == 200:
         return np.array(r.json()["data"][0]["embedding"], dtype=np.float32)
-    print(f"⚠️  Embedding API error ({r.status_code}) — using zero vector.")
+    print(f"  Embedding API error ({r.status_code}) — using zero vector.")
     return np.zeros(3072, dtype=np.float32)
 
 def cosine_similarity(vec, mat):
@@ -137,15 +137,15 @@ def rename_with_conf(base, ttl_file, mappings):
 
                 changes+=1
     g.serialize(out_file,format="turtle")
-    print(f"🧩 Applied {changes} confident renames → {out_file}")
+    print(f" Applied {changes} confident renames → {out_file}")
     if low_conf:
         json.dump(low_conf,open(f"{base}_LowConfidence.json","w"),indent=2)
-        print(f"⚠️  {len(low_conf)} low-confidence mappings saved for review.")
+        print(f"  {len(low_conf)} low-confidence mappings saved for review.")
     return out_file
 
 def validate_with_shacl(data_file, shacl_file):
     if not os.path.exists(shacl_file):
-        print(f"⚠️  SHACL file '{shacl_file}' not found — skipping validation.")
+        print(f" SHACL file '{shacl_file}' not found — skipping validation.")
         return
     conforms, results_graph, text = validate(
         data_graph=data_file, shacl_graph=shacl_file,
@@ -164,9 +164,9 @@ def run_all():
 
     for ttl in TTL_FILES:
         base=os.path.splitext(os.path.basename(ttl))[0]
-        print(f"\n================= ⚙️  Processing {ttl} =================")
+        print(f"\n=================  Processing {ttl} =================")
         vars=extract_vars(ttl)
-        print(f"✅ Extracted {len(vars)} vars")
+        print(f" Extracted {len(vars)} vars")
 
         # retrieval + reasoning
         mappings=[]
@@ -181,7 +181,7 @@ def run_all():
             print(f"  → {v['name']} → {res['best_match']} (conf={res['confidence']:.2f})")
 
         json.dump(mappings,open(f"{base}_Mappings.json","w"),indent=2)
-        print(f"✅ Saved mappings → {base}_Mappings.json")
+        print(f" Saved mappings → {base}_Mappings.json")
 
         # rename + provenance
         corrected=rename_with_conf(base,ttl,mappings)
