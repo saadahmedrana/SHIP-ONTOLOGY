@@ -1,0 +1,63 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oemm: <http://example.com/oemm#> .
+
+oemm:System001 a sosa:FeatureOfInterest, ssn:System ;
+    rdfs:label "OEMM Hybrid Engine System" ;
+    fmu:FMUComponentID "OEMM_001" .
+
+# Main Engine Power
+oemm:Var01 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemm:System001 ;
+    fmu:hasFMUVariableName "PwEng_MCR" ;
+    qudt:unit unit:KiloW ;
+    rdfs:comment "Main engine power at MCR output condition." .
+oemm:Var01_Obs a sosa:Observation ;
+    sosa:observedProperty oemm:Var01 ;
+    sosa:hasSimpleResult "5230.0"^^xsd:decimal .
+
+# Max Shaft Torque
+oemm:Var02 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemm:System001 ;
+    fmu:hasFMUVariableName "QdrvMx" ;
+    qudt:unit unit:KiloN-M ;
+    rdfs:comment "Drive shaft maximum torque measured during tests." .
+oemm:Var02_Obs a sosa:Observation ;
+    sosa:observedProperty oemm:Var02 ;
+    sosa:hasSimpleResult "640.0"^^xsd:decimal .
+
+# Sea Chest Volume
+oemm:Var03 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemm:System001 ;
+    fmu:hasFMUVariableName "SeaChtVlm" ;
+    qudt:unit unit:M3 ;
+    rdfs:comment "Cooling system sea chest volume measurement (estimated)." .
+oemm:Var03_Obs a sosa:Observation ;
+    sosa:observedProperty oemm:Var03 ;
+    sosa:hasSimpleResult "6.3"^^xsd:decimal .
+
+# Starting Air Capacity
+oemm:Var04 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemm:System001 ;
+    fmu:hasFMUVariableName "AirCap_nm3" ;
+    qudt:unit unit:M3 ;
+    rdfs:comment "Compressed air receiver capacity in normalized cubic meters." .
+oemm:Var04_Obs a sosa:Observation ;
+    sosa:observedProperty oemm:Var04 ;
+    sosa:hasSimpleResult "14.0"^^xsd:decimal .
+
+# Random vendor variable (not in ontology)
+oemm:Var05 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemm:System001 ;
+    fmu:hasFMUVariableName "PaintThickness_um" ;
+    qudt:unit unit:MM ;
+    rdfs:comment "Thickness of protective coating on gearbox housing (not relevant)." .
+oemm:Var05_Obs a sosa:Observation ;
+    sosa:observedProperty oemm:Var05 ;
+    sosa:hasSimpleResult "0.35"^^xsd:decimal .

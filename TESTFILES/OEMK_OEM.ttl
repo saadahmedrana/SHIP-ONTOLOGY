@@ -1,0 +1,83 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oemk: <http://example.com/oemk#> .
+oemk:System001 a sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Orion ShipTech Demo System" ;
+  fmu:FMUComponentID "OEMK_SYS_001" .
+
+oemk:Var01 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "RidgeLoad_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Thruster body/load/vibration parameter for class verification." .
+oemk:Var01_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var01 ;
+  sosa:hasSimpleResult "160.9"^^xsd:decimal .
+
+oemk:Var02 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "PropDiameter_m" ;
+  qudt:unit unit:M ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oemk:Var02_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var02 ;
+  sosa:hasSimpleResult "7.692"^^xsd:decimal .
+
+oemk:Var03 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "crankSpeed_rps" ;
+  qudt:unit unit:REV-PER-SEC ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oemk:Var03_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var03 ;
+  sosa:hasSimpleResult "16.9"^^xsd:decimal .
+
+oemk:Var04 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "ReceiverVolume_Nm3" ;
+  rdfs:comment "Starting air system capacity/time from machinery arrangement." .
+oemk:Var04_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var04 ;
+  sosa:hasSimpleResult "4.32"^^xsd:decimal .
+
+oemk:Var05 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "ratio_gearbox" ;
+  rdfs:comment "Reduction gearbox parameter for transmission selection." .
+oemk:Var05_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var05 ;
+  sosa:hasSimpleResult "0.69"^^xsd:decimal .
+
+oemk:Var06 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "Torque_ice_kNm" ;
+  qudt:unit unit:KiloN-M ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oemk:Var06_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var06 ;
+  sosa:hasSimpleResult "204.51"^^xsd:decimal .
+
+oemk:Var07 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "F_b_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oemk:Var07_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var07 ;
+  sosa:hasSimpleResult "127.5"^^xsd:decimal .
+
+oemk:Var08 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemk:System001 ;
+  fmu:hasFMUVariableName "Tq_rated_kNm" ;
+  qudt:unit unit:KiloN-M ;
+  rdfs:comment "Flexible coupling parameter from supplier certificate." .
+oemk:Var08_Obs a sosa:Observation ;
+  sosa:observedProperty oemk:Var08 ;
+  sosa:hasSimpleResult "341.19"^^xsd:decimal .
+

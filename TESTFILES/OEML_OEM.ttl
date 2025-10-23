@@ -1,0 +1,91 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oeml: <http://example.com/oeml#> .
+oeml:System001 a sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "Vectra Nautics Demo System" ;
+  fmu:FMUComponentID "OEML_SYS_001" .
+
+oeml:Var01 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "screenOpenAreaRatio" ;
+  rdfs:comment "Cooling water inlet chest sizing / performance indicator." .
+oeml:Var01_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var01 ;
+  sosa:hasSimpleResult "3.26"^^xsd:decimal .
+
+oeml:Var02 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "bladeOrderResonanceNearMax" ;
+  rdfs:comment "Design response variable for shaft-line checks per project spec." .
+oeml:Var02_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var02 ;
+  sosa:hasSimpleResult "1.65"^^xsd:decimal .
+
+oeml:Var03 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "fn_Hz" ;
+  qudt:unit unit:HZ ;
+  rdfs:comment "Thruster body/load/vibration parameter for class verification." .
+oeml:Var03_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var03 ;
+  sosa:hasSimpleResult "3.25"^^xsd:decimal .
+
+oeml:Var04 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "F_T1_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Thruster body/load/vibration parameter for class verification." .
+oeml:Var04_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var04 ;
+  sosa:hasSimpleResult "1997.0"^^xsd:decimal .
+
+oeml:Var05 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "PropDiameter_m" ;
+  qudt:unit unit:M ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oeml:Var05_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var05 ;
+  sosa:hasSimpleResult "0.845"^^xsd:decimal .
+
+oeml:Var06 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "SeaInletChest_Vol" ;
+  qudt:unit unit:M3 ;
+  rdfs:comment "Cooling water inlet chest sizing / performance indicator." .
+oeml:Var06_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var06 ;
+  sosa:hasSimpleResult "15.67"^^xsd:decimal .
+
+oeml:Var07 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "V_rudder_kn" ;
+  qudt:unit unit:Knot ;
+  rdfs:comment "Rudder design parameter per class minimas." .
+oeml:Var07_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var07 ;
+  sosa:hasSimpleResult "24.0"^^xsd:decimal .
+
+oeml:Var08 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "expAreaRatio" ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oeml:Var08_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var08 ;
+  sosa:hasSimpleResult "4.41"^^xsd:decimal .
+
+oeml:Var09 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oeml:System001 ;
+  fmu:hasFMUVariableName "Q_resp_kNm" ;
+  qudt:unit unit:KiloN-M ;
+  rdfs:comment "Design response variable for shaft-line checks per project spec." .
+oeml:Var09_Obs a sosa:Observation ;
+  sosa:observedProperty oeml:Var09 ;
+  sosa:hasSimpleResult "235.14"^^xsd:decimal .
+

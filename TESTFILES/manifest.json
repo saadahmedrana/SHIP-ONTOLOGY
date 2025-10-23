@@ -1,0 +1,1099 @@
+{
+  "generated_at": "2025-10-23T09:43:04.154350Z",
+  "files": [
+    {
+      "oem_ns": "oema",
+      "brand": "AcmeMarine Drives",
+      "file": "OEMA_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var01",
+          "original_name": "MainEngPower_kW",
+          "unit": "unit:KiloW",
+          "canonical_id": "mcrPower_kW",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var02",
+          "original_name": "RidgeLoad_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ftr_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var03",
+          "original_name": "strainerAreaRatio",
+          "unit": "",
+          "canonical_id": "strainerOpenAreaRatio",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var04",
+          "original_name": "CoolingChestVol_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var05",
+          "original_name": "chargeTime_h",
+          "unit": "",
+          "canonical_id": "compressorChargeTime_h",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var06",
+          "original_name": "shaftRespTorque_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qr_kNm",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var07",
+          "original_name": "reverseRequired",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oema",
+          "oem_brand": "AcmeMarine Drives",
+          "oem_file": "OEMA_OEM.ttl",
+          "original_var_iri": "oema:Var08",
+          "original_name": "F_fwd_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ff_kN",
+          "domain": "prop:Propeller"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemb",
+      "brand": "BalticDrive Systems",
+      "file": "OEMB_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var01",
+          "original_name": "IceImpact_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fti_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var02",
+          "original_name": "n_MCR_rpm",
+          "unit": "unit:REV-PER-MIN",
+          "canonical_id": "nn_rpm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var03",
+          "original_name": "Dia_m",
+          "unit": "unit:M",
+          "canonical_id": "D_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var04",
+          "original_name": "screenOpenAreaRatio",
+          "unit": "",
+          "canonical_id": "strainerOpenAreaRatio",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var05",
+          "original_name": "respTorque_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qr_kNm",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var06",
+          "original_name": "bladeOrderResonanceNearMax",
+          "unit": "",
+          "canonical_id": "resonanceWithin20pctOfMaxSpeed",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var07",
+          "original_name": "airRecCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemb",
+          "oem_brand": "BalticDrive Systems",
+          "oem_file": "OEMB_OEM.ttl",
+          "original_var_iri": "oemb:Var08",
+          "original_name": "reverseRequired",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemc",
+      "brand": "NordicPropulsion",
+      "file": "OEMC_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var01",
+          "original_name": "omega_engine_rps",
+          "unit": "unit:REV-PER-SEC",
+          "canonical_id": "mcrRpm_revPerSec",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var02",
+          "original_name": "natFreq_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var03",
+          "original_name": "SeaChestVol_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var04",
+          "original_name": "YS_material_MPa",
+          "unit": "unit:MPa",
+          "canonical_id": "yieldStrength_MPa",
+          "domain": "mat:MechanicalPropertySet"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var05",
+          "original_name": "Q_engine_max_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "qEmax_kNm",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var06",
+          "original_name": "startAirCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var07",
+          "original_name": "rev_capable",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemc",
+          "oem_brand": "NordicPropulsion",
+          "oem_file": "OEMC_OEM.ttl",
+          "original_var_iri": "oemc:Var08",
+          "original_name": "EARatio",
+          "unit": "",
+          "canonical_id": "EAR",
+          "domain": "prop:Propeller"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemd",
+      "brand": "PacificThrusters",
+      "file": "OEMD_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var01",
+          "original_name": "natFreq_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var02",
+          "original_name": "Dia_m",
+          "unit": "unit:M",
+          "canonical_id": "D_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var03",
+          "original_name": "airRecCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var04",
+          "original_name": "eng_rps_nom",
+          "unit": "unit:REV-PER-SEC",
+          "canonical_id": "mcrRpm_revPerSec",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var05",
+          "original_name": "SeaChestVol_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var06",
+          "original_name": "F_thr_ridge_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ftr_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var07",
+          "original_name": "compressorCharge_h",
+          "unit": "",
+          "canonical_id": "compressorChargeTime_h",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemd",
+          "oem_brand": "PacificThrusters",
+          "oem_file": "OEMD_OEM.ttl",
+          "original_var_iri": "oemd:Var08",
+          "original_name": "EARatio",
+          "unit": "",
+          "canonical_id": "EAR",
+          "domain": "prop:Propeller"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oeme",
+      "brand": "BlueHull Ltd",
+      "file": "OEME_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var01",
+          "original_name": "P_at_0p7R_m",
+          "unit": "unit:M",
+          "canonical_id": "P0_7_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var02",
+          "original_name": "CW_ChestVolume_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var03",
+          "original_name": "shaftRespTorque_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qr_kNm",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var04",
+          "original_name": "BackBladeForce_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fb_kN",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var05",
+          "original_name": "Torque_ice_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qmax_kNm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var06",
+          "original_name": "Q_engine_max_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "qEmax_kNm",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var07",
+          "original_name": "crankSpeed_rps",
+          "unit": "unit:REV-PER-SEC",
+          "canonical_id": "mcrRpm_revPerSec",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var08",
+          "original_name": "reverseRequired",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oeme",
+          "oem_brand": "BlueHull Ltd",
+          "oem_file": "OEME_OEM.ttl",
+          "original_var_iri": "oeme:Var09",
+          "original_name": "airRecCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemf",
+      "brand": "PolarTech Marine",
+      "file": "OEMF_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var01",
+          "original_name": "BollardPull_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Tr_kN",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var02",
+          "original_name": "n_bollard_nom",
+          "unit": "unit:REV-PER-MIN",
+          "canonical_id": "n_bollard_rpm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var03",
+          "original_name": "P_out_MCR",
+          "unit": "unit:KiloW",
+          "canonical_id": "mcrPower_kW",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var04",
+          "original_name": "RidgeLoad_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ftr_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var05",
+          "original_name": "screenOpenAreaRatio",
+          "unit": "",
+          "canonical_id": "strainerOpenAreaRatio",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var06",
+          "original_name": "F_b_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fb_kN",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var07",
+          "original_name": "V_rudder_kn",
+          "unit": "unit:Knot",
+          "canonical_id": "rudderDesignSpeed_kn",
+          "domain": "prop:RudderAndSteeringSystem"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var08",
+          "original_name": "natFreq_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemf",
+          "oem_brand": "PolarTech Marine",
+          "oem_file": "OEMF_OEM.ttl",
+          "original_var_iri": "oemf:Var09",
+          "original_name": "reverseRequired",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemg",
+      "brand": "Sealine Systems",
+      "file": "OEMG_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var01",
+          "original_name": "i_gear",
+          "unit": "",
+          "canonical_id": "gearRatio",
+          "domain": "comp:Gearbox"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var02",
+          "original_name": "drvTorqueCap_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "qEmax_kNm",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var03",
+          "original_name": "t_charge_h",
+          "unit": "",
+          "canonical_id": "compressorChargeTime_h",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var04",
+          "original_name": "F_T4_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ftr_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var05",
+          "original_name": "Torque_ice_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qmax_kNm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var06",
+          "original_name": "ReceiverVolume_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var07",
+          "original_name": "ForwardBladeForce_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ff_kN",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemg",
+          "oem_brand": "Sealine Systems",
+          "oem_file": "OEMG_OEM.ttl",
+          "original_var_iri": "oemg:Var08",
+          "original_name": "Q_resp_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qr_kNm",
+          "domain": "prop:ShaftingSystem"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemh",
+      "brand": "AstraMarine",
+      "file": "OEMH_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var01",
+          "original_name": "rev_capable",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var02",
+          "original_name": "InletChestVol_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var03",
+          "original_name": "chargeTime_h",
+          "unit": "",
+          "canonical_id": "compressorChargeTime_h",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var04",
+          "original_name": "Q_engine_max_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "qEmax_kNm",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var05",
+          "original_name": "Dia_m",
+          "unit": "unit:M",
+          "canonical_id": "D_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var06",
+          "original_name": "P_out_MCR",
+          "unit": "unit:KiloW",
+          "canonical_id": "mcrPower_kW",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var07",
+          "original_name": "redRatio",
+          "unit": "",
+          "canonical_id": "gearRatio",
+          "domain": "comp:Gearbox"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var08",
+          "original_name": "F_f_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ff_kN",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemh",
+          "oem_brand": "AstraMarine",
+          "oem_file": "OEMH_OEM.ttl",
+          "original_var_iri": "oemh:Var09",
+          "original_name": "startAirCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemi",
+      "brand": "Helix Propulsion",
+      "file": "OEMI_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var01",
+          "original_name": "has20pctResonance",
+          "unit": "",
+          "canonical_id": "resonanceWithin20pctOfMaxSpeed",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var02",
+          "original_name": "isReversible",
+          "unit": "",
+          "canonical_id": "reversible",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var03",
+          "original_name": "t_charge_h",
+          "unit": "",
+          "canonical_id": "compressorChargeTime_h",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var04",
+          "original_name": "fn_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var05",
+          "original_name": "PropRPM_nom",
+          "unit": "unit:REV-PER-MIN",
+          "canonical_id": "nn_rpm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var06",
+          "original_name": "Pitch0p7_m",
+          "unit": "unit:M",
+          "canonical_id": "P0_7_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var07",
+          "original_name": "F_thruster_impact_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fti_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var08",
+          "original_name": "Tq_rated_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "ratedTorque_kNm",
+          "domain": "comp:Coupling"
+        },
+        {
+          "oem_ns": "oemi",
+          "oem_brand": "Helix Propulsion",
+          "oem_file": "OEMI_OEM.ttl",
+          "original_var_iri": "oemi:Var09",
+          "original_name": "n_bollard_nom",
+          "unit": "unit:REV-PER-MIN",
+          "canonical_id": "n_bollard_rpm",
+          "domain": "prop:Propeller"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemj",
+      "brand": "Marinus Power",
+      "file": "OEMJ_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var01",
+          "original_name": "Qe_limit_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "qEmax_kNm",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var02",
+          "original_name": "startAirCap_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var03",
+          "original_name": "CW_ChestVolume_m3",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var04",
+          "original_name": "DesignThrust_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Tr_kN",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var05",
+          "original_name": "n_nominal_rpm",
+          "unit": "unit:REV-PER-MIN",
+          "canonical_id": "nn_rpm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var06",
+          "original_name": "Q_max_ice_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qmax_kNm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var07",
+          "original_name": "natFreq_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemj",
+          "oem_brand": "Marinus Power",
+          "oem_file": "OEMJ_OEM.ttl",
+          "original_var_iri": "oemj:Var08",
+          "original_name": "resWithin20pct",
+          "unit": "",
+          "canonical_id": "resonanceWithin20pctOfMaxSpeed",
+          "domain": "prop:ShaftingSystem"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oemk",
+      "brand": "Orion ShipTech",
+      "file": "OEMK_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var01",
+          "original_name": "RidgeLoad_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Ftr_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var02",
+          "original_name": "PropDiameter_m",
+          "unit": "unit:M",
+          "canonical_id": "D_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var03",
+          "original_name": "crankSpeed_rps",
+          "unit": "unit:REV-PER-SEC",
+          "canonical_id": "mcrRpm_revPerSec",
+          "domain": "eng:PrimeMover"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var04",
+          "original_name": "ReceiverVolume_Nm3",
+          "unit": "",
+          "canonical_id": "airReceiverCapacity_Nm3",
+          "domain": "eng:StartingSystem"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var05",
+          "original_name": "ratio_gearbox",
+          "unit": "",
+          "canonical_id": "gearRatio",
+          "domain": "comp:Gearbox"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var06",
+          "original_name": "Torque_ice_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qmax_kNm",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var07",
+          "original_name": "F_b_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fb_kN",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oemk",
+          "oem_brand": "Orion ShipTech",
+          "oem_file": "OEMK_OEM.ttl",
+          "original_var_iri": "oemk:Var08",
+          "original_name": "Tq_rated_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "ratedTorque_kNm",
+          "domain": "comp:Coupling"
+        }
+      ]
+    },
+    {
+      "oem_ns": "oeml",
+      "brand": "Vectra Nautics",
+      "file": "OEML_OEM.ttl",
+      "vars": [
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var01",
+          "original_name": "screenOpenAreaRatio",
+          "unit": "",
+          "canonical_id": "strainerOpenAreaRatio",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var02",
+          "original_name": "bladeOrderResonanceNearMax",
+          "unit": "",
+          "canonical_id": "resonanceWithin20pctOfMaxSpeed",
+          "domain": "prop:ShaftingSystem"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var03",
+          "original_name": "fn_Hz",
+          "unit": "unit:HZ",
+          "canonical_id": "naturalFrequency_Hz",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var04",
+          "original_name": "F_T1_kN",
+          "unit": "unit:KiloN",
+          "canonical_id": "Fti_kN",
+          "domain": "prop:ThrusterSystem"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var05",
+          "original_name": "PropDiameter_m",
+          "unit": "unit:M",
+          "canonical_id": "D_m",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var06",
+          "original_name": "SeaInletChest_Vol",
+          "unit": "unit:M3",
+          "canonical_id": "seaChestVolume_m3",
+          "domain": "eng:CoolingWaterInletChest"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var07",
+          "original_name": "V_rudder_kn",
+          "unit": "unit:Knot",
+          "canonical_id": "rudderDesignSpeed_kn",
+          "domain": "prop:RudderAndSteeringSystem"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var08",
+          "original_name": "expAreaRatio",
+          "unit": "",
+          "canonical_id": "EAR",
+          "domain": "prop:Propeller"
+        },
+        {
+          "oem_ns": "oeml",
+          "oem_brand": "Vectra Nautics",
+          "oem_file": "OEML_OEM.ttl",
+          "original_var_iri": "oeml:Var09",
+          "original_name": "Q_resp_kNm",
+          "unit": "unit:KiloN-M",
+          "canonical_id": "Qr_kNm",
+          "domain": "prop:ShaftingSystem"
+        }
+      ]
+    }
+  ]
+}

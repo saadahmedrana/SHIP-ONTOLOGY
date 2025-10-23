@@ -1,0 +1,90 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oemh: <http://example.com/oemh#> .
+oemh:System001 a sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "AstraMarine Demo System" ;
+  fmu:FMUComponentID "OEMH_SYS_001" .
+
+oemh:Var01 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "rev_capable" ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oemh:Var01_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var01 ;
+  sosa:hasSimpleResult "0.14"^^xsd:decimal .
+
+oemh:Var02 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "InletChestVol_m3" ;
+  qudt:unit unit:M3 ;
+  rdfs:comment "Cooling water inlet chest sizing / performance indicator." .
+oemh:Var02_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var02 ;
+  sosa:hasSimpleResult "7.64"^^xsd:decimal .
+
+oemh:Var03 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "chargeTime_h" ;
+  rdfs:comment "Starting air system capacity/time from machinery arrangement." .
+oemh:Var03_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var03 ;
+  sosa:hasSimpleResult "4.31"^^xsd:decimal .
+
+oemh:Var04 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "Q_engine_max_kNm" ;
+  qudt:unit unit:KiloN-M ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oemh:Var04_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var04 ;
+  sosa:hasSimpleResult "416.18"^^xsd:decimal .
+
+oemh:Var05 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "Dia_m" ;
+  qudt:unit unit:M ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oemh:Var05_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var05 ;
+  sosa:hasSimpleResult "6.087"^^xsd:decimal .
+
+oemh:Var06 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "P_out_MCR" ;
+  qudt:unit unit:KiloW ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oemh:Var06_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var06 ;
+  sosa:hasSimpleResult "5622.7"^^xsd:decimal .
+
+oemh:Var07 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "redRatio" ;
+  rdfs:comment "Reduction gearbox parameter for transmission selection." .
+oemh:Var07_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var07 ;
+  sosa:hasSimpleResult "4.68"^^xsd:decimal .
+
+oemh:Var08 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "F_f_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oemh:Var08_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var08 ;
+  sosa:hasSimpleResult "1173.6"^^xsd:decimal .
+
+oemh:Var09 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oemh:System001 ;
+  fmu:hasFMUVariableName "startAirCap_Nm3" ;
+  rdfs:comment "Starting air system capacity/time from machinery arrangement." .
+oemh:Var09_Obs a sosa:Observation ;
+  sosa:observedProperty oemh:Var09 ;
+  sosa:hasSimpleResult "3.94"^^xsd:decimal .
+

@@ -1,0 +1,83 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oemp: <http://example.com/oemp#> .
+
+oemp:SystemX a sosa:FeatureOfInterest, ssn:System ;
+    rdfs:label "OEMP Vendor System (Random Sensors)" ;
+    fmu:FMUComponentID "OEMP_001" .
+
+# Random test variables (should NOT match ontology)
+
+# Network packet drop rate
+oemp:Var01 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "PktDropRate_pct" ;
+    qudt:unit unit:PERCENT ;
+    rdfs:comment "Ethernet packet drop rate in control system network (not mechanical)." .
+oemp:Var01_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var01 ;
+    sosa:hasSimpleResult "0.12"^^xsd:decimal .
+
+# Sensor calibration offset
+oemp:Var02 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "CalibOffset_val" ;
+    qudt:unit unit:ONE ;
+    rdfs:comment "Calibration offset constant for sensor calibration routine (irrelevant to ontology)." .
+oemp:Var02_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var02 ;
+    sosa:hasSimpleResult "1.03"^^xsd:decimal .
+
+# PLC scan time
+oemp:Var03 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "PLCscan_ms" ;
+    qudt:unit unit:MilliSEC ;
+    rdfs:comment "Programmable logic controller scan cycle time (control latency, not physical measurement)." .
+oemp:Var03_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var03 ;
+    sosa:hasSimpleResult "12.4"^^xsd:decimal .
+
+# Vibration alarm status
+oemp:Var04 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "VibAlarmFlag" ;
+    qudt:unit unit:ONE ;
+    rdfs:comment "Boolean alarm flag (1/0) for vibration monitor. Not a measurable property in ontology." .
+oemp:Var04_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var04 ;
+    sosa:hasSimpleResult "1"^^xsd:boolean .
+
+# Firmware checksum
+oemp:Var05 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "FW_Checksum" ;
+    rdfs:comment "Firmware checksum string for thruster controller, purely digital meta-data." .
+oemp:Var05_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var05 ;
+    sosa:hasSimpleResult "ABCD-93FF-21"^^xsd:string .
+
+# Internal memory temperature
+oemp:Var06 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "MemTemp_degC" ;
+    qudt:unit unit:DEG ;
+    rdfs:comment "Temperature of control module memory chip, unrelated to ship systems." .
+oemp:Var06_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var06 ;
+    sosa:hasSimpleResult "48.2"^^xsd:decimal .
+
+# Debug variable (transient log)
+oemp:Var07 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemp:SystemX ;
+    fmu:hasFMUVariableName "DbgVar_X1" ;
+    rdfs:comment "Temporary variable from debugging data stream, not relevant." .
+oemp:Var07_Obs a sosa:Observation ;
+    sosa:observedProperty oemp:Var07 ;
+    sosa:hasSimpleResult "999"^^xsd:decimal .

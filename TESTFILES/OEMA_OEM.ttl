@@ -1,0 +1,82 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oema: <http://example.com/oema#> .
+oema:System001 a sosa:FeatureOfInterest, ssn:System ;
+  rdfs:label "AcmeMarine Drives Demo System" ;
+  fmu:FMUComponentID "OEMA_SYS_001" .
+
+oema:Var01 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "MainEngPower_kW" ;
+  qudt:unit unit:KiloW ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oema:Var01_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var01 ;
+  sosa:hasSimpleResult "6109.7"^^xsd:decimal .
+
+oema:Var02 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "RidgeLoad_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Thruster body/load/vibration parameter for class verification." .
+oema:Var02_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var02 ;
+  sosa:hasSimpleResult "108.1"^^xsd:decimal .
+
+oema:Var03 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "strainerAreaRatio" ;
+  rdfs:comment "Cooling water inlet chest sizing / performance indicator." .
+oema:Var03_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var03 ;
+  sosa:hasSimpleResult "1.24"^^xsd:decimal .
+
+oema:Var04 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "CoolingChestVol_m3" ;
+  qudt:unit unit:M3 ;
+  rdfs:comment "Cooling water inlet chest sizing / performance indicator." .
+oema:Var04_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var04 ;
+  sosa:hasSimpleResult "1.77"^^xsd:decimal .
+
+oema:Var05 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "chargeTime_h" ;
+  rdfs:comment "Starting air system capacity/time from machinery arrangement." .
+oema:Var05_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var05 ;
+  sosa:hasSimpleResult "3.61"^^xsd:decimal .
+
+oema:Var06 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "shaftRespTorque_kNm" ;
+  qudt:unit unit:KiloN-M ;
+  rdfs:comment "Design response variable for shaft-line checks per project spec." .
+oema:Var06_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var06 ;
+  sosa:hasSimpleResult "184.15"^^xsd:decimal .
+
+oema:Var07 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "reverseRequired" ;
+  rdfs:comment "Prime mover interface variable from engine datasheet at MCR." .
+oema:Var07_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var07 ;
+  sosa:hasSimpleResult "4.07"^^xsd:decimal .
+
+oema:Var08 a sosa:ObservableProperty ;
+  ssn:isPropertyOf oema:System001 ;
+  fmu:hasFMUVariableName "F_fwd_kN" ;
+  qudt:unit unit:KiloN ;
+  rdfs:comment "Propeller geometry/load parameter for design/performance checks." .
+oema:Var08_Obs a sosa:Observation ;
+  sosa:observedProperty oema:Var08 ;
+  sosa:hasSimpleResult "1529.7"^^xsd:decimal .
+

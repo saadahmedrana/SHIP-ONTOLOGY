@@ -1,0 +1,62 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn:  <http://www.w3.org/ns/ssn/> .
+@prefix fmu:  <http://example.com/fmu#> .
+@prefix qudt: <http://qudt.org/2.1/schema/qudt#> .
+@prefix unit: <http://qudt.org/2.1/vocab/unit#> .
+@prefix oemn: <http://example.com/oemn#> .
+
+oemn:System001 a sosa:FeatureOfInterest, ssn:System ;
+    rdfs:label "OEMN Propulsion Set" ;
+    fmu:FMUComponentID "OEMN_001" .
+
+# Nominal Propeller Speed
+oemn:Var01 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemn:System001 ;
+    fmu:hasFMUVariableName "Nnom_rpm" ;
+    qudt:unit unit:REV-PER-MIN ;
+    rdfs:comment "Nominal propeller rotational speed in rpm (design condition)." .
+oemn:Var01_Obs a sosa:Observation ;
+    sosa:observedProperty oemn:Var01 ;
+    sosa:hasSimpleResult "685.0"^^xsd:decimal .
+
+# Propeller Diameter
+oemn:Var02 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemn:System001 ;
+    fmu:hasFMUVariableName "Dprop_m" ;
+    qudt:unit unit:M ;
+    rdfs:comment "Measured propeller diameter in meters." .
+oemn:Var02_Obs a sosa:Observation ;
+    sosa:observedProperty oemn:Var02 ;
+    sosa:hasSimpleResult "4.5"^^xsd:decimal .
+
+# Expanded Area Ratio
+oemn:Var03 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemn:System001 ;
+    fmu:hasFMUVariableName "ExpA_Ratio" ;
+    rdfs:comment "Expanded area ratio of propeller blades (dimensionless)." .
+oemn:Var03_Obs a sosa:Observation ;
+    sosa:observedProperty oemn:Var03 ;
+    sosa:hasSimpleResult "0.72"^^xsd:decimal .
+
+# Forward Force
+oemn:Var04 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemn:System001 ;
+    fmu:hasFMUVariableName "F_fwdBlade_kN" ;
+    qudt:unit unit:KiloN ;
+    rdfs:comment "Propeller forward thrust force per blade." .
+oemn:Var04_Obs a sosa:Observation ;
+    sosa:observedProperty oemn:Var04 ;
+    sosa:hasSimpleResult "890.0"^^xsd:decimal .
+
+# Unrelated sensor (should return no match)
+oemn:Var05 a sosa:ObservableProperty ;
+    ssn:isPropertyOf oemn:System001 ;
+    fmu:hasFMUVariableName "CabTemp_degC" ;
+    qudt:unit unit:DEG ;
+    rdfs:comment "Cabin temperature sensor value (unrelated to ontology domain)." .
+oemn:Var05_Obs a sosa:Observation ;
+    sosa:observedProperty oemn:Var05 ;
+    sosa:hasSimpleResult "21.4"^^xsd:decimal .

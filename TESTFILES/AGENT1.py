@@ -57,12 +57,17 @@ def embed_text_online(text: str, retries: int = 3):
 
 
 def cosine_similarity(vec, mat):
-    """Compute cosine similarity between one vector and a matrix."""
-    if np.linalg.norm(vec) == 0:
-        return np.zeros(mat.shape[0])
-    vec_norm = vec / np.linalg.norm(vec)
-    mat_norm = mat / np.linalg.norm(mat, axis=1, keepdims=True)
-    return np.dot(mat_norm, vec_norm)
+    """Cosine similarity with NaN/Inf safety."""
+    denom = np.linalg.norm(vec)
+    if (denom == 0) or (not np.isfinite(denom)):
+        return np.zeros(mat.shape[0], dtype=np.float32)
+    v = vec / denom
+    Mnorms = np.linalg.norm(mat, axis=1, keepdims=True)
+    M = np.divide(mat, Mnorms, out=np.zeros_like(mat), where=(Mnorms != 0))
+    sims = np.dot(M, v)
+    sims[~np.isfinite(sims)] = 0.0
+    return sims
+
 
 
 # ---------- MAIN ----------
