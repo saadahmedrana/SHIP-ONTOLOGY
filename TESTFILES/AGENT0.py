@@ -1,7 +1,7 @@
 # -----------------------------------------------------------
 # VARIABLE EXTRACTION AGENT (Agent_0)
 # Reads an OEM .ttl file and outputs a JSON list of variables
-# -----------------------------------------------------------
+# -----------------------------------------------------------d----
 
 import json
 from rdflib import Graph, Namespace, RDF
