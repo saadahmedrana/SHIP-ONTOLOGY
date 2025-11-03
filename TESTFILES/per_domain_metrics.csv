@@ -1,0 +1,5 @@
+Domain,Precision,Recall,F1,Samples
+comp,0.8,0.8,0.8,5
+eng,0.821,0.821,0.821,39
+prop,0.875,0.875,0.875,48
+unknown,0.0,0.0,0.0,5

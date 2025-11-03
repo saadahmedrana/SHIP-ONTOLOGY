@@ -46,7 +46,7 @@ oemm:Var03_Obs a sosa:Observation ;
 oemm:Var04 a sosa:ObservableProperty ;
     ssn:isPropertyOf oemm:System001 ;
     fmu:hasFMUVariableName "AirCap_nm3" ;
-    qudt:unit unit:M3 ;
+    qudt:unit unit:um ;
     rdfs:comment "Compressed air receiver capacity in normalized cubic meters." .
 oemm:Var04_Obs a sosa:Observation ;
     sosa:observedProperty oemm:Var04 ;

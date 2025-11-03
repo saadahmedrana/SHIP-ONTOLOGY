@@ -1,107 +1,107 @@
 file,original_name,best_match,confidence,reason
-OEMA_OEM,MainEngPower_kW,mcrPower_kW,0.52,"Both represent power in kilowatts for a prime mover; 'mcrPower_kW' is the closest match in meaning, unit, and domain."
-OEMA_OEM,RidgeLoad_kN,Ftr_kN,0.54,"Ftr_kN is described as 'Ridge load (T4/T5)' with unit kN and is the only candidate explicitly referring to ridge load, matching the variable name and unit."
-OEMA_OEM,strainerAreaRatio,strainerOpenAreaRatio,0.57,"Both refer to the ratio of open area in a strainer, and the domain (CoolingWaterInletChest) is consistent with typical strainer applications."
-OEMA_OEM,CoolingChestVol_m3,seaChestVolume_m3,0.63,Both refer to the volume (in m3) of a chest related to cooling water; 'seaChestVolume_m3' is a property for CoolingWaterInletChest and matches the unit and domain.
-OEMA_OEM,chargeTime_h,compressorChargeTime_h,0.53,"The variable 'chargeTime_h' closely matches 'compressorChargeTime_h' in both meaning (duration of charging) and unit (hours). Both relate to a time property, and the similarity score is highest among candidates."
-OEMA_OEM,shaftRespTorque_kNm,Qr_kNm,0.61,"Qr_kNm represents design response torque in kNm for ShaftingSystem, matching the variable's meaning, unit, and domain."
-OEMA_OEM,reverseRequired,reversible,0.49,"The 'reversible' property indicates if reversing is required for astern, matching the meaning of 'reverseRequired'."
-OEMA_OEM,F_fwd_kN,Ff_kN,0.85,"Both represent forward force in kN, likely on a propeller; abbreviation and unit match closely."
-OEMB_OEM,IceImpact_kN,Fti_kN,0.53,"Fti_kN represents ice impact load in kN for the ThrusterSystem, matching the variable name, unit, and context."
-OEMB_OEM,n_MCR_rpm,mcrRpm_revPerSec,0.58,"Both refer to MCR rotational speed, though units differ (rpm vs rev/s); closest semantic and domain match."
-OEMB_OEM,Dia_m,D_m,0.46,Dia_m likely refers to diameter in meters; D_m is a property for propeller diameter with matching unit and domain.
-OEMB_OEM,screenOpenAreaRatio,strainerOpenAreaRatio,0.45,"Both variables refer to the open area ratio of a screening or filtering component, and 'strainerOpenAreaRatio' is the closest match in meaning and unit, despite a slight domain difference."
-OEMB_OEM,respTorque_kNm,Qr_kNm,0.53,The variable 'respTorque_kNm' likely refers to response torque in kNm. 'Qr_kNm' is described as 'Design response torque [kNm]' and matches both the meaning and unit. The domain (ShaftingSystem) is plausible for a response torque variable.
-OEMB_OEM,bladeOrderResonanceNearMax,resonanceWithin20pctOfMaxSpeed,0.51,Both refer to blade order resonance occurring near maximum operating speed; candidate explicitly mentions resonance proximity to max speed.
-OEMB_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53,Both refer to air receiver capacity measured in Nm3 and relate to the starting system domain.
-OEMB_OEM,reverseRequired,reversible,0.49,"The candidate 'reversible' directly refers to whether reversing is required for astern, matching the meaning of 'reverseRequired' in the context of a PrimeMover."
-OEMD_OEM,natFreq_Hz,naturalFrequency_Hz,0.48,"The variable 'natFreq_Hz' likely abbreviates 'natural frequency' in Hertz, which matches the candidate 'naturalFrequency_Hz' both in meaning and unit. The domain (ThrusterSystem) is plausible for vibration analysis, though not explicitly confirmed."
-OEMD_OEM,Dia_m,D_m,0.46,"Dia_m likely stands for diameter in meters; D_m is defined as propeller diameter in meters, matching meaning, unit, and domain."
-OEMD_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53,"Both refer to air receiver capacity measured in Nm3, and the domain (StartingSystem) is appropriate."
-OEMD_OEM,eng_rps_nom,mcrRpm_revPerSec,0.85,"The variable 'eng_rps_nom' likely stands for 'engine revolutions per second nominal', which matches the candidate 'mcrRpm_revPerSec' (MCR rotational speed [rev/s]) in both unit (rev/s) and domain (PrimeMover/engine)."
-OEMD_OEM,SeaChestVol_m3,seaChestVolume_m3,0.64,"The candidate 'seaChestVolume_m3' matches the variable name, unit (m3), and domain (CoolingWaterInletChest), indicating it represents the sea chest volume in cubic meters."
-OEMD_OEM,F_thr_ridge_kN,Ftr_kN,0.52,Both refer to ridge load in kN within the ThrusterSystem domain; abbreviation and context align.
-OEMD_OEM,compressorCharge_h,compressorChargeTime_h,0.56,"The variable 'compressorCharge_h' refers to the time required to charge a compressor, matching the meaning, unit (hours), and domain (StartingSystem) of 'compressorChargeTime_h'."
-OEMD_OEM,EARatio,EAR,0.53,"The variable 'EARatio' closely matches 'EAR', which stands for Expanded Area Ratio, both in abbreviation and meaning, and is defined for the Propeller domain as a decimal ratio."
-OEME_OEM,P_at_0p7R_m,P0_7_m,0.46,"Variable likely refers to 'Pitch at 0.7R [m]' based on abbreviation expansion and unit match; candidate P0_7_m matches meaning, unit, and domain."
-OEME_OEM,CW_ChestVolume_m3,seaChestVolume_m3,0.57,"The variable represents the chest volume in cubic meters for cooling water, which matches the ontology property 'seaChestVolume_m3' describing the volume of the CoolingWaterInletChest in m3."
-OEME_OEM,shaftRespTorque_kNm,Qr_kNm,0.61,"Qr_kNm represents design response torque in kNm for the ShaftingSystem, matching the variable's meaning, unit, and domain."
-OEME_OEM,BackBladeForce_kN,Fb_kN,0.52,"Fb_kN represents max backward blade force in kN, matching the variable name, unit, and domain."
-OEME_OEM,Torque_ice_kNm,Qmax_kNm,0.57,"Both refer to ice torque measured in kNm; Qmax_kNm is defined as ice torque on propeller, matching the variable's context and unit."
-OEME_OEM,Q_engine_max_kNm,qEmax_kNm,0.6,"The candidate 'qEmax_kNm' represents the maximum torque of a prime mover (engine) in kNm, matching the variable's meaning, unit, and domain."
-OEME_OEM,crankSpeed_rps,mcrRpm_revPerSec,0.52,"Both refer to rotational speed in revolutions per second; 'crankSpeed_rps' likely maps to engine (PrimeMover) speed, matching the domain and unit of 'mcrRpm_revPerSec'."
-OEME_OEM,reverseRequired,reversible,0.49,"The candidate 'reversible' refers to whether reversing is required for astern, matching the meaning of 'reverseRequired' in the context of a PrimeMover."
-OEME_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53,Both refer to air receiver capacity measured in Nm3; domain and unit match closely.
-OEMG_OEM,i_gear,gearRatio,0.48,"The variable 'i_gear' likely refers to gear ratio, matching the ontology property 'gearRatio' with the highest similarity and appropriate domain."
-OEMG_OEM,drvTorqueCap_kNm,qEmax_kNm,0.53,"The variable likely refers to a drive or driveline torque capacity, which aligns best with 'Prime mover maximum torque' in the ontology. The unit matches (kNm), and the domain is closely related to the drive system."
-OEMG_OEM,t_charge_h,compressorChargeTime_h,0.43,"The variable 't_charge_h' likely refers to a charge time in hours, which matches the meaning, unit, and domain of 'compressorChargeTime_h' (charge time in hours for a compressor/starting system)."
-OEMG_OEM,F_T4_kN,Ftr_kN,0.85,"F_T4_kN likely refers to a force (F) at position T4, matching 'Ftr_kN' which is defined as ridge load (T4/T5) in kN within the ThrusterSystem domain. Units and context align closely."
-OEMG_OEM,Torque_ice_kNm,Qmax_kNm,0.57,"Qmax_kNm represents ice torque on the propeller in kNm, closely matching the variable name and context. Other candidates refer to different domains or lack the ice context."
-OEMG_OEM,ReceiverVolume_Nm3,airReceiverCapacity_Nm3,0.54,Both refer to the volume/capacity of an air receiver in Nm3; unit and context match closely.
-OEMG_OEM,ForwardBladeForce_kN,Ff_kN,0.56,"Ff_kN represents max forward blade force in kN, matching the variable's meaning, unit, and propeller domain."
-OEMG_OEM,Q_resp_kNm,Qr_kNm,0.56,"The variable 'Q_resp_kNm' likely refers to 'response torque' in kNm, which matches the ontology concept 'Qr_kNm' described as 'Design response torque [kNm]' for ShaftingSystem. The unit and meaning align, and it is the highest similarity candidate."
-OEMH_OEM,rev_capable,reversible,0.95,"'rev_capable' likely refers to the capability of being reversible, matching the 'reversible' property (boolean, PrimeMover domain) which indicates if reversing is required for astern."
-OEMH_OEM,InletChestVol_m3,seaChestVolume_m3,0.61,"The variable represents the volume (in m3) of the inlet chest, which matches the property 'seaChestVolume_m3' describing the volume of the CoolingWaterInletChest in cubic meters."
-OEMH_OEM,chargeTime_h,compressorChargeTime_h,0.53,"The candidate 'compressorChargeTime_h' matches the variable name, unit (hours), and concept of time required for charging, likely within a starting system context. Other candidates are unrelated in domain or unit."
-OEMH_OEM,Q_engine_max_kNm,qEmax_kNm,0.6,"Both refer to maximum torque (kNm) of the engine/prime mover; domain and unit match, and description aligns with variable name."
-OEMH_OEM,Dia_m,D_m,0.46,"Dia_m likely refers to diameter in meters; D_m is defined as propeller diameter in meters, matching meaning, unit, and domain."
-OEMH_OEM,P_out_MCR,mcrPower_kW,0.44,"The variable 'P_out_MCR' likely refers to 'Power output at Maximum Continuous Rating', which matches the meaning, unit (kW), and domain (PrimeMover) of 'mcrPower_kW'."
-OEMH_OEM,redRatio,gearRatio,0.38,"The variable 'redRatio' likely refers to 'reduction ratio', which is commonly associated with gearboxes. 'gearRatio' is the closest ontology concept by meaning and domain."
-OEMH_OEM,F_f_kN,Ff_kN,0.41,"Variable name and unit match; 'F_f_kN' likely stands for 'forward force in kN', which aligns with 'Ff_kN' described as 'Max forward blade force'."
-OEMH_OEM,startAirCap_Nm3,airReceiverCapacity_Nm3,0.56,Both refer to air capacity in Nm3 related to the starting system; unit and context match.
-OEMI_OEM,has20pctResonance,resonanceWithin20pctOfMaxSpeed,0.95,"The variable indicates whether resonance occurs within ±20% of maximum speed, which matches the candidate's meaning, boolean unit, and relevant domain (ShaftingSystem)."
-OEMI_OEM,isReversible,reversible,0.51,"The candidate 'reversible' directly matches the variable name and describes whether reversing is required, with correct boolean type and relevant domain."
-OEMI_OEM,t_charge_h,compressorChargeTime_h,0.43,"The variable 't_charge_h' likely refers to a charge time in hours, which matches the meaning, unit, and domain of 'compressorChargeTime_h' (charge time in hours for a compressor/starting system)."
-OEMI_OEM,fn_Hz,naturalFrequency_Hz,0.43,"Variable 'fn_Hz' likely refers to a natural frequency in Hz, which matches the candidate 'naturalFrequency_Hz' in both meaning and unit. The domain (ThrusterSystem) is plausible for OEM datasets involving mechanical systems."
-OEMI_OEM,PropRPM_nom,nn_rpm,0.85,Both refer to nominal propeller rotational speed in rpm at MCR; domain and unit match closely.
-OEMI_OEM,Pitch0p7_m,P0_7_m,0.54,"The candidate 'P0_7_m' describes 'Pitch at 0.7R [m]' for a propeller, matching the variable name, unit, and domain."
-OEMI_OEM,F_thruster_impact_kN,Fti_kN,0.95,"Both refer to impact load on thruster system in kN; 'Fti_kN' explicitly describes ice impact load on thrusters, matching the variable name and unit."
-OEMI_OEM,Tq_rated_kNm,ratedTorque_kNm,0.5767,"Variable name and unit indicate rated torque in kNm; 'ratedTorque_kNm' for Gearbox matches meaning and unit best, despite moderate similarity."
-OEMI_OEM,n_bollard_nom,n_bollard_rpm,0.37,"Both refer to rotational speed at bollard condition; 'n_bollard_rpm' is the closest match in meaning and unit (rpm), and domain (Propeller)."
-OEMJ_OEM,Qe_limit_kNm,qEmax_kNm,0.53,"Both refer to a maximum or limiting torque (kNm) for a prime mover; abbreviation and unit match, and qEmax_kNm is the closest semantic fit."
-OEMJ_OEM,startAirCap_Nm3,airReceiverCapacity_Nm3,0.56,"Both refer to air capacity in Nm3 related to starting systems; ontology property matches meaning, unit, and domain."
-OEMJ_OEM,CW_ChestVolume_m3,seaChestVolume_m3,0.58,"The variable represents chest volume in cubic meters, matching the property 'seaChestVolume_m3' which also measures chest volume in m3 for the CoolingWaterInletChest domain."
-OEMJ_OEM,DesignThrust_kN,Tr_kN,0.57,"Tr_kN represents design response thrust in kN, matching the variable's meaning, unit, and relevant domain."
-OEMJ_OEM,n_nominal_rpm,nn_rpm,0.53,"Both refer to nominal rotational speed in rpm, with 'nn_rpm' explicitly describing nominal speed at MCR for a propeller, matching the variable's meaning, unit, and domain."
-OEMJ_OEM,Q_max_ice_kNm,Qmax_kNm,0.59,"Both refer to maximum ice torque on the propeller in kNm; domain and unit match, and 'ice' is specified in both."
-OEMJ_OEM,natFreq_Hz,naturalFrequency_Hz,0.48,"The variable 'natFreq_Hz' likely stands for 'natural frequency' in Hertz, which matches the candidate 'naturalFrequency_Hz' both in meaning and unit. The domain (ThrusterSystem) is plausible for vibration analysis, making this the closest match."
-OEMJ_OEM,resWithin20pct,resonanceWithin20pctOfMaxSpeed,0.41,"The variable name suggests resonance within 20% of a threshold, matching the candidate describing resonance within ±20% of max speed for a shafting system. Similarity is moderate; domain and meaning align."
-OEMK_OEM,RidgeLoad_kN,Ftr_kN,0.54,"Ftr_kN is described as 'Ridge load (T4/T5)' with unit kN and is the only candidate explicitly referencing ridge load, matching the variable name and unit."
-OEMK_OEM,PropDiameter_m,D_m,0.95,"Both refer to propeller diameter in meters; domain, meaning, and unit match closely."
-OEMK_OEM,crankSpeed_rps,mcrRpm_revPerSec,0.52,"Both refer to rotational speed in revolutions per second; 'crank' likely refers to the prime mover, matching the domain."
-OEMK_OEM,ReceiverVolume_Nm3,airReceiverCapacity_Nm3,0.54,"The variable refers to the volume (in Nm3) of a receiver, which matches the ontology property 'airReceiverCapacity_Nm3' describing the capacity of an air receiver in the same units and relevant domain."
-OEMK_OEM,ratio_gearbox,gearRatio,0.61,"The variable 'ratio_gearbox' refers to the gear ratio of a gearbox, which matches the ontology property 'gearRatio' with domain Gearbox and range decimal. The similarity score is the highest among candidates."
-OEMK_OEM,Torque_ice_kNm,Qmax_kNm,0.85,"Qmax_kNm represents ice torque on the propeller in kNm, matching the variable name, unit, and context of ice-related torque."
-OEMK_OEM,F_b_kN,Tb_kN,0.85,"Both refer to backward axial force in kN, and domain is Propeller. 'Tb_kN' explicitly states 'Axial force, backward', matching the likely meaning of 'F_b_kN'."
-OEMK_OEM,Tq_rated_kNm,ratedTorque_kNm,0.58,"Variable name and unit match; 'rated' and 'Torque' are explicit. Domain is not specified in the variable, but 'ratedTorque_kNm' is a common property for components like Gearbox or Coupling. Highest relevant similarity among candidates."
-OEML_OEM,screenOpenAreaRatio,strainerOpenAreaRatio,0.45,"Both variables refer to the open area ratio of a screening or filtering component, and units (decimal ratio) and domain (water system component) are compatible. No other candidate is as close in meaning."
-OEML_OEM,bladeOrderResonanceNearMax,resonanceWithin20pctOfMaxSpeed,0.51,Both refer to blade order resonance occurring near maximum operating speed; candidate explicitly mentions resonance proximity to max speed.
-OEML_OEM,fn_Hz,naturalFrequency_Hz,0.43,"Variable name 'fn_Hz' likely stands for 'natural frequency (Hz)', matching the candidate 'naturalFrequency_Hz' in both meaning and unit. Domain is plausible as both relate to vibration analysis."
-OEML_OEM,F_T1_kN,Fti_kN,0.85,"F_T1_kN likely refers to a force (F) at position T1 in kilonewtons, matching Fti_kN which is defined as an ice impact load at T1/T2/T3 in kN for the ThrusterSystem. Units and context align closely."
-OEML_OEM,PropDiameter_m,D_m,0.61,"D_m represents propeller diameter in meters, matching the variable name, unit, and domain."
-OEML_OEM,SeaInletChest_Vol,seaChestVolume_m3,0.61,"The variable refers to the volume of the sea inlet chest, which matches the property 'seaChestVolume_m3' describing the volume (in m³) of the CoolingWaterInletChest. The unit and domain are appropriate."
-OEML_OEM,V_rudder_kn,rudderDesignSpeed_kn,0.5,"Variable name and unit (knots) indicate rudder speed; 'rudderDesignSpeed_kn' is a property for rudder design speed in knots, matching both meaning and unit."
-OEML_OEM,expAreaRatio,EAR,0.49,"The variable 'expAreaRatio' closely matches 'EAR', which stands for Expanded Area Ratio and is defined as a property of Propeller with a decimal range. The abbreviation and domain align, and the similarity score is the highest among candidates."
-OEML_OEM,Q_resp_kNm,Qr_kNm,0.56,"The variable 'Q_resp_kNm' likely refers to a response torque in kNm, which matches the ontology concept 'Qr_kNm' described as 'Design response torque [kNm]' for ShaftingSystem. The unit and meaning align, and it is the highest similarity candidate."
-OEMM_OEM,PwEng_MCR,mcrPower_kW,0.42,"PwEng_MCR likely stands for 'Power Engine at MCR'; 'mcrPower_kW' matches meaning, unit (kW), and domain (PrimeMover)."
-OEMM_OEM,QdrvMx,qEmax_kNm,0.7,"QdrvMx likely refers to maximum drive torque; 'qEmax_kNm' is maximum prime mover torque in kNm, matching both unit and likely meaning. Other candidates are less relevant in domain or meaning."
-OEMM_OEM,SeaChtVlm,seaChestVolume_m3,0.4,"Variable name 'SeaChtVlm' expands to 'Sea Chest Volume', which matches the candidate 'seaChestVolume_m3' in both meaning and unit (m3), and the domain is appropriate (CoolingWaterInletChest)."
-OEMM_OEM,AirCap_nm3,airReceiverCapacity_Nm3,0.51,"The variable name and unit (Nm3) match the ontology property for air receiver capacity, which refers to the volume of air stored, aligning with the OEM variable."
-OEMM_OEM,PaintThickness_um,,0.0,None of the candidates refer to paint or coating thickness; units and domains do not match the concept of paint thickness.
-OEMN_OEM,Nnom_rpm,nn_rpm,0.53,"Both refer to nominal rotational speed in rpm, likely at MCR, and share similar naming and domain (propeller)."
-OEMN_OEM,Dprop_m,D_m,0.54,"Dprop_m likely stands for 'Propeller Diameter [m]', which matches the meaning, unit, and domain of D_m (Propeller diameter D [m])."
-OEMN_OEM,ExpA_Ratio,EAR,0.45,"The abbreviation 'ExpA_Ratio' likely stands for 'Expanded Area Ratio', which matches the ontology concept 'EAR' with domain Propeller and a similar description. The similarity score is the highest among candidates."
-OEMN_OEM,F_fwdBlade_kN,Ff_kN,0.55,"The variable name and unit indicate forward blade force in kN, which matches the ontology property 'Ff_kN' described as 'Max forward blade force' for the Propeller domain."
-OEMN_OEM,CabTemp_degC,,0.0,"None of the candidates specifically refer to cabin temperature; the closest, 'testTemperature_degC', is too generic and domain does not match."
-OEMO_OEM,Nnom_rpm,nn_rpm,0.53,"The variable 'Nnom_rpm' likely refers to nominal rotational speed in rpm. The candidate 'nn_rpm' matches both meaning (nominal speed at MCR, free running) and unit (rpm), with appropriate domain (Propeller)."
-OEMO_OEM,Dprop_m,D_m,0.54,"Dprop_m likely stands for 'Propeller Diameter [m]', which matches the meaning, unit, and domain of D_m."
-OEMO_OEM,ExpA_Ratio,EAR,0.45,"The abbreviation 'ExpA_Ratio' likely stands for 'Expanded Area Ratio', which matches the ontology concept 'EAR' (Expanded area ratio) for Propeller. The similarity score is the highest among candidates, and the domain and meaning align."
-OEMO_OEM,F_fwdBlade_kN,Ff_kN,0.55,"The variable name and unit indicate 'forward blade force in kN', which matches 'Ff_kN' described as 'Max forward blade force' for the Propeller domain."
-OEMO_OEM,CabTemp_degC,,0.0,"None of the candidates specifically refer to cabin temperature; the closest, 'testTemperature_degC', is too generic and not domain-specific."
-OEMP_OEM,PktDropRate_pct,,0.0,None of the candidates represent packet drop rate or network-related metrics; all are unrelated properties.
-OEMP_OEM,CalibOffset_val,,0.0,None of the candidates clearly match the meaning or context of a calibration offset value; units and domains do not align.
-OEMP_OEM,PLCscan_ms,,0.0,"None of the candidates clearly match the meaning (PLC scan time), unit (milliseconds), or domain (PLC/automation system timing)."
-OEMP_OEM,VibAlarmFlag,VibrationMonitoringSystem,0.39,"The variable likely indicates a vibration alarm status; 'VibrationMonitoringSystem' is the closest ontology concept, though it is a class rather than a property or flag."
-OEMP_OEM,FW_Checksum,,0.0,None of the candidate ontology concepts relate to firmware or checksum; all are about bolt design and safety factors.
-OEMP_OEM,MemTemp_degC,testTemperature_degC,0.45,"The variable 'MemTemp_degC' likely refers to a temperature measurement in degrees Celsius, and 'testTemperature_degC' is the only candidate with matching unit and semantic meaning related to temperature, despite the domain being MechanicalPropertySet rather than a specific memory or component."
-OEMP_OEM,DbgVar_X1,,0.0,"Variable name 'DbgVar_X1' is ambiguous and does not clearly match any candidate in meaning, unit, or domain."
+OEMA_OEM,MainEngPower_kW,mcrPower_kW,0.526406466960907,Auto-picked by adjusted similarity margin
+OEMA_OEM,RidgeLoad_kN,Ftr_kN,0.5683430433273315,Auto-picked by adjusted similarity margin
+OEMA_OEM,strainerAreaRatio,strainerOpenAreaRatio,0.5712445974349976,Auto-picked by adjusted similarity margin
+OEMA_OEM,CoolingChestVol_m3,seaChestVolume_m3,0.522810161113739,Auto-picked by adjusted similarity margin
+OEMA_OEM,chargeTime_h,compressorChargeTime_h,0.5299925208091736,Auto-picked by adjusted similarity margin
+OEMA_OEM,shaftRespTorque_kNm,Qr_kNm,0.6102446913719177,Auto-picked by adjusted similarity margin
+OEMA_OEM,reverseRequired,reversible,0.5,Auto-picked by adjusted similarity margin
+OEMA_OEM,F_fwd_kN,Tf_kN,0.95,"Both refer to forward axial force in kN, likely in the context of a propeller; 'Tf_kN' explicitly states 'Axial force, forward'."
+OEMB_OEM,IceImpact_kN,Fti_kN,0.549579918384552,Auto-picked by adjusted similarity margin
+OEMB_OEM,n_MCR_rpm,nn_rpm,0.58,"Both refer to nominal rotational speed at MCR in rpm, matching unit and meaning; domain is propeller, which is plausible for OEM variable."
+OEMB_OEM,Dia_m,D_m,0.5087127685546875,Auto-picked by adjusted similarity margin
+OEMB_OEM,screenOpenAreaRatio,strainerOpenAreaRatio,0.45,"Both variables refer to the ratio of open area in a screening or filtering component, and units match (decimal ratio). Domain is similar (screen/strainer in fluid system)."
+OEMB_OEM,respTorque_kNm,Qr_kNm,0.54,"The variable 'respTorque_kNm' likely refers to a response or design torque, which matches the description of 'Qr_kNm' as design response torque in kNm for shafting system checks. The unit matches, and the domain is appropriate."
+OEMB_OEM,bladeOrderResonanceNearMax,resonanceWithin20pctOfMaxSpeed,0.5094103813171387,Auto-picked by adjusted similarity margin
+OEMB_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53931725025177,Auto-picked by adjusted similarity margin
+OEMB_OEM,reverseRequired,reversible,0.5,Auto-picked by adjusted similarity margin
+OEMD_OEM,natFreq_Hz,naturalFrequency_Hz,0.5,Auto-picked by adjusted similarity margin
+OEMD_OEM,Dia_m,D_m,0.5087825059890747,Auto-picked by adjusted similarity margin
+OEMD_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53931725025177,Auto-picked by adjusted similarity margin
+OEMD_OEM,eng_rps_nom,mcrRpm_revPerSec,0.5653704404830933,Auto-picked by adjusted similarity margin
+OEMD_OEM,SeaChestVol_m3,seaChestVolume_m3,0.5222558975219727,Auto-picked by adjusted similarity margin
+OEMD_OEM,F_thr_ridge_kN,Ftr_kN,0.5797854661941528,Auto-picked by adjusted similarity margin
+OEMD_OEM,compressorCharge_h,compressorChargeTime_h,0.5581245422363281,Auto-picked by adjusted similarity margin
+OEMD_OEM,EARatio,EAR,0.5260931253433228,Auto-picked by adjusted similarity margin
+OEME_OEM,P_at_0p7R_m,P0_7_m,0.51,Variable likely refers to 'Pitch at 0.7R [m]' based on abbreviation and unit; matches candidate P0_7_m.
+OEME_OEM,CW_ChestVolume_m3,seaChestVolume_m3,0.5,Auto-picked by adjusted similarity margin
+OEME_OEM,shaftRespTorque_kNm,Qr_kNm,0.6103481650352478,Auto-picked by adjusted similarity margin
+OEME_OEM,BackBladeForce_kN,Fb_kN,0.54,"Fb_kN represents max backward blade force in kN, matching the variable's meaning, unit, and propeller domain."
+OEME_OEM,Torque_ice_kNm,Qmax_kNm,0.8,"Both refer to ice torque in kNm; Qmax_kNm is defined as ice torque on propeller, matching the variable's context and unit."
+OEME_OEM,Q_engine_max_kNm,qEmax_kNm,0.64,Both refer to the maximum torque of the prime mover (engine) in kNm; domain and unit match.
+OEME_OEM,crankSpeed_rps,mcrRpm_revPerSec,0.5836608409881592,Auto-picked by adjusted similarity margin
+OEME_OEM,reverseRequired,reversible,0.5,Auto-picked by adjusted similarity margin
+OEME_OEM,airRecCap_Nm3,airReceiverCapacity_Nm3,0.53931725025177,Auto-picked by adjusted similarity margin
+OEMG_OEM,i_gear,gearRatio,0.48,"The variable 'i_gear' likely refers to the gear ratio, matching the ontology property 'gearRatio' with the highest similarity and appropriate domain."
+OEMG_OEM,drvTorqueCap_kNm,qEmax_kNm,0.55,Both represent maximum torque in kNm for a drive/prime mover; unit and meaning align best among candidates.
+OEMG_OEM,t_charge_h,,0.0,Low similarity (0.36 < 0.45)
+OEMG_OEM,F_T4_kN,Ftr_kN,0.5,"Ftr_kN refers to ridge load at T4/T5 in kN, matching the variable's name and unit; other candidates do not reference T4."
+OEMG_OEM,Torque_ice_kNm,Qmax_kNm,0.57,"Both refer to ice torque in kNm; Qmax_kNm is defined as ice torque on propeller, matching the variable's context and unit."
+OEMG_OEM,ReceiverVolume_Nm3,airReceiverCapacity_Nm3,0.5425010323524475,Auto-picked by adjusted similarity margin
+OEMG_OEM,ForwardBladeForce_kN,Ff_kN,0.57,"Ff_kN represents max forward blade force in kN for a propeller, matching the variable's meaning, unit, and domain."
+OEMG_OEM,Q_resp_kNm,Qr_kNm,0.58,"Both represent response torque in kNm; 'Qr_kNm' is defined as design response torque, matching the likely meaning of 'Q_resp_kNm'."
+OEMH_OEM,rev_capable,,0.0,Low similarity (0.40 < 0.45)
+OEMH_OEM,InletChestVol_m3,seaChestVolume_m3,0.5025149583816528,Auto-picked by adjusted similarity margin
+OEMH_OEM,chargeTime_h,compressorChargeTime_h,0.5299925208091736,Auto-picked by adjusted similarity margin
+OEMH_OEM,Q_engine_max_kNm,qEmax_kNm,0.64,Both refer to the maximum torque of the prime mover (engine) in kNm; domain and unit match.
+OEMH_OEM,Dia_m,D_m,0.508736252784729,Auto-picked by adjusted similarity margin
+OEMH_OEM,P_out_MCR,,0.0,Low similarity (0.42 < 0.45)
+OEMH_OEM,redRatio,,0.0,Low similarity (0.38 < 0.45)
+OEMH_OEM,F_f_kN,Ff_kN,0.9,"Both variables represent a forward force on the propeller, use the same unit (kN), and the abbreviation 'F_f' closely matches 'Ff' (forward force)."
+OEMH_OEM,startAirCap_Nm3,airReceiverCapacity_Nm3,0.5736860036849976,Auto-picked by adjusted similarity margin
+OEMI_OEM,has20pctResonance,resonanceWithin20pctOfMaxSpeed,0.5185062885284424,Auto-picked by adjusted similarity margin
+OEMI_OEM,isReversible,reversible,0.506057858467102,Auto-picked by adjusted similarity margin
+OEMI_OEM,t_charge_h,,0.0,Low similarity (0.36 < 0.45)
+OEMI_OEM,fn_Hz,,0.0,Low similarity (0.43 < 0.45)
+OEMI_OEM,PropRPM_nom,nn_rpm,0.95,"Variable 'PropRPM_nom' refers to nominal propeller RPM; 'nn_rpm' matches in meaning (nominal speed at MCR), unit (rpm), and domain (Propeller)."
+OEMI_OEM,Pitch0p7_m,P0_7_m,0.5719350576400757,Auto-picked by adjusted similarity margin
+OEMI_OEM,F_thruster_impact_kN,Fti_kN,0.5935671329498291,Auto-picked by adjusted similarity margin
+OEMI_OEM,Tq_rated_kNm,ratedTorque_kNm,0.5905,"Variable name and unit match 'ratedTorque_kNm'; both refer to rated torque in kNm. Domain is not explicit in OEM variable, but 'ratedTorque_kNm' is a standard property for torque rating."
+OEMI_OEM,n_bollard_nom,,0.0,Low similarity (0.32 < 0.45)
+OEMJ_OEM,Qe_limit_kNm,qEmax_kNm,0.55,"Both refer to a maximum or limit torque in kNm, and 'qEmax_kNm' is defined as prime mover maximum torque, which aligns with the likely meaning of 'Qe_limit_kNm'."
+OEMJ_OEM,startAirCap_Nm3,airReceiverCapacity_Nm3,0.5736860036849976,Auto-picked by adjusted similarity margin
+OEMJ_OEM,CW_ChestVolume_m3,seaChestVolume_m3,0.5,Auto-picked by adjusted similarity margin
+OEMJ_OEM,DesignThrust_kN,Tr_kN,0.5991697311401367,Auto-picked by adjusted similarity margin
+OEMJ_OEM,n_nominal_rpm,nn_rpm,0.55,"Both refer to nominal rotational speed in rpm, likely for a propeller, matching meaning, unit, and domain."
+OEMJ_OEM,Q_max_ice_kNm,Qmax_kNm,0.61,"Qmax_kNm refers to ice torque on propeller, matching the variable's name, unit, and likely context."
+OEMJ_OEM,natFreq_Hz,naturalFrequency_Hz,0.5,Auto-picked by adjusted similarity margin
+OEMJ_OEM,resWithin20pct,,0.0,Low similarity (0.41 < 0.45)
+OEMK_OEM,RidgeLoad_kN,Ftr_kN,0.5643852949142456,Auto-picked by adjusted similarity margin
+OEMK_OEM,PropDiameter_m,D_m,0.63,"The variable represents propeller diameter in meters, and 'D_m' is defined as propeller diameter with matching unit and domain."
+OEMK_OEM,crankSpeed_rps,mcrRpm_revPerSec,0.583636999130249,Auto-picked by adjusted similarity margin
+OEMK_OEM,ReceiverVolume_Nm3,airReceiverCapacity_Nm3,0.5425010323524475,Auto-picked by adjusted similarity margin
+OEMK_OEM,ratio_gearbox,gearRatio,0.6132273077964783,Auto-picked by adjusted similarity margin
+OEMK_OEM,Torque_ice_kNm,Qmax_kNm,0.57,"Qmax_kNm refers to ice torque on propeller, matching the variable name and context; unit also matches."
+OEMK_OEM,F_b_kN,Fb_kN,0.95,Both variable and ontology candidate refer to backward blade force with matching unit (kN) and relevant domain (Propeller).
+OEMK_OEM,Tq_rated_kNm,ratedTorque_kNm,0.5905,"Variable name and unit indicate rated torque; 'ratedTorque_kNm' for Gearbox matches meaning and unit best, though domain is not explicit in OEM variable."
+OEML_OEM,screenOpenAreaRatio,strainerOpenAreaRatio,0.45,"Both variables refer to the ratio of open area in a screening or filtering component; 'strainerOpenAreaRatio' is the closest match in meaning and unit, though the domain is not exactly specified as 'screen'."
+OEML_OEM,bladeOrderResonanceNearMax,resonanceWithin20pctOfMaxSpeed,0.5094103813171387,Auto-picked by adjusted similarity margin
+OEML_OEM,fn_Hz,,0.0,Low similarity (0.43 < 0.45)
+OEML_OEM,F_T1_kN,Fti_kN,0.49,"F_T1_kN likely refers to a force (F) at position T1, matching Fti_kN which is defined as an ice impact load at T1/T2/T3 in kN within the ThrusterSystem domain. The unit matches and the context is plausible."
+OEML_OEM,PropDiameter_m,D_m,0.63,"D_m represents propeller diameter in meters, matching the variable's meaning, unit, and domain."
+OEML_OEM,SeaInletChest_Vol,seaChestVolume_m3,0.6099211573600769,Auto-picked by adjusted similarity margin
+OEML_OEM,V_rudder_kn,,0.0,None of the candidates clearly represent a rudder force or load in kN; closest matches are for speed or unrelated forces.
+OEML_OEM,expAreaRatio,EAR,0.5,Auto-picked by adjusted similarity margin
+OEML_OEM,Q_resp_kNm,Qr_kNm,0.58,"Both represent response torque in kNm; 'Qr_kNm' is explicitly described as design response torque, matching the variable name and unit."
+OEMM_OEM,PwEng_MCR,,0.0,Low similarity (0.43 < 0.45)
+OEMM_OEM,QdrvMx,,0.0,Low similarity (0.36 < 0.45)
+OEMM_OEM,SeaChtVlm,,0.0,Low similarity (0.40 < 0.45)
+OEMM_OEM,AirCap_nm3,airReceiverCapacity_Nm3,0.5301991701126099,Auto-picked by adjusted similarity margin
+OEMM_OEM,PaintThickness_um,lipThickness_mm,0.5,Auto-picked by adjusted similarity margin
+OEMN_OEM,Nnom_rpm,nn_rpm,0.56,"Both refer to nominal rotational speed in rpm, likely for a propeller at MCR; unit and meaning align best among candidates."
+OEMN_OEM,Dprop_m,D_m,0.6078088283538818,Auto-picked by adjusted similarity margin
+OEMN_OEM,ExpA_Ratio,EAR,0.5,Auto-picked by adjusted similarity margin
+OEMN_OEM,F_fwdBlade_kN,Ff_kN,0.56,"Ff_kN represents the max forward blade force, matching the variable name, unit, and propeller domain."
+OEMN_OEM,CabTemp_degC,,0.0,Rejected by OOD keyword gate
+OEMO_OEM,Nnom_rpm,nn_rpm,0.56,"The candidate 'nn_rpm' describes nominal speed at MCR in rpm, matching the variable's meaning, unit, and likely domain (propeller/rotational speed)."
+OEMO_OEM,Dprop_m,D_m,0.6077770590782166,Auto-picked by adjusted similarity margin
+OEMO_OEM,ExpA_Ratio,EAR,0.5,Auto-picked by adjusted similarity margin
+OEMO_OEM,F_fwdBlade_kN,Ff_kN,0.56,"Ff_kN represents max forward blade force, matching the variable's name, direction, unit, and propeller domain."
+OEMO_OEM,CabTemp_degC,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,PktDropRate_pct,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,CalibOffset_val,,0.0,Low similarity (0.32 < 0.45)
+OEMP_OEM,PLCscan_ms,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,VibAlarmFlag,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,FW_Checksum,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,MemTemp_degC,,0.0,Rejected by OOD keyword gate
+OEMP_OEM,DbgVar_X1,,0.0,Rejected by OOD keyword gate
