@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()
 AALTO_KEY = os.getenv("AALTO_KEY")
 if not AALTO_KEY:
-    raise EnvironmentError("⚠️  Please set AALTO_KEY in your .env file.")
+    raise EnvironmentError("  Please set AALTO_KEY in your .env file.")
 
 ONTO_VECS = "ontology_vectors.npy"
 ONTO_IDS  = "ontology_ids.json"
@@ -39,20 +39,20 @@ def embed_text_online(text: str, retries: int = 3):
             r = requests.post(EMBED_URL, headers=HEADERS, json=payload, timeout=20)
             if r.status_code == 200:
                 data = r.json()["data"][0]["embedding"]
-                print(f"🧩 Received embedding ({len(data)} dims)")
+                print(f" Received embedding ({len(data)} dims)")
                 return np.array(data, dtype=np.float32)
             else:
-                print(f"⚠️  API error ({r.status_code}): {r.text[:200]}")
+                print(f"  API error ({r.status_code}): {r.text[:200]}")
         except requests.exceptions.RequestException:
-            print(f"❌ Connection attempt {attempt} failed — check VPN or network...")
+            print(f" Connection attempt {attempt} failed — check VPN or network...")
 
         if attempt < retries:
-            print("⏳ Retrying in 5 seconds...")
+            print(" Retrying in 5 seconds...")
             time.sleep(5)
 
     # Fallback
-    print("🚨 Could not reach Aalto API after multiple tries. Please turn on VPN.")
-    print("⚙️  Using fallback zero-vector (retrieval accuracy will be invalid).")
+    print(" Could not reach Aalto API after multiple tries. Please turn on VPN.")
+    print(" Using fallback zero-vector (retrieval accuracy will be invalid).")
     return np.zeros(3072, dtype=np.float32)  # same size as text-embedding-3-large output
 
 

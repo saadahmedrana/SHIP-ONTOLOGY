@@ -1,0 +1,1184 @@
+@prefix comp: <https://example.org/ship/Component/> .
+@prefix eng: <https://example.org/ship/Engine/> .
+@prefix ex: <https://example.org/ship/> .
+@prefix hull: <https://example.org/ship/Hull/> .
+@prefix meta: <https://example.org/ship/Metadata/> .
+@prefix prop: <https://example.org/ship/Propulsion/> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reg: <https://example.org/ship/Regulation/> .
+@prefix rel: <https://example.org/ship/Relation/> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
+@prefix shape: <https://example.org/ship/Shape/> .
+@prefix ship: <https://example.org/ship/Ship/> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+shacl:NodeShape a rdfs:Class ;
+    rdfs:label "SHACL Node Shape" ;
+    rdfs:comment "Generic class for SHACL node shapes used in validation." .
+
+ex:AlarmAndLoggingSystem a rdfs:Class ;
+    rdfs:label "Alarm & Logging" .
+
+ex:ConstraintIntent a rdfs:Class ;
+    rdfs:label "Constraint Intent" ;
+    rdfs:comment "Natural-language rule anchor for SHACL." .
+
+ex:ControlAndMonitoringSystem a rdfs:Class ;
+    rdfs:label "Control & Monitoring" .
+
+ex:CoolingWaterInletChest a rdfs:Class ;
+    rdfs:label "Cooling Water Inlet Chest" ;
+    rdfs:comment "TRAFICOM §7.2: chest location/volume/strainer/recirc/headroom." .
+
+ex:Coupling a rdfs:Class ;
+    rdfs:label "Shaft Coupling" .
+
+ex:Gearbox a rdfs:Class ;
+    rdfs:label "Reduction Gearbox" .
+
+ex:HubAndCPMechanism a rdfs:Class ;
+    rdfs:label "Hub and CP Mechanism" ;
+    rdfs:comment "Controllable pitch hub/bolts per blade-failure checks (§6.5.4, §6.6.4)." .
+
+ex:IceLoadDetectionSystem a rdfs:Class ;
+    rdfs:label "Ice Load Detection" .
+
+ex:MaterialSample a rdfs:Class ;
+    rdfs:label "Material Sample" .
+
+ex:MaterialsRequirements a rdfs:Class ;
+    rdfs:label "Materials Requirements" ;
+    rdfs:comment "Minimum strength/toughness per TRAFICOM §6.4, §6.6.3." .
+
+ex:MechanicalPropertySet a rdfs:Class ;
+    rdfs:label "Mechanical Property Set" .
+
+ex:MonitoringEvent a rdfs:Class ;
+    rdfs:label "Monitoring Event" ;
+    rdfs:comment "Recorded event or measurement for control and monitoring systems (§8)." .
+
+ex:Nozzle a rdfs:Class ;
+    rdfs:label "Nozzle",
+        "Nozzle (ducted propeller)" ;
+    rdfs:comment "Geometry and material data for ducted propellers (§6.5.5).",
+        "Nozzle around propeller (ducted propulsors)." .
+
+ex:PrimeMover a rdfs:Class ;
+    rdfs:label "Prime Mover (Propulsion Engine or Motor)" ;
+    rdfs:comment "Engine/driver interface variables needed for shaft-line design." .
+
+ex:Propeller a rdfs:Class ;
+    rdfs:label "Propeller" ;
+    rdfs:comment "Geometry and loads for §6.5 design and fatigue." .
+
+ex:PropellerLoadSet a rdfs:Class ;
+    rdfs:label "Propeller Load Set" ;
+    rdfs:comment "Grouping node for Fb, Ff, Qsmax, Tb, Tf, Qmax to ease SHACL referencing." .
+
+ex:PropulsionSystem a rdfs:Class ;
+    rdfs:label "Propulsion System" ;
+    rdfs:comment "Hub linking driver → transmission → shafting; holds arrangement and local ice class for constraints." .
+
+ex:PropulsorSystem a rdfs:Class ;
+    rdfs:label "Propulsor System" ;
+    rdfs:comment "Umbrella for propeller, nozzle, CP hub, thrusters (§6)." .
+
+ex:RegulatoryRequirementSet a rdfs:Class ;
+    rdfs:label "Regulatory Requirement Set" .
+
+ex:RudderAndSteeringSystem a rdfs:Class ;
+    rdfs:label "Rudder and Steering System" ;
+    rdfs:comment "Chapter 5 speed & control requirements." .
+
+ex:Sensor a rdfs:Class ;
+    rdfs:label "Sensor" .
+
+ex:ShaftingSystem a rdfs:Class ;
+    rdfs:label "Shafting System" ;
+    rdfs:comment "Holds response torques, thrust, resonance flag, analysis method, and safety factors per §6.6.4." .
+
+ex:StartingSystem a rdfs:Class ;
+    rdfs:label "Starting Air System" ;
+    rdfs:comment "TRAFICOM §7.1: starts and compressor charging." .
+
+ex:ThrusterBody a rdfs:Class ;
+    rdfs:label "Thruster Body" ;
+    rdfs:comment "Body subject to impact/ridge loads (§6.6.5)." .
+
+ex:ThrusterLoadCase a rdfs:Class ;
+    rdfs:label "Thruster Load Case" ;
+    rdfs:comment "T1–T5 load abstractions for impact/ridge (§6.6.5 Tables 6-16/17)." .
+
+ex:ThrusterMounting a rdfs:Class ;
+    rdfs:label "Thruster Mounting" ;
+    rdfs:comment "Ship attachment stiffness/damping for global vibration (§6.6.5)." .
+
+ex:ThrusterSystem a rdfs:Class ;
+    rdfs:label "Thruster System" ;
+    rdfs:comment "Azimuthing/fixed thrusters, body loads & vibration (§6.6.5)." .
+
+ex:TorqueMonitoringSystem a rdfs:Class ;
+    rdfs:label "Torque Monitoring" .
+
+ex:TransmissionSystem a rdfs:Class ;
+    rdfs:label "Transmission System" .
+
+ex:VibrationMonitoringSystem a rdfs:Class ;
+    rdfs:label "Vibration Monitoring" .
+
+ex:D_m a rdf:Property ;
+    rdfs:comment "Propeller diameter D [m] (§6.2/6.5)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:EAR a rdf:Property ;
+    rdfs:comment "Expanded area ratio (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Fb_kN a rdf:Property ;
+    rdfs:comment "Max backward blade force (§6.2, Fig. 6-1)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Fex_kN a rdf:Property ;
+    rdfs:comment "Ultimate blade load from plastic bending (§6.2, §6.5.4)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Ff_kN a rdf:Property ;
+    rdfs:comment "Max forward blade force (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Fti_kN a rdf:Property ;
+    rdfs:comment "Ice impact load (T1/T2/T3) (§6.6.5, Eq. 6.46; Tables 6-16/17)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Ftr_kN a rdf:Property ;
+    rdfs:comment "Ridge load (T4/T5) (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Hice_m a rdf:Property ;
+    rdfs:comment "Thickness of design max ice block entering propeller (§6.3, Table 6-3)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Hiced_m a rdf:Property ;
+    rdfs:comment "Design ice thickness for thruster impact (≈2/3 Hice) (§6.2)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Hr_m a rdf:Property ;
+    rdfs:comment "Ridge height (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+hull:Forefoot1 a hull:ForefootRegion ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Bow> .
+
+hull:SideStiffening1 a hull:SideStiffening ;
+    rel:hasComponent hull:IceStringer1,
+        hull:LongitudinalFrame201,
+        hull:TransverseFrame101,
+        hull:WebFrame1 .
+
+hull:UpperBowIceBelt1 a hull:UpperBowIceBeltRegion ;
+    hull:verticalExtentBottom [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ],
+        [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:verticalExtentTop [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ],
+        [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    rel:locatedInHullRegion ex:Bow,
+        <https://example.org/ship/Hull/Region/Bow> .
+
+meta:OntologyVersion1 a rdfs:Resource ;
+    rdfs:comment "Ontology updated through Phase E refinement." ;
+    meta:createdOn "2025-10-14" ;
+    meta:lastValidated "2025-10-14" .
+
+ex:Nclass a rdf:Property ;
+    rdfs:comment "Reference number per ice class (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:integer" .
+
+ex:Nice a rdf:Property ;
+    rdfs:comment "Total number of ice loads on blades (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:integer" .
+
+ex:P0_7_m a rdf:Property ;
+    rdfs:comment "Pitch at 0.7R [m] (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+prop:PropellerLoadSet1 a prop:PropellerLoadSet ;
+    prop:hasMember "prop:Fb_kN",
+        "prop:Ff_kN",
+        "prop:Qmax_kNm",
+        "prop:Qsmax_kNm",
+        "prop:Tb_kN",
+        "prop:Tf_kN" .
+
+prop:ThrusterSystem1 a prop:ThrusterSystem ;
+    rel:hasComponent comp:AzimuthingThruster1 .
+
+ex:Qmax_kNm a rdf:Property ;
+    rdfs:comment "Ice torque on propeller (§6.5.3)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Qr_kNm a rdf:Property ;
+    rdfs:comment "Design response torque [kNm]; used in §6.5.3/.4 checks." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Qsex_kNm a rdf:Property ;
+    rdfs:comment "Torque from blade failure (§6.5.4)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Qsmax_kNm a rdf:Property ;
+    rdfs:comment "Max spindle torque (§6.5)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+reg:CI_BoltDesignForFex a reg:ConstraintIntent ;
+    rdfs:label "Constraint: Safety Factor Extreme Yield" ;
+    rdfs:seeAlso "reg:CI_SafetyFactorExtremeYield" ;
+    reg:hasRegulationClause "reg:6.6.4"^^xsd:string ;
+    reg:message "CP hub bolts must be dimensioned for Fex (§6.6.4)."^^xsd:string ;
+    reg:requiredValue true ;
+    reg:severity "Violation"^^xsd:string ;
+    reg:targetProperty prop:boltDesignForFex ;
+    rel:definedByRequirementSet reg:TRAFICOM_2021 .
+
+reg:CI_MonitoringRequired a reg:ConstraintIntent ;
+    rdfs:label "Constraint: Safety Factor Extreme Yield" ;
+    rdfs:seeAlso "reg:CI_SafetyFactorExtremeYield" ;
+    reg:appliesWhen "iceClass >= IA"^^xsd:string ;
+    reg:hasRegulationClause "reg:8"^^xsd:string ;
+    reg:message "Install torsional vibration monitoring for ice class ≥ IA."^^xsd:string ;
+    reg:requiredValue true ;
+    reg:severity "Warning"^^xsd:string ;
+    reg:targetProperty prop:torsionalVibrationMonitoring ;
+    rel:definedByRequirementSet reg:TRAFICOM_2021 .
+
+reg:CI_RudderSpeedMinima a reg:ConstraintIntent ;
+    rdfs:label "Constraint: Safety Factor Extreme Yield" ;
+    rdfs:seeAlso "reg:CI_SafetyFactorExtremeYield" ;
+    reg:conditionDescription "IASuper:20, IA:18, IB:16, IC:14 (§5)."^^xsd:string ;
+    reg:hasRegulationClause "reg:5"^^xsd:string ;
+    reg:message "Rudder design speed below class minimum."^^xsd:string ;
+    reg:severity "Violation"^^xsd:string ;
+    reg:targetProperty prop:rudderDesignSpeed_kn ;
+    rel:definedByRequirementSet reg:TRAFICOM_2021 .
+
+reg:CI_SafetyFactorExtremeYield a reg:ConstraintIntent ;
+    rdfs:label "Constraint: Safety Factor Extreme Yield" ;
+    rdfs:seeAlso "reg:CI_SafetyFactorExtremeYield" ;
+    reg:comparisonOperator ">="^^xsd:string ;
+    reg:hasRegulationClause "reg:6.6.4"^^xsd:string ;
+    reg:message "Extreme load yield factor must be ≥ 1.3 (§6.6.4)."^^xsd:string ;
+    reg:requiredValue 1.3e+00 ;
+    reg:severity "Violation"^^xsd:string ;
+    reg:targetProperty prop:safetyFactorExtremeYield ;
+    rel:definedByRequirementSet reg:TRAFICOM_2021 .
+
+ex:SNcurveType a rdf:Property ;
+    rdfs:comment "oneSlope|twoSlope (§6.6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+shape:TRAFICOMPhaseE a shacl:NodeShape ;
+    rdfs:comment "Master shape for propulsion-related TRAFICOM checks." ;
+    shacl:targetClass prop:PropulsionSystem .
+
+shape:boltDesignForFex a shacl:PropertyShape ;
+    rdfs:comment "§6.6.4 Hub bolts sized for blade failure load." ;
+    shacl:hasValue true ;
+    shacl:path prop:boltDesignForFex ;
+    shacl:severity shacl:Violation .
+
+shape:rudderSpeedMinima a shacl:PropertyShape ;
+    rdfs:comment "§5 Rudder minima by ice class; map via SHACL SPARQL or JS rule." ;
+    shacl:path prop:rudderDesignSpeed_kn .
+
+shape:safetyFactorExtremeYield a shacl:PropertyShape ;
+    rdfs:comment "§6.6.4 Extreme load yield ≥ 1.3." ;
+    shacl:minInclusive 1.3e+00 ;
+    shacl:path prop:safetyFactorExtremeYield ;
+    shacl:severity shacl:Violation .
+
+ship:MyVessel a ship:Ship ;
+    reg:iceClass <https://example.org/ship/Regulation/IceClass/IA> ;
+    rel:hasSystem hull:HullSystem1,
+        prop:PropulsionSystem1 ;
+    ship:serviceSpeed [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:Knot ] .
+
+ex:Tb_kN a rdf:Property ;
+    rdfs:comment "Axial force, backward (§6.5)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Tf_kN a rdf:Property ;
+    rdfs:comment "Axial force, forward (§6.5)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Tr_kN a rdf:Property ;
+    rdfs:comment "Design response thrust [kN]." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:Z a rdf:Property ;
+    rdfs:comment "Number of blades (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:integer" .
+
+ex:accuracy_percent a rdf:Property ;
+    rdfs:domain "Sensor" ;
+    rdfs:range "xsd:decimal" .
+
+ex:acknowledged a rdf:Property ;
+    rdfs:domain "prop:MonitoringEvent" ;
+    rdfs:range "xsd:boolean" .
+
+ex:addedMass_kg a rdf:Property ;
+    rdfs:comment "Hydrodynamic added mass for global modes (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:airReceiverCapacity_Nm3 a rdf:Property ;
+    rdfs:comment "Capacity for ≥12 consecutive starts (reversible) or ≥6 (non-reversible)." ;
+    rdfs:domain "StartingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:alarmSetpoints a rdf:Property ;
+    rdfs:domain "AlarmAndLoggingSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:analysisMethod a rdf:Property ;
+    rdfs:comment "timeDomain|frequencyDomain when resonant per §6.5.3.4." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:appliesTo a rdf:Property ;
+    rdfs:domain "MaterialsRequirements" ;
+    rdfs:range "rdfs:Resource" .
+
+ex:appliesWhen a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:approvalAuthority a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:string" .
+
+ex:attachmentStiffness_kNPerM a rdf:Property ;
+    rdfs:comment "Ship attachment stiffness for vibration model (§6.6.5)." ;
+    rdfs:domain "ThrusterMounting" ;
+    rdfs:range "xsd:decimal" .
+
+ex:bladeLoadMonitoring a rdf:Property ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "xsd:boolean" .
+
+ex:boltDesignForFex a rdf:Property ;
+    rdfs:comment "CP hub bolts designed for blade-failure load (§6.6.4)." ;
+    rdfs:domain "HubAndCPMechanism" ;
+    rdfs:range "xsd:boolean" .
+
+ex:c0_7_m a rdf:Property ;
+    rdfs:comment "Chord at 0.7R [m] (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:charpyV_J a rdf:Property ;
+    rdfs:comment "≥27 J @ −10°C for steels (§6.4)." ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+ex:comparisonOperator a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:compressorChargeTime_h a rdf:Property ;
+    rdfs:comment "≤0.5 h for IASuper reversible; ≤1 h otherwise. See §7.1." ;
+    rdfs:domain "StartingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:conditionDescription a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:controlRedundancy a rdf:Property ;
+    rdfs:comment "Redundant steering/control available." ;
+    rdfs:domain "RudderAndSteeringSystem" ;
+    rdfs:range "xsd:boolean" .
+
+ex:couplingType a rdf:Property ;
+    rdfs:domain "Coupling" ;
+    rdfs:range "xsd:string" .
+
+ex:cycles_N a rdf:Property ;
+    rdfs:comment "Number of cycles used for fatigue check (§6.6.2, NR)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:integer" .
+
+ex:dampingCoeff a rdf:Property ;
+    rdfs:comment "Modal damping ratio/coeff. Include water damping (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:designOperationSpeedInIce_kn a rdf:Property ;
+    rdfs:comment "Design operation speed in ice for load selection (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:efficiency a rdf:Property ;
+    rdfs:domain "Gearbox" ;
+    rdfs:range "xsd:decimal" .
+
+ex:elongation_percent a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+ex:eventSeverity a rdf:Property ;
+    rdfs:domain "prop:MonitoringEvent" ;
+    rdfs:range "xsd:string" .
+
+ex:fatigueSNReference a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:string" .
+
+ex:fiberOrientation a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:string" .
+
+ex:gearRatio a rdf:Property ;
+    rdfs:domain "Gearbox" ;
+    rdfs:range "xsd:decimal" .
+
+ex:globalVibrationCheck a rdf:Property ;
+    rdfs:comment "Blade-order global vibration assessed (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:boolean" .
+
+ex:hasAllBladesSimultaneousImpact a rdf:Property ;
+    rdfs:comment "Flag for simultaneous blade impact scenario." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:boolean" .
+
+ex:hasCoolingSystem a rdf:Property ;
+    rdfs:comment "TRAFICOM §7.2 sea inlet and cooling water." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "CoolingWaterInletChest" .
+
+ex:hasCoupling a rdf:Property ;
+    rdfs:domain "TransmissionSystem" ;
+    rdfs:range "Coupling" .
+
+ex:hasGearbox a rdf:Property ;
+    rdfs:domain "TransmissionSystem" ;
+    rdfs:range "Gearbox" .
+
+ex:hasHubMechanism a rdf:Property ;
+    rdfs:domain "PropulsorSystem" ;
+    rdfs:range "HubAndCPMechanism" .
+
+ex:hasLoadSet a rdf:Property ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "PropellerLoadSet" .
+
+ex:hasMember a rdf:Property ;
+    rdfs:comment "Groups multiple load parameters (Fb, Ff, Qsmax, Tb, Tf, Qmax)." ;
+    rdfs:domain "prop:PropellerLoadSet" ;
+    rdfs:range "rdf:Property" .
+
+ex:hasNozzle a rdf:Property ;
+    rdfs:domain "PropulsorSystem" ;
+    rdfs:range "Nozzle" .
+
+ex:hasPropeller a rdf:Property ;
+    rdfs:domain "PropulsorSystem" ;
+    rdfs:range "Propeller" .
+
+ex:hasPropulsor a rdf:Property ;
+    rdfs:domain "PropulsionSystem" ;
+    rdfs:range "PropulsorSystem" .
+
+ex:hasRegulationClause a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:hasSensor a rdf:Property ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "Sensor" .
+
+ex:hasShaftingSystem a rdf:Property ;
+    rdfs:domain "PropulsionSystem" ;
+    rdfs:range "ShaftingSystem" .
+
+ex:hasStartingSystem a rdf:Property ;
+    rdfs:comment "TRAFICOM §7.1 starting requirements." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "StartingSystem" .
+
+ex:hasThruster a rdf:Property ;
+    rdfs:domain "PropulsorSystem" ;
+    rdfs:range "ThrusterSystem" .
+
+ex:hasTransmissionSystem a rdf:Property ;
+    rdfs:domain "PropulsionSystem" ;
+    rdfs:range "TransmissionSystem" .
+
+ex:hubDiameter_m a rdf:Property ;
+    rdfs:comment "External hub diameter d [m] (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:iceClass a rdf:Property ;
+    rdfs:comment "Mirror ship iceClass here to simplify local SHACL checks from TRAFICOM Ch.6." ;
+    rdfs:domain "PropulsionSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:iceHeadroom a rdf:Property ;
+    rdfs:comment "Chest height allows ice to accumulate above inlet pipe." ;
+    rdfs:domain "CoolingWaterInletChest" ;
+    rdfs:range "xsd:boolean" .
+
+ex:implementsShape a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "shacl:Shape" .
+
+ex:inertiaRatio_Ie_It a rdf:Property ;
+    rdfs:comment "Non-resonant design torque uses Ie/It when applicable (§6.5.3.3)." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "xsd:decimal" .
+
+ex:isConnectedTo a rdf:Property ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "ShaftingSystem" .
+
+ex:isPartOf a rdf:Property ;
+    rdfs:domain "Sensor" ;
+    rdfs:range "ControlAndMonitoringSystem" .
+
+ex:k1 a rdf:Property ;
+    rdfs:comment "Location factor (centre/wing/pulling)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:k2 a rdf:Property ;
+    rdfs:comment "Submersion factor = f(h0, Cice, D)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:k3 a rdf:Property ;
+    rdfs:comment "Mechanical type factor (e.g., azimuthing)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:layupCode a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:string" .
+
+ex:lipThickness_mm a rdf:Property ;
+    rdfs:domain "Nozzle" ;
+    rdfs:range "xsd:decimal" .
+
+ex:loadDistributionType a rdf:Property ;
+    rdfs:comment "uniform|triangular|tip (for local pressure distribution)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+ex:loadedArea_m2 a rdf:Property ;
+    rdfs:comment "Assumed loaded area used in local checks." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:locationOnComponent a rdf:Property ;
+    rdfs:domain "Sensor" ;
+    rdfs:range "xsd:string" .
+
+ex:material a rdf:Property ;
+    rdfs:comment "Bronze/Austenitic steel/Nodular cast iron… (§6.4.1)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+ex:materialCertificateID a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:string" .
+
+ex:materialKind a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:string" .
+
+ex:materialsVerifiedAgainst a rdf:Property ;
+    rdfs:domain "comp:Component" ;
+    rdfs:range "MaterialsRequirements" .
+
+ex:matrixType a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:string" .
+
+ex:maxMisalignment_mrad a rdf:Property ;
+    rdfs:domain "Coupling" ;
+    rdfs:range "xsd:decimal" .
+
+ex:mcrPower_kW a rdf:Property ;
+    rdfs:comment "MCR power [kW]." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "xsd:decimal" .
+
+ex:mcrRpm_revPerSec a rdf:Property ;
+    rdfs:comment "MCR rotational speed [rev/s]." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "xsd:decimal" .
+
+ex:measuredValue a rdf:Property ;
+    rdfs:domain "prop:MonitoringEvent" ;
+    rdfs:range "xsd:decimal" .
+
+ex:message a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:methodForQmax a rdf:Property ;
+    rdfs:comment "openProp|ductedProp (selects formula set)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+ex:monitorsComponent a rdf:Property ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "comp:Component" .
+
+ex:mountedOn a rdf:Property ;
+    rdfs:comment "Mounting to stern/hull region." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "HullStructureSystem" .
+
+ex:n_bollard_rpm a rdf:Property ;
+    rdfs:comment "Speed at MCR bollard [rpm] (§6.5.3.4.1)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:naturalFrequency_Hz a rdf:Property ;
+    rdfs:comment "First global vibration natural frequency (§6.6.5)." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:nearCenterlineAft a rdf:Property ;
+    rdfs:comment "Sea inlet near centerline and well aft." ;
+    rdfs:domain "CoolingWaterInletChest" ;
+    rdfs:range "xsd:boolean" .
+
+ex:nn_rpm a rdf:Property ;
+    rdfs:comment "Nominal speed at MCR, free running [rpm] (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:nozzleLength_m a rdf:Property ;
+    rdfs:domain "Nozzle" ;
+    rdfs:range "xsd:decimal" .
+
+ex:nozzleType a rdf:Property ;
+    rdfs:comment "19A, 37, Kort, etc." ;
+    rdfs:domain "Nozzle" ;
+    rdfs:range "xsd:string" .
+
+ex:pitchType a rdf:Property ;
+    rdfs:comment "FP|CP (§6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+ex:propellerType a rdf:Property ;
+    rdfs:comment "open|ducted (§6.5)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:string" .
+
+ex:propulsorArrangement a rdf:Property ;
+    rdfs:domain "PropulsionSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:qEmax_kNm a rdf:Property ;
+    rdfs:comment "Prime mover maximum torque [kNm]. If unknown, default by propulsor type per §6.5.3 Table 6-10." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "xsd:decimal" .
+
+ex:ratedTorque_kNm a rdf:Property ;
+    rdfs:domain "Coupling",
+        "Gearbox" ;
+    rdfs:range "xsd:decimal" .
+
+ex:recircDischarge a rdf:Property ;
+    rdfs:comment "Full-capacity discharge recirculation to sea chest present." ;
+    rdfs:domain "CoolingWaterInletChest" ;
+    rdfs:range "xsd:boolean" .
+
+ex:recordingInterval_s a rdf:Property ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:recordsEvent a rdf:Property ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "prop:MonitoringEvent" .
+
+ex:requiredValue a rdf:Property ;
+    rdfs:domain "ConstraintIntent" .
+
+ex:resonanceWithin20pctOfMaxSpeed a rdf:Property ;
+    rdfs:comment "True if first blade order resonance is within ±20% of max operating speed (bollard) per §6.5.3." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:boolean" .
+
+ex:reversible a rdf:Property ;
+    rdfs:comment "True if reversing required for astern." ;
+    rdfs:domain "PrimeMover" ;
+    rdfs:range "xsd:boolean" .
+
+ex:rudderDesignSpeed_kn a rdf:Property ;
+    rdfs:comment "Design speed in ice per class (IAS 20, IA 18, IB 16, IC 14)." ;
+    rdfs:domain "RudderAndSteeringSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:safetyFactorBladeFailureYield a rdf:Property ;
+    rdfs:comment "≥ 1.0 against yielding under blade failure load per §6.6.4." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:safetyFactorExtremeYield a rdf:Property ;
+    rdfs:comment "≥ 1.3 for extreme operational loads per §6.6.4." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:safetyFactorFatigue a rdf:Property ;
+    rdfs:comment "≥ 1.5 for fatigue loads per §6.6.4." ;
+    rdfs:domain "ShaftingSystem" ;
+    rdfs:range "xsd:decimal" .
+
+ex:sampleSize_mm a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:decimal" .
+
+ex:samplingRate_Hz a rdf:Property ;
+    rdfs:domain "Sensor" ;
+    rdfs:range "xsd:decimal" .
+
+ex:seaChestVolume_m3 a rdf:Property ;
+    rdfs:comment "≈1 m³ per 750 kW of total engine output." ;
+    rdfs:domain "CoolingWaterInletChest" ;
+    rdfs:range "xsd:decimal" .
+
+ex:sensorType a rdf:Property ;
+    rdfs:domain "Sensor" ;
+    rdfs:range "xsd:string" .
+
+ex:severity a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "xsd:string" .
+
+ex:steeringType a rdf:Property ;
+    rdfs:comment "mechanical|hydraulic|electro-hydraulic." ;
+    rdfs:domain "RudderAndSteeringSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:strainerOpenAreaRatio a rdf:Property ;
+    rdfs:comment "Open area ≥ 4× inlet pipe area." ;
+    rdfs:domain "CoolingWaterInletChest" ;
+    rdfs:range "xsd:decimal" .
+
+ex:stressRange_MPa a rdf:Property ;
+    rdfs:comment "Fatigue stress range (§6.6.2)." ;
+    rdfs:domain "Propeller" ;
+    rdfs:range "xsd:decimal" .
+
+ex:targetProperty a rdf:Property ;
+    rdfs:domain "ConstraintIntent" ;
+    rdfs:range "rdf:Property" .
+
+ex:tensileModulus_GPa a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+ex:tensileStrength_MPa a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+ex:testTemperature_degC a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+ex:testedAccordingTo a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:string" .
+
+ex:testedBy a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "MaterialSample" .
+
+ex:throatDiameter_m a rdf:Property ;
+    rdfs:domain "Nozzle" ;
+    rdfs:range "xsd:decimal" .
+
+ex:timestamp a rdf:Property ;
+    rdfs:domain "prop:MonitoringEvent" ;
+    rdfs:range "xsd:dateTime" .
+
+ex:torsionalStiffness_kNmPerRad a rdf:Property ;
+    rdfs:domain "Coupling",
+        "Gearbox" ;
+    rdfs:range "xsd:decimal" .
+
+ex:torsionalVibrationMonitoring a rdf:Property ;
+    rdfs:comment "TRAFICOM §8 requirement anchor." ;
+    rdfs:domain "ControlAndMonitoringSystem" ;
+    rdfs:range "xsd:boolean" .
+
+ex:verificationDate a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:date" .
+
+ex:verifiedBy a rdf:Property ;
+    rdfs:domain "MaterialSample" ;
+    rdfs:range "xsd:string" .
+
+ex:vibrationMode a rdf:Property ;
+    rdfs:comment "longitudinal|transverse|torsional mode identification." ;
+    rdfs:domain "ThrusterSystem" ;
+    rdfs:range "xsd:string" .
+
+ex:yieldStrength_MPa a rdf:Property ;
+    rdfs:domain "MechanicalPropertySet" ;
+    rdfs:range "xsd:decimal" .
+
+comp:AzimuthingThruster1 a comp:AzimuthingThruster .
+
+comp:BearingsGroup1 a comp:Bearings .
+
+comp:HubAndCPMechanism1 a comp:HubAndCPMechanism .
+
+comp:IntermediateShaft1 a comp:IntermediateShaft .
+
+comp:Nozzle1 a comp:Nozzle .
+
+comp:Propeller1 a comp:Propeller .
+
+comp:ShaftBrakes1 a comp:ShaftBrakes .
+
+comp:ShaftSeals1 a comp:ShaftSeals .
+
+comp:SternTubeAssembly1 a comp:SternTubeAssembly .
+
+comp:TorsionalVibrationDamper1 a comp:TorsionalVibrationDamper .
+
+eng:CoolingWaterSystem1 a eng:CoolingWaterSystem .
+
+eng:FuelSystem1 a eng:FuelSystem .
+
+eng:IntakeAndExhaustSystem1 a eng:IntakeAndExhaustSystem .
+
+eng:LubricatingOilSystem1 a eng:LubricatingOilSystem .
+
+eng:PrimeMover1 a eng:PrimeMover ;
+    rel:hasEquipment eng:CoolingWaterSystem1,
+        eng:FuelSystem1,
+        eng:IntakeAndExhaustSystem1,
+        eng:LubricatingOilSystem1,
+        eng:StartingSystem1 ;
+    rel:isConnectedTo prop:ShaftingSystem1 .
+
+eng:StartingSystem1 a eng:StartingSystem .
+
+hull:AftDeadwood1 a hull:AftDeadwood .
+
+hull:Beams1 a hull:Beams .
+
+hull:BottomPlating1 a hull:BottomPlating .
+
+hull:BottomStructure1 a hull:BottomStructure ;
+    rel:hasComponent hull:BottomPlating1,
+        hull:Floors1,
+        hull:Girders1,
+        hull:InnerBottom1,
+        hull:Longitudinals1 .
+
+hull:Bow1 a hull:BowStructure ;
+    hull:alpha [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    hull:hasBulbousBow false ;
+    hull:phi1 [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    hull:phi2 [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    hull:psi [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    hull:stemConstructionType "hull:StemConstructionType/rolled" ;
+    reg:Awf [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M2 ] ;
+    reg:LBOW [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    rel:hasComponent hull:BulbousBow1,
+        hull:ForefootStruct1,
+        hull:Stem1 ;
+    rel:locatedInHullRegion ex:Bow .
+
+hull:BulbousBow1 a hull:BulbousBow .
+
+hull:BulkheadLong1 a hull:Bulkhead ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:thickness [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:MM ] ;
+    rel:hasOrientation "hull:Orientation/longitudinal" ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Midbody> .
+
+hull:BulkheadTrans1 a hull:Bulkhead ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:thickness [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:MM ] ;
+    rel:hasOrientation "hull:Orientation/transverse" ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Midbody> .
+
+hull:Bulkheads1 a hull:Bulkheads ;
+    rel:hasComponent hull:BulkheadLong1,
+        hull:BulkheadTrans1,
+        hull:WatertightDoors1 .
+
+hull:CoatingsAndCathodicProtection1 a hull:CoatingsAndCathodicProtection .
+
+hull:Deck1 a hull:Deck ;
+    hull:deckThickness [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:MM ] ;
+    rel:hasMaterial ex:steel ;
+    rel:isAttachedTo hull:TransverseFrame101 ;
+    rel:locatedInHullRegion ex:Midbody .
+
+hull:DeckGirders1 a hull:DeckGirders .
+
+hull:DeckStructure1 a hull:DeckStructure ;
+    rel:hasComponent hull:Beams1,
+        hull:Deck1,
+        hull:DeckGirders1,
+        hull:UpperDecks1 .
+
+hull:Floors1 a hull:Floors .
+
+hull:ForefootStruct1 a hull:Forefoot .
+
+hull:FoundationsAndChocks1 a hull:FoundationsAndChocks .
+
+hull:FramesGroup1 a hull:Frames ;
+    rel:hasComponent hull:LongitudinalFrame201,
+        hull:TransverseFrame101 .
+
+hull:Girders1 a hull:Girders .
+
+hull:HullParams1 a hull:HullDesignParameters ;
+    reg:Awf [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M2 ] ;
+    reg:B [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:DP [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:HF [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:HM [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:L [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:LBOW [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:LIWL [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:LPAR [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:T [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:UIWL [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    reg:alpha [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    reg:delta [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:Tonne ] ;
+    reg:phi1 [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    reg:phi2 [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] ;
+    reg:psi [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:DEG ] .
+
+hull:HullSystem1 a hull:HullStructureSystem ;
+    rel:hasComponent hull:CoatingsAndCathodicProtection1,
+        hull:FoundationsAndChocks1,
+        hull:Markings1,
+        hull:ShipHullStructure1,
+        hull:Superstructure1 .
+
+hull:IceClassDraughtMark1 a hull:IceClassDraughtMark ;
+    hull:offsetAbaftLoadLine [ qudt:numericValue 5.4e+02 ;
+            qudt:unit unit:MM ] ;
+    hull:triangleHeight [ qudt:numericValue 1e+03 ;
+            qudt:unit unit:MM ] ;
+    hull:triangleSideLength [ qudt:numericValue 3e+02 ;
+            qudt:unit unit:MM ] .
+
+hull:InnerBottom1 a hull:InnerBottom .
+
+hull:Keel1 a hull:Keel .
+
+hull:Longitudinals1 a hull:Longitudinals .
+
+hull:Markings1 a hull:MarkingsOnStructure ;
+    rel:hasComponent hull:IceClassDraughtMark1 .
+
+hull:ShaftBossings1 a hull:ShaftBossings .
+
+hull:ShipHullStructure1 a hull:ShipHullStructure ;
+    rel:hasComponent hull:BottomStructure1,
+        hull:Bow1,
+        hull:Bulkheads1,
+        hull:DeckStructure1,
+        hull:Keel1,
+        hull:SideStructure1,
+        hull:Stern1 ;
+    rel:hasDesignParameters hull:HullParams1 .
+
+hull:SidePlate1 a hull:SidePlate ;
+    hull:iceBeltVerticalExtentBottom [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:iceBeltVerticalExtentTop [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:thickness [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:MM ] ;
+    rel:hasMaterial ex:steel ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Bow> .
+
+hull:SideStructure1 a hull:SideStructure ;
+    rel:hasComponent hull:FramesGroup1,
+        hull:IceStringer1,
+        hull:SidePlate1,
+        hull:Stringers1,
+        hull:WebFrame1 ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Midbody> .
+
+hull:Skeg1 a hull:Skeg .
+
+hull:Stem1 a hull:Stem .
+
+hull:Stern1 a hull:SternStructure ;
+    hull:sternClearance [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    rel:hasClearanceFor prop:PropulsorSystem1 ;
+    rel:hasComponent hull:AftDeadwood1,
+        hull:ShaftBossings1,
+        hull:Skeg1,
+        hull:SternFrame1 ;
+    rel:locatedInHullRegion <https://example.org/ship/Hull/Region/Stern> .
+
+hull:SternFrame1 a hull:SternFrame .
+
+hull:Stringers1 a hull:Stringers .
+
+hull:Superstructure1 a hull:Superstructure .
+
+hull:UpperDecks1 a hull:UpperDecks .
+
+hull:WatertightDoors1 a hull:WatertightDoors .
+
+prop:PropulsionSystem1 a prop:PropulsionSystem ;
+    prop:propulsorArrangement <https://example.org/ship/Propulsion/Arrangement/singleScrew> ;
+    reg:iceClass <https://example.org/ship/Regulation/IceClass/IA> ;
+    rel:hasControlAndMonitoring prop:ControlAndMonitoringSystem1 ;
+    rel:hasCoupling comp:Coupling1 ;
+    rel:hasEquipment eng:PrimeMover1,
+        prop:ControlAndMonitoringSystem1,
+        prop:ShaftingSystem1,
+        prop:TransmissionSystem1 ;
+    rel:hasGearbox comp:Gearbox1 ;
+    rel:hasPropulsor prop:PropulsorSystem1 ;
+    rel:hasShaftLine prop:ShaftingSystem1 .
+
+prop:TransmissionSystem1 a prop:TransmissionSystem ;
+    rel:hasComponent comp:Coupling1,
+        comp:Gearbox1 .
+
+comp:Coupling1 a comp:Coupling .
+
+comp:Gearbox1 a comp:Gearbox .
+
+hull:IceStringer1 a hull:IceStringers ;
+    hull:sectionModulusZ [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM3 ] ;
+    hull:shearAreaA [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM2 ] ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:span [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] .
+
+hull:LongitudinalFrame201 a hull:Frames ;
+    hull:sectionModulusZ [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM3 ] ;
+    hull:shearAreaA [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM2 ] ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:span [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    rel:hasOrientation "hull:Orientation/longitudinal" ;
+    rel:hasSupportType "hull:SupportType/stringer" .
+
+hull:WebFrame1 a hull:WebFrames ;
+    hull:sectionModulusZ [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM3 ] ;
+    hull:shearAreaA [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM2 ] ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:span [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] .
+
+prop:ControlAndMonitoringSystem1 a prop:ControlAndMonitoringSystem .
+
+prop:PropulsorSystem1 a prop:PropulsorSystem ;
+    rel:hasComponent comp:HubAndCPMechanism1,
+        comp:Nozzle1,
+        comp:Propeller1 .
+
+hull:TransverseFrame101 a hull:Frames ;
+    hull:sectionModulusZ [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM3 ] ;
+    hull:shearAreaA [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:CM2 ] ;
+    hull:spacing [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    hull:span [ qudt:numericValue 0e+00 ;
+            qudt:unit unit:M ] ;
+    rel:hasOrientation "hull:Orientation/transverse" ;
+    rel:hasSupportType "hull:SupportType/webFrame" .
+
+prop:ShaftingSystem1 a prop:ShaftingSystem ;
+    rel:hasComponent comp:BearingsGroup1,
+        comp:IntermediateShaft1,
+        comp:ShaftBrakes1,
+        comp:ShaftSeals1,
+        comp:SternTubeAssembly1,
+        comp:TorsionalVibrationDamper1 .
+
+reg:TRAFICOM_2021 a reg:RequirementSet ;
+    rdfs:label "TRAFICOM Ice Class Rules (2021)" ;
+    rdfs:comment "Defines regulatory source clauses §5–§8 used in SHACL validation." ;
+    rel:definedByRequirementSet reg:TRAFICOM_2021 .
+
