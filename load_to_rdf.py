@@ -1,7 +1,7 @@
 from rdflib import Graph
 
 # Path to your ontology JSON-LD
-ONTOLOGY_FILE = "ONTOLOGY_FINAL.jsonld"
+ONTOLOGY_FILE = "ONTOLOGY_FINAL_fixed.jsonld"
 
 # Create an RDF graph
 g = Graph()
@@ -17,4 +17,4 @@ for s, p, o in list(g)[:10]:
 
 # Optionally export to TTL for inspection
 g.serialize(destination="ONTOLOGY_FINAL.ttl", format="turtle")
-print("\n Saved RDF triples to ONTOLOGY_FINAL.ttl")
+print("\n Saved RDF triples to ONTOLOGY_RDF.ttl")

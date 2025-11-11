@@ -1,27 +1,27 @@
 {
   "@context": {
     "@version": 1.1,
-    "@base": "https://example.org/ship/",
+    "@base": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/",
     "id": "@id",
     "type": "@type",
-    "ex": "https://example.org/ship/",
-    "ship": "https://example.org/ship/Ship/",
-    "hull": "https://example.org/ship/Hull/",
-    "prop": "https://example.org/ship/Propulsion/",
-    "eng": "https://example.org/ship/Engine/",
-    "sys": "https://example.org/ship/System/",
-    "comp": "https://example.org/ship/Component/",
-    "mat": "https://example.org/ship/Material/",
-    "rel": "https://example.org/ship/Relation/",
-    "reg": "https://example.org/ship/Regulation/",
+    "ex": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/",
+    "ship": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Ship/",
+    "hull": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Hull/",
+    "prop": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propulsion/",
+    "eng": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Engine/",
+    "sys": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/System/",
+    "comp": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Component/",
+    "mat": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Material/",
+    "rel": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Relation/",
+    "reg": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Regulation/",
     "shacl": "http://www.w3.org/ns/shacl#",
-    "shape": "https://example.org/ship/Shape/",
-    "meta": "https://example.org/ship/Metadata/",
+    "shape": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Shape/",
+    "meta": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Metadata/",
     "schema": "http://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "@vocab": "https://example.com/ship#",
+    "@vocab": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship#",
     "qudt": "http://qudt.org/schema/qudt/",
     "unit": "http://qudt.org/vocab/unit/",
     "QuantityValue": "qudt:QuantityValue",
@@ -97,7 +97,7 @@
     "CoolingWaterSystem": "eng:CoolingWaterSystem",
     "LubricatingOilSystem": "eng:LubricatingOilSystem",
     "IntakeAndExhaustSystem": "eng:IntakeAndExhaustSystem",
-    "MonitoringEvent": "prop:MonitoringEvent",
+    "MonitoringEvent": {"@id": "prop:MonitoringEvent"},
     "MaterialsRequirements": "mat:MaterialsRequirements",
     "RegulatoryRequirementSet": "reg:RequirementSet",
     "AlternativeDesignStudy": "prop:AlternativeDesignStudy",
@@ -317,7 +317,7 @@
     },
     "material": {
       "@id": "mat:material",
-      "@type": "@vocab"
+      "@type": "@id"
     },
     "SNcurveType": {
       "@id": "prop:SNcurveType",
@@ -561,10 +561,6 @@
     },
     "testedBy": {
       "@id": "rel:testedBy",
-      "@type": "@id"
-    },
-    "materialsVerifiedAgainst": {
-      "@id": "rel:materialsVerifiedAgainst",
       "@type": "@id"
     },
     "torsionalVibrationMonitoring": {
@@ -922,16 +918,27 @@
       "@id": "prop:vibrationMode",
       "@type": "xsd:string"
     },
-    "PropellerLoadSet": {
-      "@id": "prop:PropellerLoadSet",
-      "@type": "@id"
-    },
+   "PropellerLoadSet": {
+  "@id": "prop:PropellerLoadSet",
+  "@type": "@id"
+}
+
+,
     "hasLoadSet": {
       "@id": "rel:hasLoadSet",
       "@type": "@id"
     }
   },
   "@graph": [
+    {
+  "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ONTOLOGY_FINAL.jsonld",
+  "@type": "owl:Ontology",
+  "dcterms:title": "Ship Propulsion and Regulation Ontology (VIS–TRAFICOM Extension)",
+  "dcterms:creator": "Saad Ahmed Rana, Aalto University",
+  "owl:versionInfo": "1.0.0",
+  "dcterms:license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+
     {
       "@id": "ship:MyVessel",
       "@type": "ship:Ship",
@@ -1578,39 +1585,39 @@
     },
     {
       "@id": "hasTransmissionSystem",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsionSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/TransmissionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/TransmissionSystem"
       }
     },
     {
       "@id": "hasShaftingSystem",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsionSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       }
     },
     {
       "@id": "hasPropulsor",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsionSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/PropulsorSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsorSystem"
       }
     },
     {
       "@id": "propulsorArrangement",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsionSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -1618,9 +1625,9 @@
     },
     {
       "@id": "iceClass",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsionSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -1635,9 +1642,9 @@
     },
     {
       "@id": "mcrPower_kW",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1646,9 +1653,9 @@
     },
     {
       "@id": "mcrRpm_revPerSec",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1657,9 +1664,9 @@
     },
     {
       "@id": "reversible",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -1668,9 +1675,9 @@
     },
     {
       "@id": "qEmax_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1679,9 +1686,9 @@
     },
     {
       "@id": "inertiaRatio_Ie_It",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1690,33 +1697,33 @@
     },
     {
       "@id": "isConnectedTo",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       }
     },
     {
       "@id": "hasStartingSystem",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/StartingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/StartingSystem"
       },
       "rdfs:comment": "TRAFICOM \u00a77.1 starting requirements."
     },
     {
       "@id": "hasCoolingSystem",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PrimeMover"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:comment": "TRAFICOM \u00a77.2 sea inlet and cooling water."
     },
@@ -1732,19 +1739,19 @@
     },
     {
       "@id": "hasGearbox",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/TransmissionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/TransmissionSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/Gearbox"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Gearbox"
       }
     },
     {
       "@id": "gearRatio",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Gearbox"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Gearbox"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1752,9 +1759,9 @@
     },
     {
       "@id": "torsionalStiffness_kNmPerRad",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Gearbox"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Gearbox"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1762,9 +1769,9 @@
     },
     {
       "@id": "ratedTorque_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Gearbox"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Gearbox"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1772,9 +1779,9 @@
     },
     {
       "@id": "efficiency",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Gearbox"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Gearbox"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1787,19 +1794,19 @@
     },
     {
       "@id": "hasCoupling",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/TransmissionSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/TransmissionSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/Coupling"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Coupling"
       }
     },
     {
       "@id": "couplingType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Coupling"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Coupling"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -1807,9 +1814,9 @@
     },
     {
       "@id": "maxMisalignment_mrad",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Coupling"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Coupling"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1817,9 +1824,9 @@
     },
     {
       "@id": "torsionalStiffness_kNmPerRad",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Coupling"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Coupling"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1827,9 +1834,9 @@
     },
     {
       "@id": "ratedTorque_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Coupling"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Coupling"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1843,9 +1850,9 @@
     },
     {
       "@id": "Qr_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1854,9 +1861,9 @@
     },
     {
       "@id": "Tr_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1865,9 +1872,9 @@
     },
     {
       "@id": "resonanceWithin20pctOfMaxSpeed",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -1876,9 +1883,9 @@
     },
     {
       "@id": "analysisMethod",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -1887,9 +1894,9 @@
     },
     {
       "@id": "safetyFactorExtremeYield",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1898,9 +1905,9 @@
     },
     {
       "@id": "safetyFactorFatigue",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1909,9 +1916,9 @@
     },
     {
       "@id": "safetyFactorBladeFailureYield",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ShaftingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ShaftingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1926,9 +1933,9 @@
     },
     {
       "@id": "airReceiverCapacity_Nm3",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/StartingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/StartingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1937,9 +1944,9 @@
     },
     {
       "@id": "compressorChargeTime_h",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/StartingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/StartingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1954,9 +1961,9 @@
     },
     {
       "@id": "seaChestVolume_m3",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1965,9 +1972,9 @@
     },
     {
       "@id": "strainerOpenAreaRatio",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -1976,9 +1983,9 @@
     },
     {
       "@id": "recircDischarge",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -1987,9 +1994,9 @@
     },
     {
       "@id": "nearCenterlineAft",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -1998,9 +2005,9 @@
     },
     {
       "@id": "iceHeadroom",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/CoolingWaterInletChest"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/CoolingWaterInletChest"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2018,12 +2025,6 @@
       "@type": "rdfs:Class",
       "rdfs:label": "Propeller",
       "rdfs:comment": "Geometry and loads for \u00a76.5 design and fatigue."
-    },
-    {
-      "@id": "Nozzle",
-      "@type": "rdfs:Class",
-      "rdfs:label": "Nozzle",
-      "rdfs:comment": "Nozzle around propeller (ducted propulsors)."
     },
     {
       "@id": "HubAndCPMechanism",
@@ -2063,60 +2064,60 @@
     },
     {
       "@id": "hasPropeller",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsorSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsorSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       }
     },
     {
       "@id": "hasNozzle",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsorSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsorSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/Nozzle"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Nozzle"
       }
     },
     {
       "@id": "hasHubMechanism",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsorSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsorSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/HubAndCPMechanism"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/HubAndCPMechanism"
       }
     },
     {
       "@id": "hasThruster",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/PropulsorSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropulsorSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       }
     },
     {
       "@id": "mountedOn",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/HullStructureSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/HullStructureSystem"
       },
       "rdfs:comment": "Mounting to stern/hull region."
     },
     {
       "@id": "D_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2125,9 +2126,9 @@
     },
     {
       "@id": "P0_7_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2136,9 +2137,9 @@
     },
     {
       "@id": "c0_7_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2147,9 +2148,9 @@
     },
     {
       "@id": "EAR",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2158,9 +2159,9 @@
     },
     {
       "@id": "hubDiameter_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2169,9 +2170,9 @@
     },
     {
       "@id": "nn_rpm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2180,9 +2181,9 @@
     },
     {
       "@id": "n_bollard_rpm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2191,9 +2192,9 @@
     },
     {
       "@id": "propellerType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2202,9 +2203,9 @@
     },
     {
       "@id": "pitchType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2213,9 +2214,9 @@
     },
     {
       "@id": "material",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2224,9 +2225,9 @@
     },
     {
       "@id": "Z",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:integer"
@@ -2235,9 +2236,9 @@
     },
     {
       "@id": "Fb_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2246,9 +2247,9 @@
     },
     {
       "@id": "Ff_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2257,9 +2258,9 @@
     },
     {
       "@id": "Qsmax_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2268,9 +2269,9 @@
     },
     {
       "@id": "Tb_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2279,9 +2280,9 @@
     },
     {
       "@id": "Tf_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2290,9 +2291,9 @@
     },
     {
       "@id": "Qmax_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2301,9 +2302,9 @@
     },
     {
       "@id": "Fex_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2312,9 +2313,9 @@
     },
     {
       "@id": "Qsex_kNm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2323,9 +2324,9 @@
     },
     {
       "@id": "SNcurveType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2334,9 +2335,9 @@
     },
     {
       "@id": "stressRange_MPa",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2345,9 +2346,9 @@
     },
     {
       "@id": "cycles_N",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:integer"
@@ -2356,9 +2357,9 @@
     },
     {
       "@id": "Nice",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:integer"
@@ -2367,9 +2368,9 @@
     },
     {
       "@id": "Nclass",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:integer"
@@ -2378,9 +2379,9 @@
     },
     {
       "@id": "boltDesignForFex",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/HubAndCPMechanism"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/HubAndCPMechanism"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2389,9 +2390,9 @@
     },
     {
       "@id": "k1",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2400,9 +2401,9 @@
     },
     {
       "@id": "k2",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2411,9 +2412,9 @@
     },
     {
       "@id": "k3",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2422,9 +2423,9 @@
     },
     {
       "@id": "Hice_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2433,9 +2434,9 @@
     },
     {
       "@id": "Hiced_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2444,9 +2445,9 @@
     },
     {
       "@id": "loadedArea_m2",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2455,9 +2456,9 @@
     },
     {
       "@id": "loadDistributionType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2466,9 +2467,9 @@
     },
     {
       "@id": "methodForQmax",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2477,9 +2478,9 @@
     },
     {
       "@id": "hasAllBladesSimultaneousImpact",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2488,9 +2489,9 @@
     },
     {
       "@id": "Fti_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2499,9 +2500,9 @@
     },
     {
       "@id": "Ftr_kN",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2510,9 +2511,9 @@
     },
     {
       "@id": "Hr_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2521,9 +2522,9 @@
     },
     {
       "@id": "designOperationSpeedInIce_kn",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2532,9 +2533,9 @@
     },
     {
       "@id": "globalVibrationCheck",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2543,9 +2544,9 @@
     },
     {
       "@id": "addedMass_kg",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2554,9 +2555,9 @@
     },
     {
       "@id": "dampingCoeff",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2565,9 +2566,9 @@
     },
     {
       "@id": "attachmentStiffness_kNPerM",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterMounting"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterMounting"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2576,9 +2577,9 @@
     },
     {
       "@id": "rudderDesignSpeed_kn",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/RudderAndSteeringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/RudderAndSteeringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2587,9 +2588,9 @@
     },
     {
       "@id": "steeringType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/RudderAndSteeringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/RudderAndSteeringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2598,9 +2599,9 @@
     },
     {
       "@id": "controlRedundancy",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/RudderAndSteeringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/RudderAndSteeringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2615,9 +2616,9 @@
     },
     {
       "@id": "throatDiameter_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Nozzle"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Nozzle"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2625,9 +2626,9 @@
     },
     {
       "@id": "lipThickness_mm",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Nozzle"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Nozzle"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2635,9 +2636,9 @@
     },
     {
       "@id": "nozzleLength_m",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Nozzle"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Nozzle"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2645,9 +2646,9 @@
     },
     {
       "@id": "nozzleType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Nozzle"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Nozzle"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2656,9 +2657,9 @@
     },
     {
       "@id": "naturalFrequency_Hz",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2667,9 +2668,9 @@
     },
     {
       "@id": "vibrationMode",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ThrusterSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ThrusterSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2684,24 +2685,24 @@
     },
     {
       "@id": "hasLoadSet",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Propeller"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Propeller"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/PropellerLoadSet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PropellerLoadSet"
       }
     },
     {
       "@id": "hasMember",
-      "@type": "rdf:Property",
-      "rdfs:domain": "prop:PropellerLoadSet",
-      "rdfs:range": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "prop:PropellerLoadSet"},
+      "rdfs:range": {"@id": "rdf:Property"},
       "rdfs:comment": "Groups multiple load parameters (Fb, Ff, Qsmax, Tb, Tf, Qmax)."
     },
     {
       "@id": "prop:PropellerLoadSet1",
-      "@type": "prop:PropellerLoadSet",
+      "@type": {"@id": "prop:PropellerLoadSet"},
       "prop:hasMember": [
         "prop:Fb_kN",
         "prop:Ff_kN",
@@ -2729,9 +2730,9 @@
     },
     {
       "@id": "materialKind",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2740,188 +2741,188 @@
     {
       "@id": "yieldStrength_MPa",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "tensileStrength_MPa",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "elongation_percent",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "charpyV_J",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:comment": "\u226527 J @ \u221210\u00b0C for steels (\u00a76.4)."
     },
     {
       "@id": "testTemperature_degC",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "fatigueSNReference",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "testedAccordingTo",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "sampleSize_mm",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "materialCertificateID",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "verifiedBy",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "verificationDate",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:date"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "approvalAuthority",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "fiberOrientation",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "matrixType",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "layupCode",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:string"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "tensileModulus_GPa",
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
       },
-      "@type": "rdf:Property"
+      "@type": {"@id": "rdf:Property"}
     },
     {
       "@id": "appliesTo",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MaterialsRequirements"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialsRequirements"
       },
-      "rdfs:range": "rdfs:Resource"
+      "rdfs:range": {"@id": "rdfs:Resource"}
     },
     {
       "@id": "testedBy",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/MechanicalPropertySet"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MechanicalPropertySet"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/MaterialSample"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialSample"
       }
     },
     {
       "@id": "materialsVerifiedAgainst",
-      "@type": "rdf:Property",
-      "rdfs:domain": "comp:Component",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "comp:Component"},
       "rdfs:range": {
-        "@id": "https://example.org/ship/MaterialsRequirements"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/MaterialsRequirements"
       }
     },
     {
@@ -2956,9 +2957,9 @@
     },
     {
       "@id": "torsionalVibrationMonitoring",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2967,9 +2968,9 @@
     },
     {
       "@id": "bladeLoadMonitoring",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:boolean"
@@ -2977,9 +2978,9 @@
     },
     {
       "@id": "alarmSetpoints",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/AlarmAndLoggingSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/AlarmAndLoggingSystem"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -2987,9 +2988,9 @@
     },
     {
       "@id": "recordingInterval_s",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -2997,17 +2998,17 @@
     },
     {
       "@id": "eventSeverity",
-      "@type": "rdf:Property",
-      "rdfs:domain": "prop:MonitoringEvent",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "prop:MonitoringEvent"},
       "rdfs:range": {
         "@id": "xsd:string"
       }
     },
     {
       "@id": "sensorType",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3015,9 +3016,9 @@
     },
     {
       "@id": "locationOnComponent",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3025,9 +3026,9 @@
     },
     {
       "@id": "accuracy_percent",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -3035,9 +3036,9 @@
     },
     {
       "@id": "samplingRate_Hz",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       },
       "rdfs:range": {
         "@id": "xsd:decimal"
@@ -3045,62 +3046,62 @@
     },
     {
       "@id": "timestamp",
-      "@type": "rdf:Property",
-      "rdfs:domain": "prop:MonitoringEvent",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "prop:MonitoringEvent"},
       "rdfs:range": {
         "@id": "xsd:dateTime"
       }
     },
     {
       "@id": "measuredValue",
-      "@type": "rdf:Property",
-      "rdfs:domain": "prop:MonitoringEvent",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "prop:MonitoringEvent"},
       "rdfs:range": {
         "@id": "xsd:decimal"
       }
     },
     {
       "@id": "acknowledged",
-      "@type": "rdf:Property",
-      "rdfs:domain": "prop:MonitoringEvent",
+      "@type": {"@id": "rdf:Property"},
+      "rdfs:domain": {"@id": "prop:MonitoringEvent"},
       "rdfs:range": {
         "@id": "xsd:boolean"
       }
     },
     {
       "@id": "monitorsComponent",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
-      "rdfs:range": "comp:Component"
+      "rdfs:range": {"@id": "comp:Component"}
     },
     {
       "@id": "recordsEvent",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
-      "rdfs:range": "prop:MonitoringEvent"
+      "rdfs:range": {"@id": "prop:MonitoringEvent"}
     },
     {
       "@id": "hasSensor",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       }
     },
     {
       "@id": "isPartOf",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/Sensor"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/Sensor"
       },
       "rdfs:range": {
-        "@id": "https://example.org/ship/ControlAndMonitoringSystem"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ControlAndMonitoringSystem"
       }
     },
     {
@@ -3116,9 +3117,9 @@
     },
     {
       "@id": "hasRegulationClause",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3126,24 +3127,24 @@
     },
     {
       "@id": "targetProperty",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
-      "rdfs:range": "rdf:Property"
+      "rdfs:range": {"@id": "rdf:Property"}
     },
     {
       "@id": "requiredValue",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       }
     },
     {
       "@id": "comparisonOperator",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3151,9 +3152,9 @@
     },
     {
       "@id": "conditionDescription",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3161,9 +3162,9 @@
     },
     {
       "@id": "appliesWhen",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3171,9 +3172,9 @@
     },
     {
       "@id": "severity",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3181,9 +3182,9 @@
     },
     {
       "@id": "message",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
       "rdfs:range": {
         "@id": "xsd:string"
@@ -3191,11 +3192,11 @@
     },
     {
       "@id": "implementsShape",
-      "@type": "rdf:Property",
+      "@type": {"@id": "rdf:Property"},
       "rdfs:domain": {
-        "@id": "https://example.org/ship/ConstraintIntent"
+        "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/ConstraintIntent"
       },
-      "rdfs:range": "shacl:Shape"
+      "rdfs:range": {"@id": "shacl:Shape"}
     },
     {
       "@id": "MonitoringEvent",
@@ -3296,8 +3297,8 @@
     },
     {
       "@id": "meta:OntologyVersion1",
-      "@type": "rdfs:Resource",
-      "rdfs:comment": "Ontology updated through Phase E refinement.",
+      "@type": {"@id": "rdfs:Resource"},
+      "rdfs:comment": "Ontology final",
       "meta:createdOn": "2025-10-14",
       "meta:lastValidated": "2025-10-14"
     }
