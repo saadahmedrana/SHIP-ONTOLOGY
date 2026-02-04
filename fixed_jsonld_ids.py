@@ -1680,7 +1680,7 @@
       "@type": "comp:AzimuthingThruster"
     },
     {
-      "@id": "prop:PropulsionSystem",
+      "@id": "PropulsionSystem",
       "@type": "rdfs:Class",
       "rdfs:label": "Propulsion System",
       "rdfs:comment": "Hub linking driver \u2192 transmission \u2192 shafting; holds arrangement and local ice class for constraints."
@@ -1737,27 +1737,27 @@
       "rdfs:comment": "Mirror ship iceClass here to simplify local SHACL checks from TRAFICOM Ch.6."
     },
     {
-      "@id": "eng:PrimeMover",
+      "@id": "PrimeMover",
       "@type": "rdfs:Class",
       "rdfs:label": "Prime Mover (Propulsion Engine or Motor)",
       "rdfs:comment": "Engine/driver interface variables needed for shaft-line design."
     },
 {
-  "@id": "eng:ElectricMotor",
+  "@id": "ElectricMotor",
   "@type": "rdfs:Class",
   "rdfs:label": "Electric Motor (Prime Mover)",
   "rdfs:comment": "Motor-specific subclass of PrimeMover for OEM datasheet variables (WEG induction motor etc.).",
   "rdfs:subClassOf": { "@id": "https://raw.githubusercontent.com/saadahmedrana/SHIP-ONTOLOGY/main/ship/PrimeMover" }
 },
-{ "@id": "eng:MotorOperatingLimits", "@type": "rdfs:Class", "rdfs:label": "Motor Operating Limits" },
-{ "@id": "eng:MotorRatedPoint", "@type": "rdfs:Class", "rdfs:label": "Motor Rated Point", "rdfs:comment": "One row/variant of nameplate ratings (e.g., 230/400V @ 50Hz)." },
-{ "@id": "eng:MotorEfficiencyPointSet", "@type": "rdfs:Class", "rdfs:label": "Motor Efficiency & Power Factor Points" },
-{ "@id": "eng:MotorBearings", "@type": "rdfs:Class", "rdfs:label": "Motor Bearings" },
-{ "@id": "eng:MotorFoundationInterface", "@type": "rdfs:Class", "rdfs:label": "Motor Foundation Interface Loads" },
-{ "@id": "eng:MotorThermalProtection", "@type": "rdfs:Class", "rdfs:label": "Motor Thermal Protection" },
-{ "@id": "eng:MotorSpaceHeater", "@type": "rdfs:Class", "rdfs:label": "Motor Space Heater" },
-{ "@id": "eng:MotorVFDConstraints", "@type": "rdfs:Class", "rdfs:label": "Motor VFD Constraints" },
-{ "@id": "eng:MotorEquivalentCircuit", "@type": "rdfs:Class", "rdfs:label": "Motor Equivalent Circuit", "rdfs:comment": "Per-phase stator-referred equivalent circuit parameters (rated + locked rotor)." },
+{ "@id": "MotorOperatingLimits", "@type": "rdfs:Class", "rdfs:label": "Motor Operating Limits" },
+{ "@id": "MotorRatedPoint", "@type": "rdfs:Class", "rdfs:label": "Motor Rated Point", "rdfs:comment": "One row/variant of nameplate ratings (e.g., 230/400V @ 50Hz)." },
+{ "@id": "MotorEfficiencyPointSet", "@type": "rdfs:Class", "rdfs:label": "Motor Efficiency & Power Factor Points" },
+{ "@id": "MotorBearings", "@type": "rdfs:Class", "rdfs:label": "Motor Bearings" },
+{ "@id": "MotorFoundationInterface", "@type": "rdfs:Class", "rdfs:label": "Motor Foundation Interface Loads" },
+{ "@id": "MotorThermalProtection", "@type": "rdfs:Class", "rdfs:label": "Motor Thermal Protection" },
+{ "@id": "MotorSpaceHeater", "@type": "rdfs:Class", "rdfs:label": "Motor Space Heater" },
+{ "@id": "MotorVFDConstraints", "@type": "rdfs:Class", "rdfs:label": "Motor VFD Constraints" },
+{ "@id": "MotorEquivalentCircuit", "@type": "rdfs:Class", "rdfs:label": "Motor Equivalent Circuit", "rdfs:comment": "Per-phase stator-referred equivalent circuit parameters (rated + locked rotor)." },
 {
   "@id": "hasMotorOperatingLimits",
   "@type": { "@id": "rdf:Property" },
