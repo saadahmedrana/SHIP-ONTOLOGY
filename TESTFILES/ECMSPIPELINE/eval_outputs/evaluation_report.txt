@@ -1,0 +1,37 @@
+
+================ ECMS EVALUATION =================
+
+Total evaluated rows: 123
+Ground-truth-covered rows: 123
+Missing in GT: 0
+
+AUTO-ONLY CONFUSION (EXCLUDES HUMAN_REVIEW)
+  (ACCEPT vs NO_MATCH only; HUMAN_REVIEW excluded)
+
+Confusion matrix:
+  TP: 48
+  FP: 14
+  FN: 9
+  TN: 0
+
+Auto-only metrics:
+  Precision: 0.774
+  Recall:    0.842
+  F1-score:  0.807
+
+Routing totals:
+  ACCEPT:       62
+  HUMAN_REVIEW: 52
+  NO_MATCH:     9
+
+Requested breakdowns:
+  ACCEPT -> correct: 48
+  ACCEPT -> wrong (FP): 14
+
+  NO_MATCH (rejected) -> correct rejects: 0
+  NO_MATCH (rejected) -> should have been accepted (false rejects): 9
+
+  HUMAN_REVIEW -> should accept: 24
+  HUMAN_REVIEW -> should reject: 28
+
+==================================================
