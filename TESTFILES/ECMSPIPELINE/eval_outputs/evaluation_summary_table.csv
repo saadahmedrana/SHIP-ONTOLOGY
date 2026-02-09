@@ -1,0 +1,16 @@
+metric,value
+Total rows,144
+GT_POSITIVE (should accept),123
+DONTEXIST (should reject),21
+ACCEPT total,61
+ACCEPT correct,47
+ACCEPT wrong,14
+REJECT (NO_MATCH) total,13
+REJECT correct,4
+REJECT wrong (false reject),9
+HUMAN_REVIEW total,70
+HUMAN_REVIEW should accept,53
+HUMAN_REVIEW should reject,17
+DONTEXIST wrongly accepted,0
+DONTEXIST in HUMAN_REVIEW,17
+DONTEXIST in NO_MATCH,4

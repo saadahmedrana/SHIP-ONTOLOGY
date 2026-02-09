@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 # ---------------- CONFIG ----------------
 RESULTS_CSV = Path("eval_results_ecms_clean.csv")
@@ -10,6 +11,8 @@ GT_XLSX = Path("CorrectNamesMappings.xlsx")
 GT_SHEET = None   # set sheet name if needed (e.g., "Sheet1")
 OUT_DIR = Path("eval_outputs")
 OUT_DIR.mkdir(exist_ok=True)
+
+DONTEXIST_TOKEN = "DONTEXIST"   # <-- NEW
 
 # ---------------- LOAD DATA ----------------
 res = pd.read_csv(RESULTS_CSV)
@@ -51,23 +54,27 @@ print(f"✅ Ground truth mappings loaded: {len(gt_map)}")
 res["correct_match"] = res["original_name"].map(gt_map).fillna("").astype(str).str.strip()
 res["has_gt"] = res["correct_match"].ne("")
 
+# NEW: DONTEXIST handling
+res["is_dontexist"] = res["correct_match"].str.upper().eq(DONTEXIST_TOKEN)
+res["has_gt_pos"] = res["has_gt"] & (~res["is_dontexist"]) & res["correct_match"].ne("")
+
 missing_in_gt = res.loc[~res["has_gt"], "original_name"].unique().tolist()
 (Path(OUT_DIR / "missing_in_ground_truth.txt")).write_text("\n".join(missing_in_gt))
 print(f"⚠️ Missing in ground truth: {len(missing_in_gt)} (saved to missing_in_ground_truth.txt)")
 
 # ---------------- HELPERS ----------------
 def is_correct_prediction(row) -> bool:
-    """Correct if we have GT and best_match equals correct_match."""
-    if not row["has_gt"]:
+    """Correct if we have GT positive and best_match equals correct_match."""
+    if not bool(row.get("has_gt_pos", False)):
         return False
     return str(row["best_match"]).strip() == str(row["correct_match"]).strip()
 
 def should_accept(row) -> bool:
     """
-    "Should be accepted" means: has GT and correct_match is non-empty.
-    In your current dataset this is basically the definition of "actual positive".
+    "Should be accepted" means: GT-positive exists (i.e., correct_match is a real mapping).
+    If correct_match is DONTEXIST, it should NOT be accepted.
     """
-    return bool(row["has_gt"]) and (str(row["correct_match"]).strip() != "")
+    return bool(row.get("has_gt_pos", False))
 
 # ---------------- ROUTING SPLITS ----------------
 accepted = res[res["status"] == "ACCEPT"].copy()
@@ -77,15 +84,16 @@ nomatch = res[res["status"] == "NO_MATCH"].copy()
 # ACCEPT -> correct vs wrong
 accepted["is_correct"] = accepted.apply(is_correct_prediction, axis=1)
 accepted_correct = int(accepted["is_correct"].sum())
-accepted_wrong = int(len(accepted) - accepted_correct)  # wrong auto accepts (FP)
+accepted_wrong = int(len(accepted) - accepted_correct)  # wrong auto accepts (includes DONTEXIST accepts)
 
 # NO_MATCH -> correct reject vs should-have-accepted (false reject)
 nomatch["should_accept"] = nomatch.apply(should_accept, axis=1)
-rejected_should_accept = int(nomatch["should_accept"].sum())          # false rejects
-rejected_correct_reject = int(len(nomatch) - rejected_should_accept)  # correct rejects
+rejected_should_accept = int(nomatch["should_accept"].sum())          # false rejects (FN)
+rejected_correct_reject = int(len(nomatch) - rejected_should_accept)  # correct rejects (includes DONTEXIST + true negatives)
 
 # HUMAN_REVIEW -> should accept vs should reject
-human["should_accept"] = human.apply(is_correct_prediction, axis=1)
+# (keeping your existing logic style; just based on GT-positive)
+human["should_accept"] = human.apply(should_accept, axis=1)
 human_should_accept = int(human["should_accept"].sum())
 human_should_reject = int(len(human) - human_should_accept)
 
@@ -99,23 +107,23 @@ n_total = int(len(res))
 # ✅ AUTO-ONLY CONFUSION MATRIX (EXCLUDES HUMAN_REVIEW)
 # Predicted Positive = ACCEPT
 # Predicted Negative = NO_MATCH
-# Actual Positive = has_gt (correct_match exists)
-# Actual Negative = no_gt (rare in your case)
+# Actual Positive = GT-positive exists (correct mapping exists)
+# Actual Negative = DONTEXIST OR missing GT
 # ============================================================
 auto = res[res["status"].isin(["ACCEPT", "NO_MATCH"])].copy()
 
 def classify_auto(row):
-    actual_pos = bool(row["has_gt"])  # GT exists => there is a correct mapping
+    actual_pos = bool(row.get("has_gt_pos", False))  # TRUE mapping exists
     pred_pos = (row["status"] == "ACCEPT")
 
     if pred_pos:
-        # ACCEPT: TP if correct mapping else FP
+        # ACCEPT: TP if correct mapping else FP (includes DONTEXIST accepts)
         if actual_pos and is_correct_prediction(row):
             return "TP"
         else:
             return "FP"
     else:
-        # NO_MATCH: FN if there WAS a GT mapping (actual_pos), else TN
+        # NO_MATCH: FN if there WAS a true mapping (actual_pos), else TN
         if actual_pos:
             return "FN"
         else:
@@ -133,12 +141,21 @@ precision = TP / (TP + FP) if (TP + FP) else 0.0
 recall = TP / (TP + FN) if (TP + FN) else 0.0
 f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
 
+# ---------------- DONTEXIST BREAKDOWN (NEW) ----------------
+dontexist = res[res["is_dontexist"]].copy()
+dontexist_total = int(len(dontexist))
+dontexist_wrong_accept = int((dontexist["status"] == "ACCEPT").sum())
+dontexist_correct_reject = int((dontexist["status"] != "ACCEPT").sum())
+dontexist_nomatch = int((dontexist["status"] == "NO_MATCH").sum())
+dontexist_human = int((dontexist["status"] == "HUMAN_REVIEW").sum())
+
 # ---------------- REPORT ----------------
 report = f"""
 ================ ECMS EVALUATION =================
 
 Total evaluated rows: {n_total}
 Ground-truth-covered rows: {int(res['has_gt'].sum())}
+GT-positive rows (real mappings): {int(res['has_gt_pos'].sum())}
 Missing in GT: {len(missing_in_gt)}
 
 AUTO-ONLY CONFUSION (EXCLUDES HUMAN_REVIEW)
@@ -170,6 +187,13 @@ Requested breakdowns:
   HUMAN_REVIEW -> should accept: {human_should_accept}
   HUMAN_REVIEW -> should reject: {human_should_reject}
 
+DONTEXIST analysis (should be rejected):
+  Total DONTEXIST rows: {dontexist_total}
+  Correctly rejected (status != ACCEPT): {dontexist_correct_reject}
+    - NO_MATCH: {dontexist_nomatch}
+    - HUMAN_REVIEW: {dontexist_human}
+  Wrongly ACCEPTED: {dontexist_wrong_accept}
+
 ==================================================
 """
 print(report)
@@ -179,16 +203,13 @@ print(report)
 sns.set_theme(style="whitegrid")
 
 # 0) Auto-only confusion matrix plot (clean labels)
-# Rows = actual, cols = predicted
-# [[TP, FN],
-#  [FP, TN]]
 cm = [[TP, FN],
       [FP, TN]]
 
 cm_df = pd.DataFrame(
     cm,
     index=["Actual Positive", "Actual Negative"],
-    columns=["Pred ACCEPT", "Pred NO_MATCH"]
+    columns=["Predicted ACCEPT", "Predicted NO_MATCH"]
 )
 
 plt.figure(figsize=(7.2, 5.6))
@@ -241,8 +262,8 @@ good = [accepted_correct, rejected_correct_reject, human_should_accept]
 bad  = [accepted_wrong,   rejected_should_accept, human_should_reject]
 
 plt.figure(figsize=(10, 6))
-plt.bar(categories, good, label="Correct / Good outcome")
-plt.bar(categories, bad, bottom=good, label="Wrong / Needs change")
+plt.bar(categories, good, label="Correctly identified")
+plt.bar(categories, bad, bottom=good, label="Wrongly identified")
 plt.ylabel("Count")
 plt.title("Routing Outcomes + Human Review Breakdown")
 plt.legend()

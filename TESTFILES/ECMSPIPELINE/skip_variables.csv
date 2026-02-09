@@ -36,24 +36,4 @@ rotor_current_d_i_rd,Not defined in any standard
 rotor_current_q_i_rq,Not defined in any standard
 stall_rms_current_I0,Not defined in any standard
 stall_torque_M0,Not defined in any standard
-stator_current_d_i_sd,Not defined in any standard
-stator_current_d_ids,Not defined in any standard
-stator_current_d_isd,Not defined in any standard
-stator_current_q_i_sq,Not defined in any standard
-stator_current_q_iqs,Not defined in any standard
-stator_current_q_isq,Not defined in any standard
-stator_current_space_vector_is,Not defined in any standard
-stator_current_vector_i_s,Not defined in any standard
-stator_transient_inductance_L_s_prime,Not defined in any standard
-stator_voltage_d_u_sd,Not defined in any standard
-stator_voltage_d_ud,Not defined in any standard
-stator_voltage_q_u_sq,Not defined in any standard
-stator_voltage_q_uq,Not defined in any standard
-stator_voltage_reference_u_s_ref,Not defined in any standard
-stator_voltage_space_vector_us,Not defined in any standard
-stator_voltage_vector_u_s,Not defined in any standard
-tau_el,Not defined in any standard
-tau_therm,Not defined in any standard
-temperature_adjustment_factor_fT,Not defined in any standard
-torque_constant_KT,Not defined in any standard
-type_designation,Not defined in any standard
+
