@@ -1,0 +1,41 @@
+
+================ ECMS EVALUATION =================
+
+Total evaluated rows: 144
+Ground-truth-covered rows: 144
+GT-positive rows (real mappings): 123
+Missing in GT: 0
+
+AUTO-ONLY CONFUSION (EXCLUDES HUMAN_REVIEW)
+Confusion:
+  TP: 22
+  FP: 5
+  FN: 10
+  TN: 4
+
+Auto-only metrics:
+  Precision:         0.815
+  Recall (TPR):      0.688
+  F1-score:          0.746
+  Accuracy:          0.634
+  Specificity (TNR): 0.444
+  NPV:               0.286
+  Balanced Acc:      0.566
+  MCC:               0.115
+
+Routing totals:
+  ACCEPT:       27
+  HUMAN_REVIEW: 103
+  NO_MATCH:     14
+
+Routing breakdowns:
+  ACCEPT -> correct: 22
+  ACCEPT -> wrong:   5
+
+  NO_MATCH -> correct reject:        4
+  NO_MATCH -> should-have-accepted:  10
+
+  HUMAN_REVIEW -> should accept: 86
+  HUMAN_REVIEW -> should reject: 17
+
+==================================================

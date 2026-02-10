@@ -1,0 +1,21 @@
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\renewcommand{\arraystretch}{1.05}
+\caption{Threshold sweep (AUTO-only confusion excludes HUMAN review decisions).}
+\label{tab:threshold_sweep}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrr}
+\toprule
+HR thr & Prec. & Rec. & F1 & Accept & Human & NoMatch & TP & FP & FN & TN \\
+\midrule
+0.450 & 0.660 & 0.883 & 0.756 & 103 & 28 & 13 & 68 & 35 & 9 & 4 \\
+0.500 & 0.787 & 0.842 & 0.814 & 61 & 70 & 13 & 48 & 13 & 9 & 4 \\
+0.550 & 0.815 & 0.688 & 0.746 & 27 & 103 & 14 & 22 & 5 & 10 & 4 \\
+0.600 & 0.800 & 0.571 & 0.667 & 15 & 116 & 13 & 12 & 3 & 9 & 4 \\
+0.650 & 0.667 & 0.471 & 0.552 & 12 & 119 & 13 & 8 & 4 & 9 & 4 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}

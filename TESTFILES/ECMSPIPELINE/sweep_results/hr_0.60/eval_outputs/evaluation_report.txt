@@ -8,34 +8,34 @@ Missing in GT: 0
 
 AUTO-ONLY CONFUSION (EXCLUDES HUMAN_REVIEW)
 Confusion:
-  TP: 68
-  FP: 35
+  TP: 12
+  FP: 3
   FN: 9
   TN: 4
 
 Auto-only metrics:
-  Precision:         0.660
-  Recall (TPR):      0.883
-  F1-score:          0.756
-  Accuracy:          0.621
-  Specificity (TNR): 0.103
+  Precision:         0.800
+  Recall (TPR):      0.571
+  F1-score:          0.667
+  Accuracy:          0.571
+  Specificity (TNR): 0.571
   NPV:               0.308
-  Balanced Acc:      0.493
-  MCC:               -0.021
+  Balanced Acc:      0.571
+  MCC:               0.124
 
 Routing totals:
-  ACCEPT:       103
-  HUMAN_REVIEW: 28
+  ACCEPT:       15
+  HUMAN_REVIEW: 116
   NO_MATCH:     13
 
 Routing breakdowns:
-  ACCEPT -> correct: 68
-  ACCEPT -> wrong:   35
+  ACCEPT -> correct: 12
+  ACCEPT -> wrong:   3
 
   NO_MATCH -> correct reject:        4
   NO_MATCH -> should-have-accepted:  9
 
-  HUMAN_REVIEW -> should accept: 22
-  HUMAN_REVIEW -> should reject: 6
+  HUMAN_REVIEW -> should accept: 99
+  HUMAN_REVIEW -> should reject: 17
 
 ==================================================

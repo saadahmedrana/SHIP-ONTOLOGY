@@ -1,0 +1,4 @@
+status,total,segment_1_label,segment_1_count,segment_2_label,segment_2_count
+ACCEPT,27,Correct ACCEPT,22,Wrong ACCEPT,5
+NO_MATCH,14,Correct Reject,4,Should Have Accepted,10
+HUMAN_REVIEW,103,Should Accept,86,Should Reject,17

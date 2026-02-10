@@ -31,7 +31,7 @@ BACKOFF = 8
 
 # Decision thresholds
 NO_MATCH_THR = 0.40
-HUMAN_REVIEW_THR = 0.50
+HUMAN_REVIEW_THR = 0.45
 
 # --- API endpoints ---
 EMBED_URL = "https://aalto-openai-apigw.azure-api.net/v1/openai/text-embedding-3-large/embeddings"
