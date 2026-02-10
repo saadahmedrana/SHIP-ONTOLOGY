@@ -28,7 +28,7 @@ import pandas as pd
 
 
 # ---------------- USER CONFIG ----------------
-HR_THRESHOLDS = [0.60, 0.65]
+HR_THRESHOLDS = [0.41]
 
 MASTERAGENT = "masteragent_ecms.py"
 EVAL_SCRIPT = "eval_results_ecms.py"

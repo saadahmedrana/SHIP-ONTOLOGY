@@ -1,6 +1,6 @@
-TP,FP,FN,TN,precision,recall,f1,accuracy,specificity,npv,balanced_acc,mcc,ACCEPT_total,HUMAN_REVIEW_total,NO_MATCH_total,ACCEPT_correct,ACCEPT_wrong,NO_MATCH_correct,NO_MATCH_should_accept,HR_should_accept,HR_should_reject,human_review_thr,run_dir
-68,35,9,4,0.66,0.883,0.756,0.621,0.103,0.308,0.493,-0.021,103,28,13,68,35,4,9,22,6,0.45,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.45
-48,13,9,4,0.787,0.842,0.814,0.703,0.235,0.308,0.539,0.086,61,70,13,48,13,4,9,53,17,0.5,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.50
-22,5,10,4,0.815,0.688,0.746,0.634,0.444,0.286,0.566,0.115,27,103,14,22,5,4,10,86,17,0.55,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.55
-12,3,9,4,0.8,0.571,0.667,0.571,0.571,0.308,0.571,0.124,15,116,13,12,3,4,9,99,17,0.6,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.60
-8,4,9,4,0.667,0.471,0.552,0.48,0.5,0.308,0.485,-0.027,12,119,13,8,4,4,9,102,17,0.65,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.65
+TP,FP,FN,TN,precision,recall,f1,accuracy,specificity,npv,balanced_acc,mcc,ACCEPT_total,HUMAN_REVIEW_total,NO_MATCH_total,ACCEPT_correct,ACCEPT_wrong,NO_MATCH_correct,NO_MATCH_should_accept,HR_should_accept,HR_should_reject,human_review_thr,run_dir,total_decisions,human_review_pct
+68,35,9,4,0.66,0.883,0.756,0.621,0.103,0.308,0.493,-0.021,103,28,13,68,35,4,9,22,6,0.45,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.45,144,19.4
+48,13,9,4,0.787,0.842,0.814,0.703,0.235,0.308,0.539,0.086,61,70,13,48,13,4,9,53,17,0.5,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.50,144,48.6
+22,5,10,4,0.815,0.688,0.746,0.634,0.444,0.286,0.566,0.115,27,103,14,22,5,4,10,86,17,0.55,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.55,144,71.5
+12,3,9,4,0.8,0.571,0.667,0.571,0.571,0.308,0.571,0.124,15,116,13,12,3,4,9,99,17,0.6,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.60,144,80.6
+8,4,9,4,0.667,0.471,0.552,0.48,0.5,0.308,0.485,-0.027,12,119,13,8,4,4,9,102,17,0.65,/Users/sadisfaction570/Desktop/SHIP-ONTOLOGY/TESTFILES/ECMSPIPELINE/sweep_results/hr_0.65,144,82.6
